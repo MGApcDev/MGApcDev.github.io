@@ -111,6 +111,33 @@
     });
   }
 
+  /* ------------------------------------------------------- scrollable tables */
+  // A region that scrolls must be operable by keyboard (WCAG 2.1.1). The wide
+  // tables hide ~290px of content at phone widths, and without a tab stop there
+  // is no way to reach it without a pointer. Only add the tab stop while the
+  // region actually overflows, so desktop does not collect a dead one.
+  const scrollRegions = Array.from(document.querySelectorAll('.table-scroll'));
+  if (scrollRegions.length) {
+    const updateScrollRegions = () => {
+      scrollRegions.forEach((region) => {
+        const scrolls = region.scrollWidth > region.clientWidth + 1;
+        if (scrolls) {
+          const caption = region.querySelector('caption');
+          region.setAttribute('tabindex', '0');
+          region.setAttribute('role', 'region');
+          region.setAttribute('aria-label', (caption ? caption.textContent.trim() : 'Table') + ' (scrolls sideways)');
+        } else {
+          region.removeAttribute('tabindex');
+          region.removeAttribute('role');
+          region.removeAttribute('aria-label');
+        }
+      });
+    };
+    updateScrollRegions();
+    window.addEventListener('resize', updateScrollRegions);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(updateScrollRegions);
+  }
+
   /* --------------------------------------------------------------- mail forms */
   // A form posting to mailto: is silently dropped by Chrome — the visitor types a
   // message, presses send, and nothing happens. Compose the mail URL ourselves,

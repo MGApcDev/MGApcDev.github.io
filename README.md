@@ -228,6 +228,12 @@ fetched, so text paints immediately and no webfont shifts the layout.
   and always leave a visible fallback link.
 - **Everything degrades**: reveal animations are gated behind a `.js` class set
   by a one-line inline script, so with JS off nothing is stuck at `opacity: 0`.
+- **Scrollable tables are keyboard-operable.** At phone widths the catalogue,
+  prints and press tables hide about 290px of content behind a horizontal scroll.
+  A scroll container that cannot take focus is unreachable without a pointer
+  (WCAG 2.1.1), so JS adds `tabindex="0"`, `role="region"` and a label from the
+  table caption — but only while the region actually overflows, so desktop does
+  not collect a dead tab stop.
 - **Link text names its destination.** Screen readers list every link out of
   context, so the same words must not lead to two places. Three did: "write to me"
   went to both contact and sessions, "Works" sometimes landed on a filtered view,

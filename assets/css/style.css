@@ -1043,6 +1043,13 @@ code {
   -webkit-overflow-scrolling: touch;
 }
 
+/* The region becomes focusable only while it overflows, so the ring must read as
+   deliberate rather than as a stray outline on a wrapper. */
+.table-scroll:focus-visible {
+  outline: 2px solid var(--poppy);
+  outline-offset: 4px;
+}
+
 .price-table {
   width: 100%;
   min-width: 640px;
