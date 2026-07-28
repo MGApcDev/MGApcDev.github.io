@@ -1,4 +1,5 @@
 import { SITE, crumbs } from '../chrome.mjs';
+import { WORKS, SERIES } from '../works-data.mjs';
 
 export const meta = {
   title: 'Prints',
@@ -20,12 +21,34 @@ export const meta = {
   ],
 };
 
+/**
+ * Size, paper and price. Deliberately no edition column: an edition belongs to the
+ * work, not to a paper size, and pretending otherwise put this page in direct
+ * contradiction with the catalogue — it claimed 50x62 was an edition of 15 where the
+ * catalogue has Afternoon Wall at that size in 8 sets, and 60x75 as 10 where the
+ * catalogue has the Bloom frames at 15. The note under the table derives the real
+ * figures from works-data, so the two pages cannot drift apart again.
+ */
 const SIZES = [
-  ['30 &times; 40 cm', '15 + 2 AP', '1.400 kr.', '2.300 kr.'],
-  ['50 &times; 62 cm', '15 + 2 AP', '2.600 kr.', '3.900 kr.'],
-  ['60 &times; 75 cm', '10 + 2 AP', '3.800 kr.', '5.400 kr.'],
-  ['90 &times; 120 cm', '5 + 1 AP', '6.900 kr.', '9.200 kr.'],
+  ['30 &times; 40 cm', '1.400 kr.', '2.300 kr.'],
+  ['50 &times; 62 cm', '2.600 kr.', '3.900 kr.'],
+  ['60 &times; 75 cm', '3.800 kr.', '5.400 kr.'],
+  ['90 &times; 60 cm', '6.900 kr.', '9.200 kr.'],
 ];
+
+/** "Bloom is 15 + 2 AP, Coast and Mirror 10 + 2 AP…" straight from the work data. */
+const editionsByRun = (() => {
+  const runs = new Map();
+  WORKS.forEach((work) => {
+    if (!runs.has(work.edition)) runs.set(work.edition, []);
+    const labels = runs.get(work.edition);
+    if (!labels.includes(SERIES[work.series].label)) labels.push(SERIES[work.series].label);
+  });
+  const phrase = (labels) => labels.length === 1
+    ? labels[0]
+    : labels.slice(0, -1).join(', ') + ' and ' + labels[labels.length - 1];
+  return [...runs.entries()].map(([edition, labels]) => `${phrase(labels)} ${edition}`).join('; ');
+})();
 
 const STEPS = [
   ['01', 'Write', 'Tell me the title, the size and whether you want it framed. A photo of the wall helps more than you would think.'],
@@ -48,7 +71,7 @@ export const body = `
       <div data-reveal>
         <p class="eyebrow">Prints</p>
         <h1 class="measure-12">Made to live on a wall</h1>
-        <p class="lede measure-48">Archival pigment prints on matte cotton rag, printed in Copenhagen, editions of 15, signed and numbered on the reverse.</p>
+        <p class="lede measure-48">Archival pigment prints on matte cotton rag, printed in Copenhagen, in small numbered editions, signed on the reverse.</p>
         <p>Every frame in <a href="works.html">Works</a> is available. If you want something you saw on Facebook that is not on this site, write and ask &mdash; most of it exists as a file.</p>
       </div>
       <div class="frame frame--tall" data-reveal>
@@ -66,28 +89,27 @@ export const body = `
     </div>
     <div class="table-scroll" data-reveal>
       <table class="price-table">
-        <caption class="visually-hidden">Print sizes, editions and prices in Danish kroner</caption>
+        <caption class="visually-hidden">Print sizes, paper and prices in Danish kroner</caption>
         <thead>
           <tr>
             <th scope="col">Size</th>
             <th scope="col">Paper</th>
-            <th scope="col">Edition</th>
             <th scope="col">Unframed</th>
             <th scope="col">Framed, oiled oak</th>
           </tr>
         </thead>
         <tbody>
-${SIZES.map(([size, edition, unframed, framed]) => `          <tr>
+${SIZES.map(([size, unframed, framed]) => `          <tr>
             <th scope="row">${size}</th>
             <td>Cotton rag 310 g</td>
-            <td>${edition}</td>
             <td>${unframed}</td>
             <td>${framed}</td>
           </tr>`).join('\n')}
         </tbody>
       </table>
     </div>
-    <p class="form__note space-top">Prices are placeholders. Shipping within Denmark 250 kr., rest of EU 550 kr. Rolled in a tube unless framed.</p>
+    <p class="quiet measure-52 space-top">Edition size belongs to the work rather than to the paper size: ${editionsByRun}. The <a href="catalogue.html">catalogue</a> lists every frame with its own edition.</p>
+    <p class="form__note">Prices are placeholders. Shipping within Denmark 250 kr., rest of EU 550 kr. Rolled in a tube unless framed.</p>
   </section>
 
   <section class="section section--sand">

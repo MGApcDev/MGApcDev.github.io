@@ -135,6 +135,27 @@ re-hardcoding it fails the build. Same wrinkle as sitemap `lastmod`: the commit
 that edits the source is the one that moves the date, so `now.html` is rebuilt on
 the following build — `--check` catches it.
 
+## Figures that must agree
+
+```bash
+node tools/audit-facts.mjs
+```
+
+`tools/works-data.mjs` feeds the gallery, the catalogue and the twelve work pages, so
+those three cannot disagree. Prose written by hand can, and did: the Prints page had
+an edition column keyed to *paper size*, which is the wrong axis — an edition belongs
+to the work. It claimed 50×62 was an edition of 15 where the catalogue has Afternoon
+Wall at that size in 8 sets, 60×75 as 10 where the catalogue has the Bloom frames at
+15, a 90×120 size no work is printed at, and "5 + 1 AP", a run that exists nowhere in
+the work data.
+
+The column is gone rather than corrected, because a number that cannot be checked is
+better not restated; the note under the table now derives the real runs from the work
+data, so the two pages cannot drift apart again. This audit catches the remaining
+mechanical case: an edition figure in the rendered HTML that no work has. Narrow on
+purpose — whether a *valid* figure sits against the right work is not decidable from
+the text.
+
 ## Dates and tense
 
 ```bash
