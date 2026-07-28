@@ -240,7 +240,10 @@
         <a class="wordmark" href="index.html">Zenna <span>Lua</span></a>
         <p class="quiet site-footer__blurb">Photographic artist and psychotherapist. Copenhagen, Denmark.</p>
       </div>
-      <div>
+      <!-- A nav landmark, not a div: with the header nav gone this is the only
+           standing navigation on the page, and a screen-reader user jumping by
+           landmark would otherwise find no navigation anywhere on the site. -->
+      <nav aria-label="Pages">
         <h2>Pages</h2>
         <ul>
           <li><a href="now.html">Now</a></li>
@@ -257,7 +260,7 @@
           <li><a href="contact.html">Contact</a></li>
           <li><a href="da.html" lang="da">Dansk</a></li>
         </ul>
-      </div>
+      </nav>
       <div>
         <h2>Elsewhere</h2>
         <ul>
