@@ -151,6 +151,18 @@ empty submit composes nothing, that a filled one carries the message, name and
 reply address under a non-empty subject, and that the newsletter form uses its own
 subject and address field.
 
+Submitting ends in `window.location.href = 'mailto:…'`, and the operating system
+takes that seriously: the first version of this tool opened a real mail client on
+the machine running it, once per submit, per engine, per run. The page is driven
+inside a `sandbox="allow-scripts allow-same-origin allow-forms"` iframe instead —
+a sandboxed context may not navigate to a non-fetch scheme, so the URL is composed
+and the navigation goes nowhere. `allow-forms` is required or Chromium blocks the
+submit outright and the handler never runs. Verified both ways: sandboxed, Chromium
+logs *"Navigation to external protocol blocked by sandbox"*; unsandboxed, it logs
+*"Launched external handler for 'mailto:…'"*. That second line is now a hard
+failure, so if the sandbox ever stops holding the audit says so instead of quietly
+opening mail windows on someone's desktop.
+
 ## Visual regression
 
 ```bash
