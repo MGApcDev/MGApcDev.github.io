@@ -68,20 +68,21 @@ export const body = `
   <section class="section shell">
     <div class="split split--top">
       <div data-reveal>
-        <p class="eyebrow">What is on</p>
+        <p class="eyebrow">Most recent show</p>
         <h2><a href="series-like-a-flower.html">Like a flower you shall bloom</a></h2>
-        <p>Eighteen archival pigment prints, hung low and lit warm, in one room. It takes about twenty minutes to see properly and rather longer if you sit down, which is what the benches are for.</p>
-        <p>I am usually there on Friday afternoons and most of Sunday. If you want to be shown around, or specifically want to avoid being shown around, both are easy &mdash; just say.</p>
-        <p class="quiet">Bring children. They are better at this than adults are.</p>
-        <p class="form__note">Between shows there is nothing hanging &mdash; the studio visit below is the way to see prints in person. <a href="now.html">Now</a> says which it currently is.</p>
+        <p class="lede">This show has closed. Between shows there is nothing hanging, so a
+        studio visit is the way to see prints in person &mdash; by arrangement, one at a
+        time. <a href="now.html">Now</a> says what is currently on.</p>
+        <p>While it was up: eighteen archival pigment prints, hung low and lit warm, in one room. It took about twenty minutes to see properly and rather longer if you sat down, which is what the benches are for.</p>
+        <p class="quiet">Bring children to the next one. They are better at this than adults are.</p>
       </div>
       <dl class="spec" data-reveal>
-        <div><dt>Dates</dt><dd>23 April &ndash; 31 May</dd></div>
+        <div><dt>Ran</dt><dd>23 April &ndash; 31 May</dd></div>
         <div><dt>Entry</dt><dd>Free, no booking</dd></div>
         <div><dt>Works</dt><dd>18 prints</dd></div>
         <div><dt>Where</dt><dd>Copenhagen &mdash; address to be confirmed</dd></div>
-        <div><dt>Artist present</dt><dd>Fridays and Sundays, usually</dd></div>
-        <div><dt>Ask</dt><dd><a href="contact.html">Write before you come</a></dd></div>
+        <div><dt>Next show</dt><dd>Not yet announced</dd></div>
+        <div><dt>Meanwhile</dt><dd><a href="contact.html">Ask about a studio visit</a></dd></div>
       </dl>
     </div>
   </section>
@@ -91,7 +92,10 @@ export const body = `
   <section class="section shell">
     <div data-reveal class="section-intro">
       <p class="eyebrow">Opening hours</p>
-      <h2>When the door is open</h2>
+      <h2>When the door is open, while a show is up</h2>
+      <p class="quiet measure-52">These are the exhibition hours, not this week&rsquo;s. With nothing
+      hanging the room is not open to drop in on &mdash; a studio visit is arranged by
+      message instead.</p>
     </div>
     <div class="table-scroll" data-reveal>
       <table class="price-table price-table--narrow">
