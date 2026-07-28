@@ -223,8 +223,15 @@
     }
   }
 
+  const backdropSiblings = () => Array.from(document.body.children)
+    .filter((element) => element !== lightbox && element.tagName !== 'SCRIPT');
+
   function open(index) {
     lastFocused = document.activeElement;
+    backdropSiblings().forEach((element) => {
+      element.setAttribute('inert', '');
+      element.setAttribute('aria-hidden', 'true');
+    });
     show(index);
     lightbox.classList.add('is-open');
     lightbox.removeAttribute('aria-hidden');
@@ -233,6 +240,10 @@
   }
 
   function close() {
+    backdropSiblings().forEach((element) => {
+      element.removeAttribute('inert');
+      element.removeAttribute('aria-hidden');
+    });
     lightbox.classList.remove('is-open');
     lightbox.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
@@ -278,7 +289,14 @@
     const match = location.hash.match(/^#view=(.+)$/);
     if (!match) return;
     const wanted = decodeURIComponent(match[1]);
-    const index = visibleOpeners().findIndex((opener) => slugFor(opener) === wanted);
+    let index = visibleOpeners().findIndex((opener) => slugFor(opener) === wanted);
+
+    // Hidden by an active filter: the frame exists but is filtered out. Show
+    // everything and look again, rather than letting the link do nothing.
+    if (index === -1 && openers.some((opener) => slugFor(opener) === wanted)) {
+      if (filterButtons.length) applyFilter('all', false);
+      index = visibleOpeners().findIndex((opener) => slugFor(opener) === wanted);
+    }
     if (index === -1) return;
     previousHash = '';
     open(index);

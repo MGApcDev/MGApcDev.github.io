@@ -220,7 +220,8 @@ fetched, so text paints immediately and no webfont shifts the layout.
   lands somewhere useful, and cmd-click opens a new tab. The lightbox intercepts
   plain clicks only.
 - **Shareable frames**: opening a work writes `#view=<image-slug>`; that link
-  opens straight into the viewer, and closing restores the previous hash.
+  opens straight into the viewer, and closing restores the previous hash. If a
+  filter is hiding that frame, the filter clears rather than the link doing nothing.
 - **Lightbox**: arrow keys, on-screen arrows or swipe; `Esc` or backdrop to
   close; a counter; focus trapped while open and restored on close.
 - **Mail forms actually send.** A form posting to `mailto:` is silently dropped
@@ -228,6 +229,11 @@ fetched, so text paints immediately and no webfont shifts the layout.
   and always leave a visible fallback link.
 - **Everything degrades**: reveal animations are gated behind a `.js` class set
   by a one-line inline script, so with JS off nothing is stuck at `opacity: 0`.
+- **The viewer isolates the page.** Trapping Tab is not the same as isolating a
+  modal: with the lightbox open, 47 page links were still exposed to a screen
+  reader’s virtual cursor. The background now goes `inert` and `aria-hidden` while
+  it is open, and is restored on every close path — Escape, backdrop click, close
+  button.
 - **Scrollable tables are keyboard-operable.** At phone widths the catalogue,
   prints and press tables hide about 290px of content behind a horizontal scroll.
   A scroll container that cannot take focus is unreachable without a pointer
