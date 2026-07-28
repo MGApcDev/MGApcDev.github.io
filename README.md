@@ -121,6 +121,20 @@ Navigation occasionally stalls in this driver — a different page each time, an
 the page always loads fine alone. The runner retries on a fresh page and reports
 the retry count rather than hiding it.
 
+## Dates that cannot rot
+
+The Now page tells the reader it is only ever true today, and carried an
+`updated July 2026` stamp that was typed in by hand — so it would have gone on
+claiming July for as long as nobody looked. The stamp now comes from the last
+commit that touched `tools/content/now.mjs` (`tools/source-date.mjs`), as a
+`<time datetime>`, which means editing the content is what moves the date. If git
+cannot say, the page claims nothing rather than guessing.
+
+`audit.mjs --only=freshness` asserts the rendered stamp still matches git, so
+re-hardcoding it fails the build. Same wrinkle as sitemap `lastmod`: the commit
+that edits the source is the one that moves the date, so `now.html` is rebuilt on
+the following build — `--check` catches it.
+
 ## Forms
 
 ```bash

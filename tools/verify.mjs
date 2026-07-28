@@ -20,7 +20,7 @@ const engine = (args.find((argument) => argument.startsWith('--engine=')) || '--
 
 const STAGES = [
   ['output is current', ['build.mjs', '--check']],
-  ['html and orphans', ['audit.mjs', '--only=static', `--engine=${engine}`]],
+  ['html, orphans, freshness', ['audit.mjs', '--only=static,freshness', `--engine=${engine}`]],
   ['feed', ['audit-feed.mjs']],
   ['link text', ['audit-links-text.mjs']],
   ['content security policy', ['audit-csp.mjs']],

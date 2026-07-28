@@ -1,4 +1,13 @@
 import { SITE, crumbs } from '../chrome.mjs';
+import { sourceDate, monthYear } from '../source-date.mjs';
+
+// This page promises the reader it is current, so the stamp comes from the last
+// commit that touched this file rather than from a typed-in month. If git cannot
+// say, the page claims nothing instead of guessing.
+const updatedIso = sourceDate('tools/content/now.mjs');
+const updated = updatedIso
+  ? ` &middot; updated <time datetime="${updatedIso}">${monthYear(updatedIso)}</time>`
+  : '';
 
 export const meta = {
   title: 'Now',
@@ -26,7 +35,7 @@ const FEEDING = [
 export const body = `
   <section class="section--tight section shell">
     <div data-reveal>
-      <p class="eyebrow">Now &middot; updated July 2026</p>
+      <p class="eyebrow">Now${updated}</p>
       <h1 class="measure-12">What I am doing at the moment</h1>
       <p class="lede measure-50">A page that is only ever true today. If it looks stale, it probably is &mdash; write and ask.</p>
     </div>

@@ -435,6 +435,25 @@ if (wants('keyboard')) {
 await browser.close();
 stop();
 
+// The Now page tells the reader it is only ever true today, so its "updated"
+// stamp has to be derived from the last commit that touched its source rather
+// than typed in. It was typed in once, and would have gone on claiming July for
+// as long as nobody noticed. This asserts the rendered stamp still matches git.
+if (wants('freshness')) {
+  const { sourceDate, monthYear } = await import('./source-date.mjs');
+  const expected = sourceDate('tools/content/now.mjs');
+  const html = fs.readFileSync(path.join(root, 'now.html'), 'utf8');
+  const stamped = html.match(/<time datetime="([^"]+)">([^<]+)<\/time>/);
+  if (!expected) {
+    console.log('  (freshness: git has no date for tools/content/now.mjs — skipped)');
+  } else if (!stamped) {
+    fail('freshness', 'now.html has no <time datetime> stamp — is it hardcoded again?');
+  } else {
+    if (stamped[1] !== expected) fail('freshness', `now.html stamp is ${stamped[1]}, git says ${expected}`);
+    if (stamped[2] !== monthYear(expected)) fail('freshness', `now.html reads "${stamped[2]}", expected "${monthYear(expected)}"`);
+  }
+}
+
 if (wants('static')) {
   const { execFileSync } = await import('node:child_process');
   for (const tool of ['audit-html.mjs', 'audit-orphans.mjs', 'audit-feed.mjs']) {

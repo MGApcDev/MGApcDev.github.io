@@ -10,20 +10,19 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { PAGES } from './pages.mjs';
 import { SITE } from './chrome.mjs';
-import { execFileSync } from 'node:child_process';
+import { sourceDate } from './source-date.mjs';
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const indexable = PAGES.filter((name) => name !== '404');
 
 /**
- * Last-modified per page, from git. A source that is not yet committed has no
- * date, so a page added and generated in the same breath ships without lastmod —
- * rerun the build after committing. `node tools/build.mjs --check` catches it.
- *
- * Last-modified per page, from git. A generated page's real edit date is the
- * date of the source it was generated from, so ask git about the content module
- * (or the generator) rather than the committed HTML, whose mtime changes on
- * every rebuild.
+ * Last-modified per page, from git — see tools/source-date.mjs for why git and
+ * not the filesystem. A generated page's real edit date is the date of the source
+ * it came from, so ask about the content module (or the generator) rather than the
+ * committed HTML, whose mtime changes on every rebuild. A source that is not yet
+ * committed has no date, so a page added and generated in the same breath ships
+ * without lastmod — rerun the build after committing; `build.mjs --check` catches
+ * it.
  */
 const lastModified = (name) => {
   const candidates = [
@@ -33,10 +32,8 @@ const lastModified = (name) => {
   ].filter(Boolean);
   for (const candidate of candidates) {
     if (!fs.existsSync(path.join(root, candidate))) continue;
-    try {
-      const stamp = execFileSync('git', ['log', '-1', '--format=%cs', '--', candidate], { cwd: root, encoding: 'utf8' }).trim();
-      if (stamp) return stamp;
-    } catch { /* not a repo, or file never committed */ }
+    const stamp = sourceDate(candidate);
+    if (stamp) return stamp;
   }
   return null;
 };
