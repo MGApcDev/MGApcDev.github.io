@@ -534,6 +534,19 @@ code {
    leaves an empty track and the row reads as a missing image. */
 .sequence--wide { grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); }
 
+/* A row here can mix aspect ratios — a 90x60 panorama beside two 60x75 portraits —
+   and with the caption sitting directly under each image the three captions landed
+   at three different heights, which reads as a mistake rather than as rhythm.
+   Pushing the caption to the bottom of the card lines them up across the row
+   without cropping any artwork to a common shape. The masonry gallery on works.html
+   is deliberately not treated this way: there the caption belongs to its image. */
+.sequence .work {
+  display: flex;
+  flex-direction: column;
+}
+
+.sequence .work__caption { margin-top: auto; }
+
 /* The portrait is 4:5 and belongs at reading width, not stretched across the row. */
 .press-portrait { max-width: min(290px, 100%); }
 .sequence .work { margin-bottom: 0; }

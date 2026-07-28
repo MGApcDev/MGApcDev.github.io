@@ -166,14 +166,14 @@ opening mail windows on someone's desktop.
 ## Visual regression
 
 ```bash
-node tools/audit-visual.mjs           # diff 14 views against tests/baseline/
+node tools/audit-visual.mjs           # diff 27 views against tests/baseline/
 node tools/audit-visual.mjs --update  # accept the current rendering
 ```
 
 Structural audits cannot see a layout regression: markup can be perfectly valid
-and still move on the page. Twenty-four views are rendered
+and still move on the page. Twenty-seven views are rendered
 with reduced motion (so no reveal is caught half-played) and compared pixel by
-pixel against `tests/baseline/`, with a 0.2% tolerance: fourteen light-desktop
+pixel against `tests/baseline/`, with a 0.2% tolerance: seventeen light-desktop
 views covering every distinct layout, five in dark mode where the whole palette
 swaps, and five at 390px where the header stacks and the grids collapse. A failing view
 writes `<label>.actual.png` next to its baseline so the two can be opened side
@@ -298,6 +298,13 @@ fetched, so text paints immediately and no webfont shifts the layout.
   `min(…, 100%)` — 200% text, 200% browser zoom and 320px are all clean. The check
   appends its override to the stylesheet response rather than injecting an inline
   style, which the site's own `style-src 'self'` would block.
+- **Caption alignment**: a `.sequence` row can mix aspect ratios — a 90×60
+  panorama beside two 60×75 portraits — and with each caption sitting directly under
+  its own image they landed at different heights, which reads as a mistake rather
+  than as rhythm. Captions are pushed to the bottom of the card so they line up
+  across the row, with no artwork cropped to a common shape. The masonry gallery on
+  works.html is deliberately not treated this way: there a caption belongs to its
+  image. `node tools/audit.mjs --only=alignment`.
 - **Tap targets**: every control is at least 24×24 at 390px (WCAG 2.5.8). Links
   inside running prose are exempt from that criterion and are skipped; a link in a
   table cell or a breadcrumb is a standalone control and is not. Both were real

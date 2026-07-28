@@ -432,6 +432,40 @@ if (wants('keyboard')) {
   await keyboard.close();
 }
 
+// Captions in a .sequence row must sit at the same height. A row there can mix
+// aspect ratios — a 90x60 panorama beside two 60x75 portraits — and with the
+// caption directly under each image they landed at three different heights, which
+// reads as a mistake. Five rows across the series pages were staggered before this
+// was fixed, and no baseline covered any of them.
+if (wants('alignment')) {
+  const alignPage = await browser.newPage();
+  await alignPage.setViewportSize({ width: 1440, height: 950 });
+  for (const name of PAGES) {
+    await alignPage.goto(`${base}/${name}.html`, { waitUntil: 'domcontentloaded' });
+    await alignPage.waitForTimeout(120);
+    const ragged = await alignPage.evaluate(() => {
+      const problems = [];
+      document.querySelectorAll('.sequence').forEach((grid) => {
+        const rows = new Map();
+        grid.querySelectorAll('.work').forEach((card) => {
+          const caption = card.querySelector('.work__caption');
+          if (!caption) return;
+          const rowKey = Math.round(card.getBoundingClientRect().top);
+          const captionTop = Math.round(caption.getBoundingClientRect().top);
+          if (!rows.has(rowKey)) rows.set(rowKey, new Set());
+          rows.get(rowKey).add(captionTop);
+        });
+        rows.forEach((tops, rowKey) => {
+          if (tops.size > 1) problems.push(`row at y${rowKey}: captions at ${[...tops].join(', ')}`);
+        });
+      });
+      return problems;
+    });
+    ragged.forEach((issue) => fail('alignment', `${name} ${issue}`));
+  }
+  await alignPage.close();
+}
+
 await browser.close();
 stop();
 
