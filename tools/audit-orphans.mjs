@@ -29,32 +29,30 @@ sources.forEach((markup, from) => {
 });
 // index.html is the root and 404.html is deliberately unlinked.
 const expectedUnlinked = new Set(['index.html', '404.html']);
-const unlinkedPages = [...linkedFrom.entries()].filter(([name, from]) => from.length === 0 && !expectedUnlinked.has(name)).map(([name]) => name);
+const unlinkedPages = [...linkedFrom.entries()]
+  .filter(([name, from]) => from.length === 0 && !expectedUnlinked.has(name))
+  .map(([name]) => name);
 
-// reachability from index.html
 const reached = new Set(['index.html']);
 const queue = ['index.html'];
 while (queue.length) {
-  const current = queue.shift();
-  const markup = sources.get(current) || '';
+  const markup = sources.get(queue.shift()) || '';
   [...markup.matchAll(/href="([^"#?]+\.html)/g)].forEach((match) => {
-    const target = match[1];
-    if (sources.has(target) && !reached.has(target)) { reached.add(target); queue.push(target); }
+    if (sources.has(match[1]) && !reached.has(match[1])) { reached.add(match[1]); queue.push(match[1]); }
   });
 }
 const unreachable = htmlFiles.filter((name) => !reached.has(name) && name !== '404.html');
 
-const sitemap = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
+const sitemapPath = path.join(root, 'sitemap.xml');
+const sitemap = fs.existsSync(sitemapPath) ? fs.readFileSync(sitemapPath, 'utf8') : '';
 const sitemapPages = [...sitemap.matchAll(/<loc>[^<]*?\/([^/<]*)<\/loc>/g)].map((match) => match[1] || 'index.html');
-const indexable = htmlFiles.filter((name) => name !== '404.html' && !sources.get(name).includes('name="robots" content="noindex"'));
-const missingFromSitemap = indexable.filter((name) => !sitemapPages.includes(name));
-const staleInSitemap = sitemapPages.filter((name) => !htmlFiles.includes(name));
+const indexable = htmlFiles.filter((name) => name !== '404.html' && !sources.get(name).includes('content="noindex"'));
 
 console.log(JSON.stringify({
   totals: { pages: htmlFiles.length, images: imageFiles.length },
   unusedImages,
   unlinkedPages,
   unreachableFromHome: unreachable,
-  missingFromSitemap,
-  staleInSitemap,
+  missingFromSitemap: indexable.filter((name) => !sitemapPages.includes(name)),
+  staleInSitemap: sitemapPages.filter((name) => !htmlFiles.includes(name)),
 }, null, 1));

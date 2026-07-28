@@ -1,182 +1,171 @@
 # Zenna Lua — portfolio site
 
 Static portfolio site for **Zenna Lua / Zenna Grundtvig** — photographic artist,
-digital creator and psychotherapist, Copenhagen. Plain HTML, one stylesheet, one
-small JS file. No build step, no dependencies, no network calls.
+digital creator and psychotherapist, Copenhagen. Plain HTML, one stylesheet, two
+small JS files. No framework, no dependencies, no network calls, nothing to
+deploy but the files.
+
+## Shape of it
+
+Pages are **assembled from shared chrome**, not hand-written one by one. Head,
+header, footer and lightbox markup live in `tools/chrome.mjs`; each page's body
+lives in `tools/content/<name>.mjs`; `tools/build-pages.mjs` writes the HTML. The
+twelve work pages come from `tools/works-data.mjs` the same way. The generated
+HTML is committed — a deploy is still "copy these files onto a server".
 
 ```
+index.html          Home — hero, statement, three series, selected works
 da.html             Dansk — a Danish-language summary of the whole site
 now.html            Now — what is on in the studio at the moment
-index.html          Home — hero, statement, three series, selected works, lightbox
+works.html          Full gallery, filterable by series (deep-linkable #bloom …)
 series.html         Series index — the three bodies of work
-works.html          Full gallery, filterable by series (deep-linkable #bloom …), lightbox
-series-like-a-flower.html        Series page — statement, spec table, six frames
-series-gigantically-subtle.html  Series page — the sequence of nine, 14:30 → 17:40
-series-hour-of-gold.html         Series page — six evenings on the coast
-exhibitions.html    Current / ongoing / upcoming shows + archive timeline
-i-see-you.html      Gathering page — the guided evening, three movements, FAQ
-kvindecirkel.html   Gathering page — the seasonal women's circle, four turnings
+catalogue.html      Every work as a printable list: sizes, editions, places
+series-*.html       One page per series: statement, spec, frames
+exhibitions.html    Current / ongoing / upcoming shows + archive
+visit.html          Visiting — hours, access written out properly, getting there
+i-see-you.html      Gathering — the guided evening
+kvindecirkel.html   Gathering — the seasonal women's circle
 journal.html        Words — short writing, Danish and English
-prints.html         Print sizes, editions, ordering steps, FAQ
-press.html          Press & curators — three bios, facts, what travels, press images
-sessions.html       Psychotherapy practice — the work, what people bring, practical FAQ
+prints.html         Print sizes, editions, ordering, FAQ
+sessions.html       The psychotherapy practice
+press.html          Press & curators — bios, facts, what travels
 about.html          Bio, the two practices, timeline, method
-contact.html        Contact form (mailto), direct details, newsletter
+contact.html        Contact form, direct details, newsletter
 search.html         Client-side search over every page and work
-colophon.html       Colophon — palette, type, and the decisions behind the build
+colophon.html       Palette, type, and the decisions behind the build
+404.html            Not-found page, with search
 work-<slug>.html    Twelve generated work pages — one per frame
-404.html            Not-found page
-robots.txt sitemap.xml
-assets/css/style.css
-assets/js/site.js
-assets/img/*.svg    Generated placeholder artwork
-tools/generate-placeholders.mjs
-tools/audit-pages.mjs      links, images, console, mobile overflow, no-JS
-tools/audit-contrast.mjs   WCAG AA in both colour schemes
-tools/audit-keyboard.mjs   tab order, focus trap, heading outline
-tools/audit-motion.mjs     reduced motion, CLS, lang tagging, image dimensions
-tools/audit-meta.mjs       unique titles/descriptions, Open Graph, JSON-LD validity
-tools/audit-orphans.mjs    unused images, unlinked/unreachable pages, sitemap drift
-tools/audit-html.mjs       duplicate ids, dangling references, unnamed controls, tag balance
-tools/build-search-index.mjs  regenerates assets/search-index.json
-tools/build-work-pages.mjs    regenerates the twelve work pages from works-data.mjs
-tools/works-data.mjs          the works themselves — titles, sizes, notes, series
-tools/pages.mjs               the page list every audit walks
 ```
 
-## Behaviour
-
-- **Filtering** (`works.html`): the series buttons write a hash (`works.html#coast`),
-  and a hash on load selects that series. An `aria-live` line reports the count.
-- **Gallery order**: the wall is a row-major CSS grid with JS-assigned row spans,
-  not CSS multi-column. Multi-column fills column-by-column, which put ten of
-  twelve works in a visual position that did not match DOM (and tab) order.
-  Without JS it degrades to plain ragged rows — still correctly ordered.
-- **Search**: `search.html` fetches `assets/search-index.json` (65 records: 15
-  pages + 50 works), scores title/summary/heading/body matches, supports
-  `?q=…` deep links, and folds ø/æ/å so "kvindecirkel" matches. With JS off the
-  page lists every destination by hand. Results are ranked by title/summary/
-  heading weight, then by term density, then by title length.
-- **Long titles are safe**: captions wrap with `overflow-wrap: anywhere` — an
-  unbroken 57-character title used to push the card past its column and throw
-  the whole page into horizontal scroll on mobile.
-- **Work cards are links**, not buttons: each points at the full-size image, so
-  with JS off a click opens the picture, and cmd/ctrl-click still opens a new tab.
-  The lightbox intercepts plain clicks only.
-- **Every work has a page.** `work-<slug>.html` carries the frame full size, its
-  note, series, size and edition, prev/next navigation and `VisualArtwork`
-  JSON-LD. Gallery cards point at these pages, so a no-JS click now lands on a
-  real page instead of a bare SVG — with JS the lightbox still intercepts.
-  Regenerate with `node tools/build-work-pages.mjs` after editing `works-data.mjs`.
-- **Shareable frames**: opening a work writes `#view=<image-slug>`, so a viewer
-  can send the exact frame they are looking at. That link opens straight into
-  the viewer; closing it restores the previous hash; unknown slugs are ignored.
-- **Lightbox**: click any work; arrow keys / on-screen arrows / swipe to move,
-  `Esc` or backdrop-click to close, `1 / 12` counter, focus trapped while open,
-  neighbouring images preloaded.
-- **Everything degrades**: reveal animations are gated behind a `.js` class set by
-  a one-line inline script in each `<head>`, so with JS off nothing is stuck at
-  `opacity: 0` — all works stay visible and every image is a normal `<img>`; only
-  the lightbox and filters go away.
-- **Keyboard**: filtered-out works leave the tab order entirely (`.work[hidden]`
-  must beat `.work { display: block }`), the lightbox opens on Enter, traps Tab
-  across its three controls, and returns focus to the work that opened it.
-- **Accessibility**: a skip link on every page, `main#main` landmark, focus-visible
-  rings, `aria-current` on the active nav item, and every text/background pair in
-  both colour schemes meets WCAG AA (audited with `tools/audit-contrast.mjs`),
-  and heading levels never skip on any page.
-- **Loading**: every `<img>` carries intrinsic `width`/`height` and `decoding="async"`;
-  heroes get `fetchpriority="high"`, everything else `loading="lazy"`. Measured CLS
-  is 0 on all 14 pages.
-- **Language**: the page is `lang="en"`, and Danish passages (Kvindecirkel, the
-  seasonal names, the Danish note on Words) carry `lang="da"` so screen readers
-  switch voice.
-- **Structured data**: JSON-LD on every page — `Person` + `WebSite` on the home
-  page, `CreativeWorkSeries` per series, `Event` for the two gatherings,
-  `Service` for sessions, `ItemList` of print offers, `Blog` for Words, and a
-  `BreadcrumbList` everywhere else.
-- **Never colour alone**: exhibition status uses a filled dot in a solid pill for
-  live states and a hollow dot in a dashed pill for quiet ones, so it survives
-  greyscale (WCAG 1.4.1).
-- **Mail forms actually send.** A form posting to `mailto:` is silently dropped by
-  Chrome, so the contact and newsletter forms compose the mail URL themselves
-  (subject, body, name, address) and always leave a visible fallback link. Native
-  validation still blocks an empty submit.
-- **Text zoom**: at a 200% text size the header nav (seven items) used to run
-  406px off a 1024px window on every page, and grid tracks blew out on three
-  more. The header now wraps on content rather than at a viewport breakpoint,
-  grid children carry `min-width: 0`, and rem max-widths are clamped with
-  `min(…, 100%)`. 200% text, 200% browser zoom and 320px are all clean.
-- **Forced colours**: under Windows High Contrast the hero scrim disappears and
-  white heading text would sit on bare photography, so hero copy gets a solid
-  `Canvas` plate, and buttons, filters, cards and thumbnails re-state their
-  borders with system colours.
-- **Increased contrast**: `prefers-contrast: more` darkens secondary text, firms up
-  rules, and draws borders on cards, inputs and thumbnails. All pairs clear AAA
-  (6.9–14.2:1) in both schemes.
-- **Print**: a `@media print` block drops the header, footer, filters, forms and
-  series navigation, flattens the heroes, forces reveals visible, prints the
-  gallery two-up and appends `href`s after external links. Body imagery is capped
-  at 7cm so a photograph never claims a page to itself; verified by rendering
-  each page to PDF (press: 4 pages, prints: 3, works: 3).
-
-## Audits
-
-One command runs everything, serving the working tree itself and exiting non-zero
-if anything fails:
+## Building
 
 ```bash
-node tools/audit.mjs                      # whole suite
-node tools/audit.mjs --only=contrast,meta # a subset
-node tools/audit.mjs http://localhost:8080  # against a running server
+node tools/build.mjs           # everything, in dependency order
+node tools/build.mjs --check   # build, then fail if any tracked file moved
 ```
 
-It shares one browser across all pages and only opens extra contexts for the
-modes that need one (dark, no-JS, reduced motion, forced colours, 200% text,
-320px). Checks: links, broken images, console errors, contrast in both schemes,
-heading outline, metadata and JSON-LD, Danish language tagging, image dimensions,
-responsive overflow, keyboard and focus behaviour, plus the two static audits.
+Order matters — pages before the search index, which reads the rendered HTML;
+everything before the sitemap — so it is one command rather than six to remember.
+`--check` is the guard against committing a content edit without rebuilding: a
+dirty tree after a build means the committed output no longer matches its source.
 
-Timings on this machine: the full sweep is about 16 minutes, and `--only` is what
-you actually want day to day — `--only=keyboard,modes,nojs` finishes in under ten
-seconds. Parallel lanes are available via `--workers=N` but measured *slower*
-here (four lanes: 1060s against 943s serial), so the default is one.
+The individual steps still exist (`build-pages`, `build-work-pages`,
+`build-feed`, `build-search-index`, `build-sitemap`,
+`generate-placeholders`). Social cards are separate because they need a browser
+and only change when the artwork does:
+
+```bash
+node tools/build-social-images.mjs  # raster og:image cards + favicons
+```
+
+One wrinkle worth knowing: sitemap `lastmod` comes from git, so a page generated
+before its source is committed ships without a date. Rerun the build after
+committing — `--check` catches it.
+
+## Verifying
+
+```bash
+node tools/verify.mjs           # the gate: freshness, audits, weight
+node tools/verify.mjs --quick   # skip the slow sweep — what the git hook runs
+node tools/verify.mjs --engine=webkit
+```
+
+Each stage prints one line; the whole thing exits non-zero if any fails. A
+pre-commit hook in `.githooks/` runs the quick set, so generated output cannot
+drift from its source unnoticed. Enable it once per clone:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+## Auditing
+
+```bash
+node tools/audit.mjs                        # whole suite, serves itself
+node tools/audit.mjs --only=keyboard,modes  # a subset, seconds not minutes
+node tools/audit.mjs http://localhost:8080  # against a running server
+node tools/audit.mjs --engine=webkit         # the same checks in WebKit
+node tools/audit-weight.mjs                 # page-weight budget
+```
+
+Checks links, broken images, console errors, contrast in both colour schemes,
+heading outline, metadata and JSON-LD, Danish language tagging, image dimensions,
+responsive overflow at 320px and 200% text, keyboard and focus behaviour, plus
+the static audits (`audit-html`, `audit-orphans`, `audit-feed`). Exit code 1 on
+any failure. A full sweep takes minutes; `--only` takes seconds.
+
+Both engines are checked: WebKit supports every feature this design leans on —
+`color-mix`, `backdrop-filter`, `svh`, `aspect-ratio`, `text-wrap: balance`,
+`hyphens`, `overflow-wrap: anywhere` — with no prefixes or fallbacks needed. The
+skip-link assertion differs by engine: Safari keeps links out of Tab order unless
+the user enables full keyboard access, so the Tab check is Chromium-only and both
+engines instead verify the link focuses, reveals and points at `#main`.
 
 Navigation occasionally stalls in this driver — a different page each time, and
-the page always loads fine on its own. The runner retries such a navigation on a
-fresh page and reports the retry count in its summary rather than hiding it.
+the page always loads fine alone. The runner retries on a fresh page and reports
+the retry count rather than hiding it.
 
-The single-concern tools below still exist and print JSON, which is handy when
-you want detail on one area:
-
-```bash
-node tools/audit-pages.mjs    http://localhost:8080
-node tools/audit-contrast.mjs http://localhost:8080
-node tools/audit-keyboard.mjs http://localhost:8080
-node tools/audit-motion.mjs   http://localhost:8080
-node tools/audit-meta.mjs     http://localhost:8080
-node tools/audit-orphans.mjs                              # no server needed
-node tools/audit-html.mjs                                 # no server needed
-```
-
-They drive a headless Chromium from the local Playwright cache; empty arrays and
-zeroes mean clean.
-
-## Run it
-
-Any static server, or just open `index.html`:
+## Visual regression
 
 ```bash
-python3 -m http.server 8080      # or
-npx serve .
-open http://localhost:8080
+node tools/audit-visual.mjs           # diff 14 views against tests/baseline/
+node tools/audit-visual.mjs --update  # accept the current rendering
 ```
+
+Structural audits cannot see a layout regression: markup can be perfectly valid
+and still move on the page. Twenty-four views are rendered
+with reduced motion (so no reveal is caught half-played) and compared pixel by
+pixel against `tests/baseline/`, with a 0.2% tolerance: fourteen light-desktop
+views covering every distinct layout, five in dark mode where the whole palette
+swaps, and five at 390px where the header stacks and the grids collapse. A failing view
+writes `<label>.actual.png` next to its baseline so the two can be opened side
+by side. Diffing runs on a canvas in the browser, so there is no image library to
+install.
+
+One limitation worth knowing: the tolerance is a share of *all* pixels, so a
+view dominated by photography is less sensitive than a text-heavy one. Breaking
+a dark-mode text token on purpose moved the catalogue by 1.29% and the hero by
+only 0.14% — under the threshold. Text-heavy views carry the signal.
+
+The baselines are ~9 MB of PNG. That is a real cost in a git repository and it
+compounds: every `--update` adds another copy to history. Update deliberately,
+when a change is intended, rather than to silence a red result.
+
+## Weight
+
+`tools/audit-weight.mjs` loads every page, scrolls it so lazy images actually
+load, and sums what the browser transferred. It fails the build if a page exceeds
+1.5 MB, a single asset exceeds 400 kB, or a page makes more than 40 requests.
+
+Current: **34 pages, median 76 kB, heaviest 143 kB, 2.7 MB for the whole site.**
+The stylesheet is the largest asset on every page (36 kB raw, 8 kB gzipped,
+7 kB brotli) — worth serving compressed, not worth minifying by hand.
+
+Those budgets assume the placeholder SVGs. Real photographs will change the
+numbers; raise the budget deliberately at that point rather than deleting the
+check.
+
+## Deploying
+
+`_headers` and `_redirects` are Netlify / Cloudflare Pages rules: security
+headers, cache lifetimes (immutable for artwork and social cards, revalidate for
+HTML), and the styled 404. Adapt them if you host elsewhere.
+
+The Content-Security-Policy is strict — `default-src 'self'`, no third-party
+anything, `style-src 'self'` with no inline styles at all, and the single inline
+bootstrap script allowed by SHA-256 hash rather than `'unsafe-inline'`.
+
+Both halves of that are easy to break silently, so they are tested:
+`tools/audit-csp.mjs` serves the site with the exact policy from `_headers` and
+drives the lightbox and search under it. **If you change the inline bootstrap
+script by one character, the hash no longer matches and every page loses its
+JavaScript** — the audit catches that, and it runs as part of `verify`.
 
 ## Theme — "Blomstring"
 
-Derived from the visual language of the Facebook profile: macro botanicals on
-warm ochre, leaf shadows on plaster, golden-hour Danish coast, poetic serif text
-over sand-coloured grounds.
+Drawn from the visual language of the Facebook profile: macro botanicals on warm
+ochre, leaf shadows on plaster, golden-hour Danish coast, poetic serif over
+sand-coloured grounds.
 
 | Token | Value | Use |
 | --- | --- | --- |
@@ -184,67 +173,103 @@ over sand-coloured grounds.
 | `--sand-deep` | `#ECE0CF` | alternating sections |
 | `--paper` | `#FFFAF3` | cards, inputs |
 | `--ink` | `#2A2622` | body text |
-| `--poppy` | `#B33A2B` | primary accent, links on hover |
+| `--ink-faint` | `#695E50` | labels, meta |
+| `--poppy` | `#B33A2B` | the single accent |
 | `--ochre` | `#C9873A` | warm secondary |
 | `--sage` | `#7C8B6F` | botanical secondary |
 | `--dusk` | `#5B3F7A` | cool secondary |
 
-- **Display type**: Iowan Old Style / Palatino / Georgia stack — high-contrast
-  serif, tight leading, used large and sparingly.
-- **Body type**: Avenir Next / system sans, 1.75 line-height, `62ch` measure.
-- **Eyebrows and buttons**: 0.22em uppercase tracking.
-- **Motion**: everything eases on `cubic-bezier(.22,.61,.36,1)` over ~1s; hero
-  drifts in; sections reveal on scroll. All of it collapses under
-  `prefers-reduced-motion`.
-- **Dark mode**: full `prefers-color-scheme: dark` palette (dusk-violet ground,
-  warm sand ink).
+Display type is an Iowan Old Style / Palatino / Georgia stack; body is Avenir
+Next / system sans at 1.75 line-height on a 62-character measure. Nothing is
+fetched, so text paints immediately and no webfont shifts the layout.
 
-## Search index
+## Behaviour worth knowing
 
-`assets/search-index.json` is generated. Rebuild it whenever page copy changes:
-
-```bash
-node tools/build-search-index.mjs
-```
+- **Gallery order**: the wall is a row-major CSS grid with JS-assigned row spans,
+  not CSS multi-column. Multi-column fills column-by-column, which once put ten
+  of twelve works in a visual position that did not match tab order. Without JS
+  it degrades to ragged rows — still correctly ordered.
+- **Work cards are links** to the work's own page, so a click without scripting
+  lands somewhere useful, and cmd-click opens a new tab. The lightbox intercepts
+  plain clicks only.
+- **Shareable frames**: opening a work writes `#view=<image-slug>`; that link
+  opens straight into the viewer, and closing restores the previous hash.
+- **Lightbox**: arrow keys, on-screen arrows or swipe; `Esc` or backdrop to
+  close; a counter; focus trapped while open and restored on close.
+- **Mail forms actually send.** A form posting to `mailto:` is silently dropped
+  by Chrome, so the contact and newsletter forms compose the mail URL themselves
+  and always leave a visible fallback link.
+- **Everything degrades**: reveal animations are gated behind a `.js` class set
+  by a one-line inline script, so with JS off nothing is stuck at `opacity: 0`.
+- **Link text names its destination.** Screen readers list every link out of
+  context, so the same words must not lead to two places. Three did: "write to me"
+  went to both contact and sessions, "Works" sometimes landed on a filtered view,
+  and "See the series" pointed at two different pages. `tools/audit-links-text.mjs`
+  keeps the 162 distinct link texts mapping one-to-one.
+- **Headings carry their own context.** Several read as bare counts — "Four sizes",
+  "Three things", "Questions" — which tells a screen-reader user navigating by
+  heading nothing at all. The eyebrow above each one holds the context, so it is
+  folded into the accessible name as a visually-hidden prefix ("Sizes & editions —
+  Four sizes") and marked `aria-hidden` where it now duplicates. Nothing changes
+  visually.
+- **Never colour alone**: exhibition status uses dot fill and border style as
+  well as hue, so it survives greyscale (WCAG 1.4.1).
+- **Text zoom**: the header wraps on content rather than at a viewport
+  breakpoint, grid children carry `min-width: 0`, and rem widths are clamped with
+  `min(…, 100%)` — 200% text, 200% browser zoom and 320px are all clean.
+- **Forced colours**: hero copy gets a solid `Canvas` plate because the gradient
+  scrim disappears under Windows High Contrast.
+- **Print**: a `@media print` block drops the chrome, caps body imagery at 7cm so
+  a photograph never claims a page, and appends `href`s after external links.
+- **Social cards are raster.** `og:image` used to point at an SVG, which Facebook,
+  LinkedIn and iMessage all refuse — a shared link showed no picture at all. Cards
+  are rendered to 1200×630 JPEG in `assets/social/` (JPEG, not PNG: the grain is
+  noise, and the same cards were 700 kB each as PNG against ~40 kB as JPEG).
+  PNG favicons at 192/512 and an apple-touch-icon come from the same pass.
+- **Structured data**: JSON-LD everywhere — `Person` + `WebSite`,
+  `CreativeWorkSeries` per series, `VisualArtwork` per work, `Event` for the
+  gatherings, `Service` for sessions, `ItemList` of print offers, `Blog` for
+  Words, `BreadcrumbList` throughout.
 
 ## Placeholder images
 
-Every image is a generated SVG in the theme palette — four kinds: `bloom`
-(macro flower), `shadow` (leaf shadows on a wall), `horizon` (golden-hour water),
-`portrait` (soft figure). Regenerate deterministically:
-
-```bash
-node tools/generate-placeholders.mjs
-```
+Every image is a generated SVG in the theme palette — four kinds: `bloom` (macro
+flower), `shadow` (leaf shadows on a wall), `horizon` (golden-hour water),
+`portrait` (defocused figure). Deterministic: rerunning produces identical files.
 
 Swap in real photographs by replacing the files in `assets/img/` (keep the
-filenames, or update the `src`/`data-lightbox-open` pairs in the HTML). Aspect
-ratios in use: 4:5 portrait, 3:2 landscape, 1:1 square.
+filenames, or update `works-data.mjs` and rebuild).
 
 ## What is real vs. placeholder
 
-**Taken from the public Facebook profile** (facebook.com/ZennaGrundtvig):
-name Zenna Lua / Zenna Grundtvig, Copenhagen, from Greve Strand, born 1991,
-"Digital kreatør", psychotherapist and self-employed since 2018, Engelsholm
-Kunsthøjskole, Dansk NLP Center, bio line *"There's only one of you — enjoy it"*,
-exhibition title *"Like a flower you shall bloom"* (23 April – 31 May) with the
-line *"No flower denies its own blossoming"*, series title *"Gigantically Subtle"*,
-and the gatherings *I See You* (eye gazing, mirror meditation & live music),
-*Kvindecirkel*, *Når død ligner fødsel*, *Hello Creator*, *With Ro & Zenna*.
+**From the public Facebook profile** (facebook.com/ZennaGrundtvig): the name
+Zenna Lua / Zenna Grundtvig, Copenhagen, from Greve Strand, born 1991, "Digital
+kreatør", psychotherapist and self-employed since 2018, Engelsholm Kunsthøjskole,
+Dansk NLP Center, the bio line *"There's only one of you — enjoy it"*, the
+exhibition *"Like a flower you shall bloom"* (23 April – 31 May) with the line
+*"No flower denies its own blossoming"*, the series *"Gigantically Subtle"*, and
+the gatherings *I See You*, *Kvindecirkel*, *Når død ligner fødsel*,
+*Hello Creator*, *With Ro & Zenna*.
 
-**Written as placeholder copy** — replace before publishing: all artwork titles,
-print sizes, editions and prices, venue names, years, group sizes, shipping
-rates, the email `hello@zennalua.dk`, the newsletter cadence, every entry on the
-Words page, and every body paragraph. The statement, notes and method texts are
-written in her voice but are not her words.
+**Everything else is placeholder copy** — artwork titles, print sizes, editions
+and prices, venue names, years, group sizes, shipping rates, the email
+`hello@zennalua.dk`, every entry on Words and Now, and every body paragraph. The
+statements are written in her voice but are not her words.
 
 ## Before going live
 
-- Replace placeholder SVGs with real photographs (and write real `alt` text).
-- Point the two forms at a real endpoint (Formspree, Netlify Forms, etc.) —
-  they currently use `mailto:`.
+- Replace the placeholder SVGs with real photographs and write real `alt` text.
+- Point the two forms at a real endpoint — they currently compose `mailto:`.
 - Set the real email address and any social links.
-- Add real dates/years to exhibitions.
-- Swap the `example.com` URLs in `robots.txt`, `sitemap.xml` and the `og:image`
-  tags for the real domain (Open Graph wants absolute URLs).
-- Optional: add a favicon PNG for clients that ignore SVG icons.
+- Add real dates and years to the exhibitions.
+- Change `SITE` in `tools/chrome.mjs` from `example.com` to the real domain, then
+  rerun `build-pages`, `build-work-pages`, `build-feed` and `build-sitemap`
+  (Open Graph and JSON-LD want absolute URLs).
+- Optional: a favicon PNG for clients that ignore SVG icons.
+
+## History
+
+This tree was emptied on 28 July 2026 with no backup and no version control, and
+rebuilt from scratch the same day. Two things changed in the rebuild: the page
+chrome became shared code instead of markup copy-pasted into thirty-two files,
+and the repository is now under git with a commit after every step.

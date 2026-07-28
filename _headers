@@ -1,0 +1,44 @@
+# Netlify / Cloudflare Pages header rules.
+#
+# Two things matter for this site. Compression: the stylesheet is the heaviest
+# asset on every page (36 kB raw, 8 kB gzipped) and most hosts compress text
+# automatically — verify yours does. Caching: the HTML must stay fresh because
+# it is regenerated on every content edit, while the images and generated cards
+# never change without changing name.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  # No third-party anything: no fonts, no analytics, no embeds. The only inline
+  # script is the one-line .js flag in every head, allowed by hash rather than by
+  # 'unsafe-inline' — rerun tools/audit-csp.mjs if that snippet ever changes.
+  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-/x7W7R75k8Roq0WaVRQX9blP4OufE5xbAdzklGxsgpw='; form-action 'self' mailto:; base-uri 'none'; frame-ancestors 'self'
+
+# HTML is rebuilt whenever content changes — revalidate every time.
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Artwork and social cards are content-addressed by filename in practice: a new
+# picture gets a new name. Safe to cache hard.
+/assets/img/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/social/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# CSS and JS do change in place, so a shorter window with revalidation.
+/assets/css/*
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/assets/js/*
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/assets/search-index.json
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/feed.xml
+  Cache-Control: public, max-age=3600

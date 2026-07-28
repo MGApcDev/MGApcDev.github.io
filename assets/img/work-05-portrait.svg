@@ -47,7 +47,6 @@
   <g filter="url(#soften6)" transform="rotate(-10.8 631.3 898.8)">
     <path d="M-113.9,1500 C-54.3,1185.8 313.9,1042.3 504.3,880.9 C493.3,755.3 349.7,737.3 355.3,540 C355.3,199.1 907.3,199.1 907.3,540 C912.8,737.3 769.3,755.3 758.2,880.9 C948.7,1042.3 1316.8,1185.8 1376.5,1500 Z" fill="url(#figure6)" fill-opacity="0.95"/>
     <ellipse cx="537.4" cy="461.1" rx="138" ry="157.9" fill="#F9F0E7" fill-opacity="0.30"/>
-    <path d="M783.1,324.7 C948.7,504.1 907.3,791.2 769.3,1078.2" stroke="#FBF4ED" stroke-opacity="0.35" stroke-width="24.8" fill="none" stroke-linecap="round"/>
   </g>
   <rect width="1200" height="1500" fill="url(#sunspot6)"/>
   <g filter="url(#nearblur6)">

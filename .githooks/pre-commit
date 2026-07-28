@@ -1,0 +1,13 @@
+#!/bin/sh
+# Refuse a commit whose generated output does not match its source.
+#
+# Enable once per clone:  git config core.hooksPath .githooks
+#
+# Only the fast checks run here — build freshness, HTML sanity, orphans, feed.
+# The full sweep (contrast, keyboard, weight, WebKit) is `node tools/verify.mjs`
+# and is too slow to sit in front of every commit.
+node tools/verify.mjs --quick || {
+  echo
+  echo "Commit blocked. Fix the above, or skip deliberately with --no-verify."
+  exit 1
+}

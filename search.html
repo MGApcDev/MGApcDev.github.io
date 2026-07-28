@@ -8,15 +8,20 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Zenna Lua">
 <meta property="og:title" content="Search — Zenna Lua">
-<meta property="og:description" content="Find any work, series, evening or note.">
-<meta property="og:image" content="assets/img/work-06-sage.svg">
+<meta property="og:description" content="Search the whole site: works, series, exhibitions, gatherings, writing and practical information.">
+<meta property="og:image" content="assets/social/work-06-sage.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#F6EFE4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#17141A" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="assets/img/work-01-poppy.svg" type="image/svg+xml">
-<script>document.documentElement.classList.add('js');</script>
-<link rel="alternate" hreflang="da" href="da.html">
+<link rel="icon" href="assets/social/icon-192.png" sizes="192x192">
+<link rel="icon" href="assets/social/icon-512.png" sizes="512x512">
+<link rel="apple-touch-icon" href="assets/social/apple-touch-icon.png">
 <link rel="alternate" type="application/rss+xml" title="Zenna Lua — Words" href="feed.xml">
+<link rel="alternate" hreflang="da" href="da.html">
+<script>document.documentElement.classList.add('js');</script>
 <link rel="stylesheet" href="assets/css/style.css">
 <script type="application/ld+json">
 {
@@ -81,11 +86,11 @@
   <section class="section--tight section shell">
     <div>
       <p class="eyebrow">Search</p>
-      <h1 style="max-width:12ch;">Find it</h1>
+      <h1 class="measure-12">Find it</h1>
 
       <form class="search-form" role="search" action="search.html" method="get">
         <label class="visually-hidden" for="query">Search the site</label>
-        <input id="query" name="q" type="search" placeholder="poppy, shadow, prints, sessions…" autocomplete="off" autofocus>
+        <input id="query" name="q" type="search" placeholder="poppy, shadow, prints, sessions&hellip;" autocomplete="off" autofocus>
         <button class="button" type="submit">Search</button>
       </form>
 
@@ -93,7 +98,7 @@
     </div>
   </section>
 
-  <section class="section" style="padding-top:0;">
+  <section class="section section--flush">
     <div class="shell">
       <h2 class="visually-hidden">Results</h2>
       <ol class="search-results" data-search-results></ol>
@@ -102,7 +107,7 @@
         <p class="eyebrow">Everything on the site</p>
         <div class="cards">
           <article class="card">
-            <h2 class="minor-heading">The work</h2>
+            <h2 class="minor-heading"><span class="visually-hidden">Browse — </span>The work</h2>
             <ul class="plain-list">
               <li><a href="works.html">All works</a></li>
               <li><a href="series.html">Series</a></li>
@@ -112,16 +117,17 @@
             </ul>
           </article>
           <article class="card">
-            <h2 class="minor-heading">In person</h2>
+            <h2 class="minor-heading"><span class="visually-hidden">Browse — </span>In person</h2>
             <ul class="plain-list">
               <li><a href="exhibitions.html">Exhibitions &amp; gatherings</a></li>
               <li><a href="i-see-you.html">I See You</a></li>
               <li><a href="kvindecirkel.html" lang="da">Kvindecirkel</a></li>
               <li><a href="sessions.html">Sessions</a></li>
+              <li><a href="now.html">Now</a></li>
             </ul>
           </article>
           <article class="card">
-            <h2 class="minor-heading">Practical</h2>
+            <h2 class="minor-heading"><span class="visually-hidden">Browse — </span>Practical</h2>
             <ul class="plain-list">
               <li><a href="prints.html">Prints</a></li>
               <li><a href="press.html">Press &amp; curators</a></li>
@@ -135,7 +141,6 @@
       </div>
     </div>
   </section>
-
 </main>
 
 <footer class="site-footer">
@@ -143,7 +148,7 @@
     <div class="site-footer__grid">
       <div>
         <a class="wordmark" href="index.html">Zenna <span>Lua</span></a>
-        <p class="quiet" style="margin-top:1rem; max-width:26ch;">Photographic artist and psychotherapist. Copenhagen, Denmark.</p>
+        <p class="quiet site-footer__blurb">Photographic artist and psychotherapist. Copenhagen, Denmark.</p>
       </div>
       <div>
         <h2>Pages</h2>
@@ -151,7 +156,9 @@
           <li><a href="now.html">Now</a></li>
           <li><a href="works.html">Works</a></li>
           <li><a href="series.html">Series</a></li>
+          <li><a href="catalogue.html">Catalogue</a></li>
           <li><a href="exhibitions.html">Exhibitions</a></li>
+          <li><a href="visit.html">Visit</a></li>
           <li><a href="journal.html">Words</a></li>
           <li><a href="prints.html">Prints</a></li>
           <li><a href="sessions.html">Sessions</a></li>
@@ -168,6 +175,7 @@
           <li><a href="prints.html">Print enquiries</a></li>
           <li><a href="press.html">Press &amp; curators</a></li>
           <li><a href="colophon.html">Colophon</a></li>
+          <li><a href="feed.xml">RSS</a></li>
         </ul>
       </div>
       <div>

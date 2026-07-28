@@ -4,34 +4,44 @@
  *
  *   node tools/build-work-pages.mjs
  *
- * The generated files are committed like any other page — this runs when the
- * work list changes, not at deploy time. Shared chrome (head, header, footer) is
- * lifted from an existing page so the twenty hand-written pages and the twelve
- * generated ones can never drift apart.
+ * Uses the same shared chrome as the hand-written pages, so the generated
+ * twelve can never drift from the rest of the site.
  */
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { WORKS, SERIES } from './works-data.mjs';
+import { head, footer, crumbs, SITE } from './chrome.mjs';
+import { WORKS, SERIES, workCard } from './works-data.mjs';
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
-const SITE = 'https://example.com/';
-const template = fs.readFileSync(path.join(root, 'colophon.html'), 'utf8');
-const head = template.slice(0, template.indexOf('<main id="main">'));
-const tail = template.slice(template.indexOf('</main>'));
-
 const escape = (text) => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 WORKS.forEach((work, index) => {
   const series = SERIES[work.series];
-  const previous = WORKS[(index - 1 + WORKS.length) % WORKS.length];
-  const next = WORKS[(index + 1) % WORKS.length];
-  const file = `work-${work.slug}.html`;
-  const description = `${work.title} — ${series.title}. Archival pigment print, ${work.size}, edition of ${work.edition}.`;
 
-  const graph = {
-    '@context': 'https://schema.org',
-    '@graph': [
+  // Walk the series, not the whole gallery: stepping from the last Bloom work
+  // into a Coast one told the reader nothing. Siblings are the rest of the
+  // series, shown below so the sequence is browsable either way.
+  const siblings = WORKS.filter((candidate) => candidate.series === work.series);
+  const position = siblings.findIndex((candidate) => candidate.slug === work.slug);
+  const previous = siblings[(position - 1 + siblings.length) % siblings.length];
+  const next = siblings[(position + 1) % siblings.length];
+  const others = siblings.filter((candidate) => candidate.slug !== work.slug);
+  const lonely = siblings.length === 1;
+  // With exactly two in a series, previous and next resolve to the same work —
+  // two links to one page, which reads as a mistake. Send the second one out to
+  // the gallery instead.
+  const pair = siblings.length === 2;
+  const file = `work-${work.slug}.html`;
+  const [width, height] = work.size.split(' × ');
+
+  const meta = {
+    title: work.title,
+    description: `${work.title} — ${series.title}. Archival pigment print, ${work.size}, edition of ${work.edition}.`,
+    image: work.image,
+    type: 'article',
+    lightbox: true,
+    graph: [
       {
         '@type': 'VisualArtwork',
         '@id': SITE + file + '#work',
@@ -41,33 +51,20 @@ WORKS.forEach((work, index) => {
         creator: { '@id': SITE + '#zenna' },
         artform: 'Photography',
         artMedium: 'Archival pigment print',
-        width: work.size.split(' × ')[0] + ' cm',
-        height: work.size.split(' × ')[1],
+        width: width + ' cm',
+        height,
         isPartOf: { '@type': 'CreativeWorkSeries', name: series.title, url: SITE + series.page },
         locationCreated: { '@type': 'Place', name: work.place },
       },
-      {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: SITE },
-          { '@type': 'ListItem', position: 2, name: 'Works', item: SITE + 'works.html' },
-          { '@type': 'ListItem', position: 3, name: work.title, item: SITE + file },
-        ],
-      },
+      crumbs([
+        { name: 'Home', path: '' },
+        { name: 'Works', path: 'works.html' },
+        { name: work.title, path: file },
+      ]),
     ],
   };
 
-  const pageHead = head
-    .replace('<title>Colophon — Zenna Lua</title>', `<title>${escape(work.title)} — Zenna Lua</title>`)
-    .replace(/<meta name="description"[^>]*>/, `<meta name="description" content="${escape(description)}">`)
-    .replace('<meta property="og:title" content="Colophon — Zenna Lua">', `<meta property="og:title" content="${escape(work.title)} — Zenna Lua">`)
-    .replace('<meta property="og:description" content="The palette, type and decisions behind this site.">', `<meta property="og:description" content="${escape(series.title)}. ${work.size}.">`)
-    .replace('<meta property="og:image" content="assets/img/work-06-sage.svg">', `<meta property="og:image" content="${work.image}">`)
-    .replace('<meta property="og:type" content="website">', '<meta property="og:type" content="article">')
-    .replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/, `<script type="application/ld+json">\n${JSON.stringify(graph, null, 1)}\n</script>`);
-
-  const main = `<main id="main">
-
+  const body = `
   <section class="section--tight section shell">
     <nav class="crumbs crumbs--dark" aria-label="Breadcrumb" data-reveal>
       <a href="works.html">Works</a> <span aria-hidden="true">/</span> <a href="${series.page}">${escape(series.label)}</a>
@@ -75,20 +72,20 @@ WORKS.forEach((work, index) => {
 
     <figure class="work-figure" data-reveal>
       <a class="work-figure__media" href="${work.image}" data-lightbox-open="${work.image}" data-caption="${escape(work.title)} — archival pigment print, ${work.size}">
-        <img src="${work.image}" alt="${escape(work.alt)}" width="1200" height="1500" fetchpriority="high" decoding="async">
+        <img src="${work.image}" alt="${escape(work.alt)}" width="${work.width}" height="${work.height}" fetchpriority="high" decoding="async">
       </a>
       <figcaption>Click the frame to view it full size.</figcaption>
     </figure>
   </section>
 
-  <section class="section shell" style="padding-top:0;">
+  <section class="section shell section--flush">
     <div class="split split--top">
       <div data-reveal>
         <p class="eyebrow">${escape(series.label)} &middot; ${escape(work.year)}</p>
-        <h1 style="font-size:clamp(2rem,1.4rem+2.6vw,3.5rem);">${escape(work.title)}</h1>
-        <p class="lede" style="max-width:44ch;">${escape(work.note)}</p>
+        <h1 class="title-md">${escape(work.title)}</h1>
+        <p class="lede measure-44">${escape(work.note)}</p>
         <p class="quiet">Part of <a href="${series.page}">${escape(series.title)}</a>.</p>
-        <div class="button-row" style="margin-top:1.5rem;">
+        <div class="button-row space-top-lg">
           <a class="button" href="prints.html">Order a print</a>
           <a class="button" href="works.html">All works</a>
         </div>
@@ -105,40 +102,35 @@ WORKS.forEach((work, index) => {
     </div>
   </section>
 
-  <hr class="rule">
-
-  <section class="section shell">
-    <div class="series-nav">
-      <a class="series-nav__link" href="work-${previous.slug}.html" data-reveal>
-        <span class="series-nav__label">Previous work</span>
-        <span class="series-nav__title">${escape(previous.title)}</span>
-      </a>
-      <a class="series-nav__link series-nav__link--end" href="work-${next.slug}.html" data-reveal>
-        <span class="series-nav__label">Next work</span>
-        <span class="series-nav__title">${escape(next.title)}</span>
-      </a>
+${others.length ? `  <section class="section section--sand">
+    <div class="shell">
+      <div data-reveal class="section-intro">
+        <p class="eyebrow">More from ${escape(series.title)}</p>
+        <h2>${others.length} other work${others.length === 1 ? '' : 's'}</h2>
+      </div>
+      <div class="sequence sequence--wide">
+${others.map((sibling) => workCard(sibling)).join('\n')}
+      </div>
     </div>
   </section>
 
+` : ''}  <hr class="rule">
+
+  <section class="section shell">
+    <div class="series-nav">
+      <a class="series-nav__link" href="${lonely ? series.page : 'work-' + previous.slug + '.html'}" data-reveal>
+        <span class="series-nav__label">${lonely ? 'Back to' : (pair ? 'Also in ' : 'Previous in ') + escape(series.label)}</span>
+        <span class="series-nav__title">${escape(lonely ? series.title : previous.title)}</span>
+      </a>
+      <a class="series-nav__link series-nav__link--end" href="${lonely || pair ? 'works.html' : 'work-' + next.slug + '.html'}" data-reveal>
+        <span class="series-nav__label">${lonely || pair ? 'All works' : 'Next in ' + escape(series.label)}</span>
+        <span class="series-nav__title">${escape(lonely || pair ? 'Twelve quiet openings' : next.title)}</span>
+      </a>
+    </div>
+  </section>
 `;
 
-  const lightbox = `
-<div class="lightbox" data-lightbox aria-hidden="true" role="dialog" aria-modal="true" aria-label="Artwork viewer">
-  <button class="lightbox__close" type="button" data-lightbox-close aria-label="Close viewer">&times;</button>
-  <div class="lightbox__nav">
-    <button type="button" data-lightbox-prev aria-label="Previous work">&larr;</button>
-    <button type="button" data-lightbox-next aria-label="Next work">&rarr;</button>
-  </div>
-  <figure class="lightbox__figure">
-    <img data-lightbox-image alt="">
-    <figcaption class="lightbox__caption" data-lightbox-caption></figcaption>
-    <p class="lightbox__counter" data-lightbox-counter></p>
-  </figure>
-</div>
-`;
-
-  const pageTail = tail.replace('<script src="assets/js/site.js"></script>', lightbox + '\n<script src="assets/js/site.js"></script>');
-  fs.writeFileSync(path.join(root, file), pageHead + main + pageTail);
+  fs.writeFileSync(path.join(root, file), head(meta) + body + footer({ lightbox: true }));
 });
 
 console.log(`wrote ${WORKS.length} work pages`);

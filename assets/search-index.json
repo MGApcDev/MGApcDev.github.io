@@ -1,6 +1,6 @@
 {
  "built": "static",
- "count": 62,
+ "count": 64,
  "records": [
   {
    "type": "page",
@@ -23,12 +23,26 @@
   },
   {
    "type": "page",
+   "url": "catalogue.html",
+   "title": "Catalogue",
+   "summary": "Every work as a list: title, series, year, place, print size and edition. Printable, and easier to scan than the gallery.",
+   "headings": [
+    "Every work, as a list",
+    "What is in the catalogue",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "page",
    "url": "colophon.html",
    "title": "Colophon",
    "summary": "How this site is built: the Blomstring palette, the type, the motion rules, and the accessibility decisions behind it.",
    "headings": [
     "How the site is put together",
-    "Nine tokens",
+    "Colour — Nine tokens",
     "Two faces, no downloads",
     "Iowan Old Style",
     "Avenir Next",
@@ -50,6 +64,7 @@
     "Say hello",
     "Direct",
     "Response time",
+    "Before you write",
     "A slow newsletter",
     "Pages",
     "Elsewhere",
@@ -88,7 +103,7 @@
     "Gigantically Subtle",
     "I See You",
     "Kvindecirkel",
-    "Previously",
+    "Archive — Previously",
     "Curating something?",
     "Pages",
     "Elsewhere",
@@ -104,11 +119,11 @@
    "headings": [
     "I See You",
     "Three hours, no performance",
-    "Three movements",
+    "How it runs — Three movements",
     "Meeting yourself",
     "Meeting one other",
     "Meeting nothing",
-    "Practical",
+    "Before you come — Practical",
     "Pages",
     "Elsewhere",
     "Studio"
@@ -192,12 +207,12 @@
    "headings": [
     "Kvindecirkel",
     "Images meant to be held, not hung",
-    "Four turnings",
+    "The year — Four turnings",
     "Forårsjævndøgn",
     "Sommersolhverv",
     "Efterårsjævndøgn",
     "Vintersolhverv",
-    "Questions",
+    "Before you join — Questions",
     "Pages",
     "Elsewhere",
     "Studio"
@@ -252,7 +267,7 @@
    "headings": [
     "What I am doing at the moment",
     "Seed heads, second summer",
-    "Three things",
+    "On at the moment — Three things",
     "Like a flower you shall bloom",
     "I See You",
     "A few session hours",
@@ -271,7 +286,7 @@
    "summary": "Press material for Zenna Lua: short and long bio, exhibition facts, what travels, technical details and contact for curators and journalists.",
    "headings": [
     "Everything you need to write it up",
-    "Three lengths",
+    "Biography — Three lengths",
     "At a glance",
     "What travels",
     "Press images",
@@ -286,41 +301,41 @@
    "type": "work",
    "url": "press.html",
    "title": "Bloom, key image",
-   "summary": "Like a flower you shall bloom — key image",
+   "summary": "Bloom, key image — press image",
    "headings": [
     "Series 01"
    ],
-   "text": "Like a flower you shall bloom — key image — Placeholder artwork: a red bloom fully open across warm ochre light"
+   "text": "Bloom, key image — press image — Placeholder artwork: a red bloom fully open across warm ochre light"
   },
   {
    "type": "work",
    "url": "press.html",
    "title": "Subtle, key image",
-   "summary": "Gigantically Subtle — key image",
+   "summary": "Subtle, key image — press image",
    "headings": [
     "Series 02"
    ],
-   "text": "Gigantically Subtle — key image — Placeholder artwork: leaf shadows drifting across a sunlit plaster wall"
+   "text": "Subtle, key image — press image — Placeholder artwork: leaf shadows drifting across a sunlit plaster wall"
   },
   {
    "type": "work",
    "url": "press.html",
    "title": "Coast, key image",
-   "summary": "Greve, at the hour of gold — key image",
+   "summary": "Coast, key image — press image",
    "headings": [
     "Series 03"
    ],
-   "text": "Greve, at the hour of gold — key image — Placeholder artwork: low sun over still water with a long reflection"
+   "text": "Coast, key image — press image — Placeholder artwork: low sun over still water with a long reflection"
   },
   {
    "type": "work",
    "url": "press.html",
    "title": "Artist portrait",
-   "summary": "Portrait of the artist",
+   "summary": "Artist portrait — press image",
    "headings": [
     "Credit © Zenna Lua"
    ],
-   "text": "Portrait of the artist — Placeholder artwork: a figure turned toward light among green leaves"
+   "text": "Artist portrait — press image — Placeholder artwork: a figure turned toward light among green leaves"
   },
   {
    "type": "page",
@@ -329,13 +344,13 @@
    "summary": "Archival pigment prints by Zenna Lua — sizes, editions, framing and how to order.",
    "headings": [
     "Made to live on a wall",
-    "Four sizes",
-    "Four steps, no cart",
+    "Sizes & editions — Four sizes",
+    "Ordering — Four steps, no cart",
     "Write",
     "Proof",
     "Print",
     "Send",
-    "Questions I get",
+    "Good to know — Questions I get",
     "Ready when you are",
     "Pages",
     "Elsewhere",
@@ -347,11 +362,12 @@
    "type": "page",
    "url": "series-gigantically-subtle.html",
    "title": "Gigantically Subtle",
-   "summary": "Gigantically Subtle — a sequence of nine photographs of leaf shadows crossing a sunlit wall over one afternoon.",
+   "summary": "Nine photographs of one wall, one afternoon, one plant — hung as a single line so the light moves left to right across the room.",
    "headings": [
     "Gigantically Subtle",
     "The subject is the passing",
-    "14:30 → 17:40",
+    "The sequence — 14:30 → 17:40",
+    "3 works from this series",
     "Pages",
     "Elsewhere",
     "Studio"
@@ -442,21 +458,22 @@
    "type": "work",
    "url": "series-gigantically-subtle.html",
    "title": "No. 9",
-   "summary": "No. 9 — 17:40, the last of it",
+   "summary": "No. 9 — 17:40",
    "headings": [
     "17:40"
    ],
-   "text": "No. 9 — 17:40, the last of it — Placeholder artwork: the shadow nearly gone, wall in dusk violet"
+   "text": "No. 9 — 17:40 — Placeholder artwork: the shadow nearly gone, wall in dusk violet"
   },
   {
    "type": "page",
    "url": "series-hour-of-gold.html",
    "title": "Greve, at the hour of gold",
-   "summary": "Greve, at the hour of gold — water, horizon and low sun along the Danish east coast, photographed in the last minutes of the day.",
+   "summary": "The last twenty minutes of light over Køge Bugt, photographed from the same stretch of beach I grew up on.",
    "headings": [
     "Greve, at the hour of gold",
     "Be standing there",
-    "21:12 → 21:53",
+    "Six evenings — 21:12 → 21:53",
+    "3 works from this series",
     "Pages",
     "Elsewhere",
     "Studio"
@@ -467,71 +484,72 @@
    "type": "work",
    "url": "series-hour-of-gold.html",
    "title": "Køge Bugt, 21:12",
-   "summary": "Køge Bugt, 21:12 — 90 × 60 cm",
+   "summary": "Køge Bugt, 21:12 — June",
    "headings": [
     "June"
    ],
-   "text": "Køge Bugt, 21:12 — 90 × 60 cm — Placeholder artwork: gold light lying flat on calm water"
+   "text": "Køge Bugt, 21:12 — June — Placeholder artwork: gold light lying flat on calm water"
   },
   {
    "type": "work",
    "url": "series-hour-of-gold.html",
    "title": "The cold coming in",
-   "summary": "The cold coming in — 90 × 60 cm",
+   "summary": "The cold coming in — August",
    "headings": [
     "August"
    ],
-   "text": "The cold coming in — 90 × 60 cm — Placeholder artwork: violet dusk settling over the bay"
+   "text": "The cold coming in — August — Placeholder artwork: violet dusk settling over the bay"
   },
   {
    "type": "work",
    "url": "series-hour-of-gold.html",
    "title": "Flat sea, no wind",
-   "summary": "Flat sea, no wind — 90 × 60 cm",
+   "summary": "Flat sea, no wind — July",
    "headings": [
     "July"
    ],
-   "text": "Flat sea, no wind — 90 × 60 cm — Placeholder artwork: unbroken horizon with a low sun"
+   "text": "Flat sea, no wind — July — Placeholder artwork: unbroken horizon with a low sun"
   },
   {
    "type": "work",
    "url": "series-hour-of-gold.html",
    "title": "Four minutes of it",
-   "summary": "Four minutes of it — 90 × 60 cm",
+   "summary": "Four minutes of it — June",
    "headings": [
     "June"
    ],
-   "text": "Four minutes of it — 90 × 60 cm — Placeholder artwork: burning orange light across the bay"
+   "text": "Four minutes of it — June — Placeholder artwork: burning orange light across the bay"
   },
   {
    "type": "work",
    "url": "series-hour-of-gold.html",
    "title": "After the swimmers left",
-   "summary": "After the swimmers left — 90 × 60 cm",
+   "summary": "After the swimmers left — September",
    "headings": [
     "September"
    ],
-   "text": "After the swimmers left — 90 × 60 cm — Placeholder artwork: violet water under a dimming sky"
+   "text": "After the swimmers left — September — Placeholder artwork: violet water under a dimming sky"
   },
   {
    "type": "work",
    "url": "series-hour-of-gold.html",
    "title": "Last of the light",
-   "summary": "Last of the light — 90 × 60 cm",
+   "summary": "Last of the light — September",
    "headings": [
     "September"
    ],
-   "text": "Last of the light — 90 × 60 cm — Placeholder artwork: pale violet horizon, sun almost gone"
+   "text": "Last of the light — September — Placeholder artwork: pale violet horizon, sun almost gone"
   },
   {
    "type": "page",
    "url": "series-like-a-flower.html",
    "title": "Like a flower you shall bloom",
-   "summary": "Like a flower you shall bloom — macro botanicals photographed at the moment of full opening, over three summers in Copenhagen.",
+   "summary": "Macro botanicals photographed at the moment of full opening — poppy, clematis, hollyhock, and the seed heads that come after.",
    "headings": [
     "Like a flower you shall bloom",
     "Photographed a day too late, on purpose",
-    "Six from eighteen",
+    "Selection — Six from eighteen",
+    "4 works from this series",
     "Pages",
     "Elsewhere",
     "Studio"
@@ -542,61 +560,61 @@
    "type": "work",
    "url": "series-like-a-flower.html",
    "title": "Poppy, second day",
-   "summary": "Poppy, second day — 90 × 120 cm",
+   "summary": "Poppy, second day — 90 × 120",
    "headings": [
     "90 × 120"
    ],
-   "text": "Poppy, second day — 90 × 120 cm — Placeholder artwork: red poppy petals filling the frame"
+   "text": "Poppy, second day — 90 × 120 — Placeholder artwork: red poppy petals filling the frame"
   },
   {
    "type": "work",
    "url": "series-like-a-flower.html",
    "title": "Clematis, torn edge",
-   "summary": "Clematis, torn edge — 60 × 75 cm",
+   "summary": "Clematis, torn edge — 60 × 75",
    "headings": [
     "60 × 75"
    ],
-   "text": "Clematis, torn edge — 60 × 75 cm — Placeholder artwork: violet clematis with a lit centre"
+   "text": "Clematis, torn edge — 60 × 75 — Placeholder artwork: violet clematis with a lit centre"
   },
   {
    "type": "work",
    "url": "series-like-a-flower.html",
    "title": "After the flower",
-   "summary": "After the flower — 60 × 75 cm",
+   "summary": "After the flower — 60 × 75",
    "headings": [
     "60 × 75"
    ],
-   "text": "After the flower — 60 × 75 cm — Placeholder artwork: pale seed head on sage ground"
+   "text": "After the flower — 60 × 75 — Placeholder artwork: pale seed head on sage ground"
   },
   {
    "type": "work",
    "url": "series-like-a-flower.html",
    "title": "Hollyhock at dusk",
-   "summary": "Hollyhock at dusk — 60 × 75 cm",
+   "summary": "Hollyhock at dusk — 60 × 75",
    "headings": [
     "60 × 75"
    ],
-   "text": "Hollyhock at dusk — 60 × 75 cm — Placeholder artwork: warm pink bloom against dusk violet"
+   "text": "Hollyhock at dusk — 60 × 75 — Placeholder artwork: warm pink bloom against dusk violet"
   },
   {
    "type": "work",
    "url": "series-like-a-flower.html",
    "title": "Full open, no apology",
-   "summary": "Full open, no apology — 90 × 120 cm",
+   "summary": "Full open, no apology — 90 × 120",
    "headings": [
     "90 × 120"
    ],
-   "text": "Full open, no apology — 90 × 120 cm — Placeholder artwork: fully open red bloom on ochre"
+   "text": "Full open, no apology — 90 × 120 — Placeholder artwork: fully open red bloom on ochre"
   },
   {
    "type": "work",
    "url": "series-like-a-flower.html",
    "title": "Second opening",
-   "summary": "Second opening — 60 × 75 cm",
+   "summary": "Second opening — 60 × 75",
    "headings": [
     "60 × 75"
    ],
-   "text": "Second opening — 60 × 75 cm — Placeholder artwork: deep violet petals radiating from a pale centre"
+   "text": "Second opening — 60 × 75 — Placeholder artwork: deep violet petals radiating from a pale centre"
   },
   {
    "type": "page",
@@ -623,7 +641,7 @@
    "headings": [
     "Sessions",
     "Staying with it long enough that it opens",
-    "Common ground",
+    "What people bring — Common ground",
     "Something ended",
     "Stuck creatively",
     "Running on effort",
@@ -638,11 +656,30 @@
   },
   {
    "type": "page",
+   "url": "visit.html",
+   "title": "Visit",
+   "summary": "How to see the work in person: exhibition opening hours, getting there, access, and visiting the studio in Copenhagen.",
+   "headings": [
+    "Come and see it",
+    "Like a flower you shall bloom",
+    "When the door is open",
+    "What the room is like",
+    "However you travel",
+    "Outside the exhibition",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "page",
    "url": "work-afternoon-wall.html",
    "title": "Afternoon Wall",
    "summary": "Afternoon Wall — Gigantically Subtle. Archival pigment print, 50 × 62 cm, edition of 8 sets + 1 AP.",
    "headings": [
     "Afternoon Wall",
+    "2 other works",
     "Pages",
     "Elsewhere",
     "Studio"
@@ -656,6 +693,7 @@
    "summary": "Dusk Crossing — Greve, at the hour of gold. Archival pigment print, 60 × 75 cm, edition of 10 + 2 AP.",
    "headings": [
     "Dusk Crossing",
+    "2 other works",
     "Pages",
     "Elsewhere",
     "Studio"
@@ -669,6 +707,7 @@
    "summary": "Gigantically Subtle No. 4 — Gigantically Subtle. Archival pigment print, 90 × 60 cm, edition of 8 sets + 1 AP.",
    "headings": [
     "Gigantically Subtle No. 4",
+    "2 other works",
     "Pages",
     "Elsewhere",
     "Studio"
@@ -682,6 +721,7 @@
    "summary": "Green Hour — Gigantically Subtle. Archival pigment print, 50 × 50 cm, edition of 8 sets + 1 AP.",
    "headings": [
     "Green Hour",
+    "2 other works",
     "Pages",
     "Elsewhere",
     "Studio"
@@ -695,6 +735,7 @@
    "summary": "Greve Strand, Facing South — Greve, at the hour of gold. Archival pigment print, 60 × 75 cm, edition of 10 + 2 AP.",
    "headings": [
     "Greve Strand, Facing South",
+    "2 other works",
     "Pages",
     "Elsewhere",
     "Studio"
@@ -708,6 +749,7 @@
    "summary": "I See You (Study) — Mirror work. Archival pigment print, 60 × 75 cm, edition of 10 + 2 AP.",
    "headings": [
     "I See You (Study)",
+    "1 other work",
     "Pages",
     "Elsewhere",
     "Studio"
@@ -721,6 +763,7 @@
    "summary": "Køge Bugt, 21:40 — Greve, at the hour of gold. Archival pigment print, 90 × 60 cm, edition of 10 + 2 AP.",
    "headings": [
     "Køge Bugt, 21:40",
+    "2 other works",
     "Pages",
     "Elsewhere",
     "Studio"
@@ -734,6 +777,7 @@
    "summary": "Second Opening — Like a flower you shall bloom. Archival pigment print, 50 × 50 cm, edition of 15 + 2 AP.",
    "headings": [
     "Second Opening",
+    "3 other works",
     "Pages",
     "Elsewhere",
     "Studio"
@@ -747,6 +791,7 @@
    "summary": "Seed Head, Waiting — Like a flower you shall bloom. Archival pigment print, 50 × 50 cm, edition of 15 + 2 AP.",
    "headings": [
     "Seed Head, Waiting",
+    "3 other works",
     "Pages",
     "Elsewhere",
     "Studio"
@@ -760,6 +805,7 @@
    "summary": "Self, Facing Up — Mirror work. Archival pigment print, 60 × 75 cm, edition of 10 + 2 AP.",
    "headings": [
     "Self, Facing Up",
+    "1 other work",
     "Pages",
     "Elsewhere",
     "Studio"
@@ -773,6 +819,7 @@
    "summary": "Untitled (Clematis) — Like a flower you shall bloom. Archival pigment print, 60 × 75 cm, edition of 15 + 2 AP.",
    "headings": [
     "Untitled (Clematis)",
+    "3 other works",
     "Pages",
     "Elsewhere",
     "Studio"
@@ -786,6 +833,7 @@
    "summary": "Untitled (Poppy I) — Like a flower you shall bloom. Archival pigment print, 60 × 75 cm, edition of 15 + 2 AP.",
    "headings": [
     "Untitled (Poppy I)",
+    "3 other works",
     "Pages",
     "Elsewhere",
     "Studio"

@@ -8,15 +8,20 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Zenna Lua">
 <meta property="og:title" content="Colophon — Zenna Lua">
-<meta property="og:description" content="The palette, type and decisions behind this site.">
-<meta property="og:image" content="assets/img/work-06-sage.svg">
+<meta property="og:description" content="How this site is built: the Blomstring palette, the type, the motion rules, and the accessibility decisions behind it.">
+<meta property="og:image" content="assets/social/work-06-sage.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#F6EFE4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#17141A" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="assets/img/work-01-poppy.svg" type="image/svg+xml">
-<script>document.documentElement.classList.add('js');</script>
-<link rel="alternate" hreflang="da" href="da.html">
+<link rel="icon" href="assets/social/icon-192.png" sizes="192x192">
+<link rel="icon" href="assets/social/icon-512.png" sizes="512x512">
+<link rel="apple-touch-icon" href="assets/social/apple-touch-icon.png">
 <link rel="alternate" type="application/rss+xml" title="Zenna Lua — Words" href="feed.xml">
+<link rel="alternate" hreflang="da" href="da.html">
+<script>document.documentElement.classList.add('js');</script>
 <link rel="stylesheet" href="assets/css/style.css">
 <script type="application/ld+json">
 {
@@ -26,14 +31,26 @@
    "@type": "WebPage",
    "@id": "https://example.com/colophon.html#page",
    "name": "Colophon",
-   "about": { "@id": "https://example.com/#zenna" },
+   "about": {
+    "@id": "https://example.com/#zenna"
+   },
    "url": "https://example.com/colophon.html"
   },
   {
    "@type": "BreadcrumbList",
    "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://example.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Colophon", "item": "https://example.com/colophon.html" }
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://example.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Colophon",
+     "item": "https://example.com/colophon.html"
+    }
    ]
   }
  ]
@@ -65,35 +82,35 @@
   <section class="section--tight section shell">
     <div data-reveal>
       <p class="eyebrow">Colophon</p>
-      <h1 style="max-width:13ch;">How the site is put together</h1>
-      <p class="lede" style="max-width:52ch;">A theme called <em>Blomstring</em> &mdash; Danish for blossoming &mdash; drawn from the work itself: warm sand grounds, one poppy red, and a lot of air.</p>
+      <h1 class="measure-13">How the site is put together</h1>
+      <p class="lede measure-52">A theme called <em>Blomstring</em> &mdash; Danish for blossoming &mdash; drawn from the work itself: warm sand grounds, one poppy red, and a lot of air.</p>
     </div>
   </section>
 
   <hr class="rule">
 
   <section class="section shell">
-    <div data-reveal style="margin-bottom:clamp(1.5rem,4vw,2.5rem);">
-      <p class="eyebrow">Colour</p>
-      <h2>Nine tokens</h2>
+    <div data-reveal class="section-intro">
+      <p class="eyebrow" aria-hidden="true">Colour</p>
+      <h2><span class="visually-hidden">Colour — </span>Nine tokens</h2>
       <p class="quiet">Every colour on the site is one of these. Each pairing was measured against WCAG AA in both light and dark, so nothing here is decided by eye alone.</p>
     </div>
     <ul class="swatches" data-reveal>
-      <li class="swatch"><span class="swatch__chip" style="background:#f6efe4"></span><span class="swatch__name">Sand</span><span class="swatch__value">#F6EFE4</span><span class="swatch__use">Page ground</span></li>
-      <li class="swatch"><span class="swatch__chip" style="background:#ece0cf"></span><span class="swatch__name">Sand deep</span><span class="swatch__value">#ECE0CF</span><span class="swatch__use">Alternating sections</span></li>
-      <li class="swatch"><span class="swatch__chip" style="background:#fffaf3"></span><span class="swatch__name">Paper</span><span class="swatch__value">#FFFAF3</span><span class="swatch__use">Cards, inputs</span></li>
-      <li class="swatch"><span class="swatch__chip" style="background:#2a2622"></span><span class="swatch__name">Ink</span><span class="swatch__value">#2A2622</span><span class="swatch__use">Body text</span></li>
-      <li class="swatch"><span class="swatch__chip" style="background:#695e50"></span><span class="swatch__name">Ink faint</span><span class="swatch__value">#695E50</span><span class="swatch__use">Labels, meta</span></li>
-      <li class="swatch"><span class="swatch__chip" style="background:#b33a2b"></span><span class="swatch__name">Poppy</span><span class="swatch__value">#B33A2B</span><span class="swatch__use">The single accent</span></li>
-      <li class="swatch"><span class="swatch__chip" style="background:#c9873a"></span><span class="swatch__name">Ochre</span><span class="swatch__value">#C9873A</span><span class="swatch__use">Warm secondary</span></li>
-      <li class="swatch"><span class="swatch__chip" style="background:#7c8b6f"></span><span class="swatch__name">Sage</span><span class="swatch__value">#7C8B6F</span><span class="swatch__use">Botanical secondary</span></li>
-      <li class="swatch"><span class="swatch__chip" style="background:#5b3f7a"></span><span class="swatch__name">Dusk</span><span class="swatch__value">#5B3F7A</span><span class="swatch__use">Cool secondary</span></li>
+      <li class="swatch"><span class="swatch__chip swatch__chip--sand"></span><span class="swatch__name">Sand</span><span class="swatch__value">#F6EFE4</span><span class="swatch__use">Page ground</span></li>
+      <li class="swatch"><span class="swatch__chip swatch__chip--sand-deep"></span><span class="swatch__name">Sand deep</span><span class="swatch__value">#ECE0CF</span><span class="swatch__use">Alternating sections</span></li>
+      <li class="swatch"><span class="swatch__chip swatch__chip--paper"></span><span class="swatch__name">Paper</span><span class="swatch__value">#FFFAF3</span><span class="swatch__use">Cards, inputs</span></li>
+      <li class="swatch"><span class="swatch__chip swatch__chip--ink"></span><span class="swatch__name">Ink</span><span class="swatch__value">#2A2622</span><span class="swatch__use">Body text</span></li>
+      <li class="swatch"><span class="swatch__chip swatch__chip--ink-faint"></span><span class="swatch__name">Ink faint</span><span class="swatch__value">#695E50</span><span class="swatch__use">Labels, meta</span></li>
+      <li class="swatch"><span class="swatch__chip swatch__chip--poppy"></span><span class="swatch__name">Poppy</span><span class="swatch__value">#B33A2B</span><span class="swatch__use">The single accent</span></li>
+      <li class="swatch"><span class="swatch__chip swatch__chip--ochre"></span><span class="swatch__name">Ochre</span><span class="swatch__value">#C9873A</span><span class="swatch__use">Warm secondary</span></li>
+      <li class="swatch"><span class="swatch__chip swatch__chip--sage"></span><span class="swatch__name">Sage</span><span class="swatch__value">#7C8B6F</span><span class="swatch__use">Botanical secondary</span></li>
+      <li class="swatch"><span class="swatch__chip swatch__chip--dusk"></span><span class="swatch__name">Dusk</span><span class="swatch__value">#5B3F7A</span><span class="swatch__use">Cool secondary</span></li>
     </ul>
   </section>
 
   <section class="section section--sand">
     <div class="shell">
-      <div data-reveal style="margin-bottom:clamp(1.5rem,4vw,2.5rem);">
+      <div data-reveal class="section-intro">
         <p class="eyebrow">Type</p>
         <h2>Two faces, no downloads</h2>
         <p class="quiet">Both stacks are fonts you already have. Nothing is fetched, so text paints immediately and there is no layout shift when a webfont lands.</p>
@@ -103,19 +120,19 @@
           <span class="card__index">Display</span>
           <h3>Iowan Old Style</h3>
           <p class="quiet">Falling back through Palatino, Book Antiqua and Georgia. High contrast, tight leading, only ever used large.</p>
-          <p style="font-family:var(--font-display); font-size:2rem; line-height:1.1; margin:0;">Blomstring</p>
+          <p class="specimen">Blomstring</p>
         </article>
         <article class="card" data-reveal>
           <span class="card__index">Body</span>
           <h3>Avenir Next</h3>
           <p class="quiet">Falling back to the system sans. Set at 1.75 line-height with a 62-character measure.</p>
-          <p style="margin:0;">There&rsquo;s only one of you &mdash; enjoy it.</p>
+          <p class="flush">There&rsquo;s only one of you &mdash; enjoy it.</p>
         </article>
         <article class="card" data-reveal>
           <span class="card__index">Labels</span>
           <h3>Uppercase, 0.22em</h3>
           <p class="quiet">Eyebrows, buttons and meta share one treatment so small text always reads as navigation rather than content.</p>
-          <p class="eyebrow" style="margin:0;">Photographic artist</p>
+          <p class="eyebrow flush">Photographic artist</p>
         </article>
       </div>
     </div>
@@ -131,19 +148,20 @@
           <li><strong>Motion is optional.</strong> Under <code>prefers-reduced-motion</code> nothing animates, and no element sits at zero opacity waiting for a scroll listener.</li>
           <li><strong>Reveals are gated on JavaScript.</strong> A one-line inline script adds a <code>.js</code> class, so with scripting off the page is simply visible instead of blank.</li>
           <li><strong>The gallery is a grid, not columns.</strong> CSS multi-column filled column-by-column, which put ten of twelve works in a reading position that did not match tab order.</li>
-          <li><strong>Work cards are links.</strong> Each points at the full-size image, so a click still does something useful without scripting, and cmd-click opens a new tab.</li>
+          <li><strong>Work cards are links.</strong> Each points at the work&rsquo;s own page, so a click still does something useful without scripting, and cmd-click opens a new tab.</li>
           <li><strong>Status is never colour alone.</strong> Live and past states differ by border style and dot fill as well as hue.</li>
           <li><strong>Images declare their size.</strong> Every <code>img</code> carries intrinsic dimensions, so measured layout shift is zero on every page.</li>
+          <li><strong>The chrome is shared code.</strong> Head, header and footer come from one module, so the nav on page thirty cannot drift from the nav on page one.</li>
         </ul>
       </div>
       <dl class="spec" data-reveal>
-        <div><dt>Pages</dt><dd>18 static HTML files</dd></div>
+        <div><dt>Pages</dt><dd>Static HTML, assembled from shared chrome</dd></div>
         <div><dt>CSS</dt><dd>One stylesheet, no framework</dd></div>
         <div><dt>JavaScript</dt><dd>Two small files, no dependencies</dd></div>
-        <div><dt>Build</dt><dd>None required</dd></div>
+        <div><dt>Build</dt><dd>Node scripts, output committed</dd></div>
         <div><dt>Requests</dt><dd>No third-party, no fonts, no trackers</dd></div>
         <div><dt>Images</dt><dd>Generated SVG placeholders</dd></div>
-        <div><dt>Audits</dt><dd>Six, run headless</dd></div>
+        <div><dt>Audits</dt><dd>Run headless before publishing</dd></div>
       </dl>
     </div>
   </section>
@@ -153,14 +171,13 @@
       <p class="eyebrow">Credit where due</p>
       <h2>Photographs</h2>
       <p>Every image currently on this site is a generated placeholder, drawn in the theme palette so the layout can be judged before the real photographs are in. They are not artworks and should not be reproduced as such.</p>
-      <p class="quiet">Text and photographs &copy; Zenna Lua. Site built to be handed over: no build step, no accounts, nothing to renew.</p>
-      <div class="button-row" style="margin-top:1.5rem;">
+      <p class="quiet">Text and photographs &copy; Zenna Lua. Site built to be handed over: no build step to deploy, no accounts, nothing to renew.</p>
+      <div class="button-row space-top-lg">
         <a class="button" href="press.html">Press material</a>
         <a class="button" href="contact.html">Contact</a>
       </div>
     </div>
   </section>
-
 </main>
 
 <footer class="site-footer">
@@ -168,7 +185,7 @@
     <div class="site-footer__grid">
       <div>
         <a class="wordmark" href="index.html">Zenna <span>Lua</span></a>
-        <p class="quiet" style="margin-top:1rem; max-width:26ch;">Photographic artist and psychotherapist. Copenhagen, Denmark.</p>
+        <p class="quiet site-footer__blurb">Photographic artist and psychotherapist. Copenhagen, Denmark.</p>
       </div>
       <div>
         <h2>Pages</h2>
@@ -176,7 +193,9 @@
           <li><a href="now.html">Now</a></li>
           <li><a href="works.html">Works</a></li>
           <li><a href="series.html">Series</a></li>
+          <li><a href="catalogue.html">Catalogue</a></li>
           <li><a href="exhibitions.html">Exhibitions</a></li>
+          <li><a href="visit.html">Visit</a></li>
           <li><a href="journal.html">Words</a></li>
           <li><a href="prints.html">Prints</a></li>
           <li><a href="sessions.html">Sessions</a></li>
@@ -193,6 +212,7 @@
           <li><a href="prints.html">Print enquiries</a></li>
           <li><a href="press.html">Press &amp; curators</a></li>
           <li><a href="colophon.html">Colophon</a></li>
+          <li><a href="feed.xml">RSS</a></li>
         </ul>
       </div>
       <div>

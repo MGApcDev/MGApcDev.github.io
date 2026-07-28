@@ -1,6 +1,6 @@
-/* Zenna Lua — small progressive enhancements: header state, scroll reveal,
-   gallery filtering with deep links, and a keyboard-navigable lightbox.
-   No dependencies. */
+/* Zenna Lua — progressive enhancements: header state, scroll reveal, masonry
+   packing, gallery filtering, mail forms, and a keyboard-navigable lightbox.
+   No dependencies. Nothing here is required to read the site. */
 
 (function () {
   'use strict';
@@ -38,8 +38,8 @@
 
   /* ---------------------------------------------------------- masonry packing */
   // The gallery is a row-major grid so DOM order matches reading order. Each
-  // card claims however many 8px rows its own height needs, which packs the
-  // wall without the column-major ordering that CSS multi-column forces.
+  // card claims however many 8px rows its own height needs, which packs the wall
+  // without the column-major ordering CSS multi-column forces.
   const galleries = Array.from(document.querySelectorAll('.gallery'));
   if (galleries.length) {
     const packGallery = (gallery) => {
@@ -64,8 +64,7 @@
     document.querySelectorAll('.gallery img').forEach((image) => {
       if (!image.complete) image.addEventListener('load', packAll, { once: true });
     });
-    // Captions reflow when the display face finally resolves, which changes
-    // card heights after the first pack.
+    // Captions reflow when the display face resolves, changing card heights.
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(packAll);
     window.__packGalleries = packAll;
   }
@@ -86,14 +85,12 @@
       button.setAttribute('aria-pressed', String(button.dataset.filter === selectedSeries));
     });
     if (filterStatus) {
-      const seriesLabel = selectedSeries === 'all' ? 'all series' : selectedSeries;
-      filterStatus.textContent = `Showing ${shownCount} ${shownCount === 1 ? 'work' : 'works'} — ${seriesLabel}.`;
+      const label = selectedSeries === 'all' ? 'all series' : selectedSeries;
+      filterStatus.textContent = `Showing ${shownCount} ${shownCount === 1 ? 'work' : 'works'} — ${label}.`;
     }
     if (updateHash) {
-      const nextHash = selectedSeries === 'all' ? ' ' : '#' + selectedSeries;
-      history.replaceState(null, '', selectedSeries === 'all' ? location.pathname : nextHash);
+      history.replaceState(null, '', selectedSeries === 'all' ? location.pathname : '#' + selectedSeries);
     }
-    // Re-pack: the remaining cards need fresh row spans.
     if (typeof window.__packGalleries === 'function') window.__packGalleries();
   }
 
@@ -109,16 +106,16 @@
     window.addEventListener('hashchange', () => {
       // #view=… belongs to the lightbox, not to the filters.
       if (location.hash.startsWith('#view=')) return;
-      const nextSeries = decodeURIComponent(location.hash.replace('#', ''));
-      applyFilter(knownSeries.includes(nextSeries) ? nextSeries : 'all', false);
+      const next = decodeURIComponent(location.hash.replace('#', ''));
+      applyFilter(knownSeries.includes(next) ? next : 'all', false);
     });
   }
 
   /* --------------------------------------------------------------- mail forms */
-  // A form posting to mailto: is silently dropped by Chrome — the visitor types
-  // a message, presses send, and nothing happens at all. Compose the mail URL
-  // ourselves, hand it to the mail app, and always leave a visible link behind
-  // in case the app never opened.
+  // A form posting to mailto: is silently dropped by Chrome — the visitor types a
+  // message, presses send, and nothing happens. Compose the mail URL ourselves,
+  // hand it to the mail app, and leave a visible link behind in case it never
+  // opened.
   document.querySelectorAll('[data-mailto-form]').forEach((form) => {
     const status = form.querySelector('[data-form-status]');
     form.addEventListener('submit', (event) => {
@@ -134,8 +131,8 @@
 
       const subject = form.dataset.subject
         || (subjectField ? `${subjectField}${name ? ' — ' + name : ''}` : 'Message from the website');
-      const bodyLines = [message, '', name && `— ${name}`, email && email].filter(Boolean);
-      const href = `mailto:${address}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
+      const body = [message, '', name && `— ${name}`, email && email].filter(Boolean).join('\n');
+      const href = `mailto:${address}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
       if (status) {
         status.innerHTML = '';
@@ -168,6 +165,10 @@
 
   const visibleOpeners = () => openers.filter((opener) => !opener.hidden && opener.offsetParent !== null);
 
+  // A viewer looking at one frame should be able to send that frame, not just
+  // the page it lives on. The slug comes from the image filename.
+  const slugFor = (opener) => (opener.dataset.lightboxOpen || '').split('/').pop().replace(/\.[a-z0-9]+$/i, '');
+
   function preload(source) {
     if (!source) return;
     const image = new Image();
@@ -183,11 +184,10 @@
     lightboxImage.src = opener.dataset.lightboxOpen || (sourceImage && sourceImage.src) || '';
     lightboxImage.alt = (sourceImage && sourceImage.alt) || '';
     lightboxCaption.textContent = opener.dataset.caption || '';
-    if (lightboxCounter) {
-      lightboxCounter.textContent = `${currentIndex + 1} / ${items.length}`;
-    }
-    const neighbours = [items[(currentIndex + 1) % items.length], items[(currentIndex - 1 + items.length) % items.length]];
-    neighbours.forEach((neighbour) => preload(neighbour && neighbour.dataset.lightboxOpen));
+    if (lightboxCounter) lightboxCounter.textContent = `${currentIndex + 1} / ${items.length}`;
+
+    [items[(currentIndex + 1) % items.length], items[(currentIndex - 1 + items.length) % items.length]]
+      .forEach((neighbour) => preload(neighbour && neighbour.dataset.lightboxOpen));
 
     const slug = slugFor(opener);
     if (slug) {
@@ -195,10 +195,6 @@
       history.replaceState(null, '', '#view=' + slug);
     }
   }
-
-  // A viewer that is looking at one frame should be able to send that frame,
-  // not just the page it lives on. The slug comes from the image filename.
-  const slugFor = (opener) => (opener.dataset.lightboxOpen || '').split('/').pop().replace(/\.[a-z0-9]+$/i, '');
 
   function open(index) {
     lastFocused = document.activeElement;
@@ -222,8 +218,8 @@
 
   openers.forEach((opener) => {
     opener.addEventListener('click', (event) => {
-      // Work cards are links to the image file; let modified clicks through so
-      // "open in new tab" keeps working, and only then take over.
+      // Work cards are links; let modified clicks through so "open in new tab"
+      // keeps working, and only then take over.
       if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
       event.preventDefault();
       open(visibleOpeners().indexOf(opener));
@@ -247,8 +243,7 @@
     event.preventDefault();
     const position = focusables.indexOf(document.activeElement);
     const step = event.shiftKey ? -1 : 1;
-    const nextTarget = focusables[(position + step + focusables.length) % focusables.length];
-    nextTarget.focus();
+    focusables[(position + step + focusables.length) % focusables.length].focus();
   });
 
   /* open straight into a shared frame: works.html#view=work-01-poppy */

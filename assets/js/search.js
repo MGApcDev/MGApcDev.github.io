@@ -33,7 +33,7 @@
       const payload = await response.json();
       records = payload.records.map((record) => ({
         ...record,
-        haystack: normalise([record.title, record.summary, record.headings.join(' '), record.text].join(' ')),
+        haystack: normalise([record.title, record.summary, (record.headings || []).join(' '), record.text].join(' ')),
         normalisedTitle: normalise(record.title),
         normalisedSummary: normalise(record.summary || ''),
         normalisedHeadings: normalise((record.headings || []).join(' ')),
@@ -49,7 +49,7 @@
     for (const term of terms) {
       if (!record.haystack.includes(term)) return 0;
       // A title match is what someone is almost always after; body frequency is
-      // the weakest signal and is capped so long pages cannot out-rank the page
+      // the weakest signal and is capped so a long page cannot out-rank the page
       // actually named after the term.
       if (record.normalisedTitle === term) total += 40;
       else if (record.normalisedTitle.includes(term)) total += 25;
@@ -63,8 +63,7 @@
 
   function excerpt(record, terms) {
     const source = record.text || record.summary || '';
-    const lower = normalise(source);
-    const at = lower.indexOf(terms[0]);
+    const at = normalise(source).indexOf(terms[0]);
     if (at === -1) return record.summary || source.slice(0, 150);
     const start = Math.max(0, at - 60);
     return (start > 0 ? '…' : '') + source.slice(start, start + 170).trim() + '…';
@@ -81,12 +80,10 @@
     if (!records) return;
 
     // On a tie the page that is *about* the term should win over one that merely
-    // mentions it, so compare how densely the term occurs before falling back to
-    // title length.
+    // mentions it, so compare term density before falling back to title length.
     const density = (record) => {
-      const length = Math.max(record.haystack.length, 1);
       const hits = terms.reduce((total, term) => total + (record.haystack.split(term).length - 1), 0);
-      return hits / Math.sqrt(length);
+      return hits / Math.sqrt(Math.max(record.haystack.length, 1));
     };
 
     const matches = records
@@ -107,14 +104,11 @@
       ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[character]);
 
     results.innerHTML = matches
-      .map(({ record }) => {
-        const label = record.type === 'work' ? 'Work' : 'Page';
-        return `<li class="search-result">
-          <p class="search-result__kind">${label}</p>
+      .map(({ record }) => `<li class="search-result">
+          <p class="search-result__kind">${record.type === 'work' ? 'Work' : 'Page'}</p>
           <h3 class="search-result__title"><a href="${escape(record.url)}">${escape(record.title)}</a></h3>
           <p class="search-result__text">${escape(excerpt(record, terms))}</p>
-        </li>`;
-      })
+        </li>`)
       .join('');
   }
 

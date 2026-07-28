@@ -1,0 +1,3 @@
+# Netlify / Cloudflare Pages redirect rules.
+# Serve the styled 404 page rather than the host's default.
+/*  /404.html  404
