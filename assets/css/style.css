@@ -287,9 +287,15 @@ code {
 
 .site-header.is-scrolled { border-bottom-color: var(--sand-line); }
 
+/* Wrapping is driven by content, not by a viewport breakpoint: at a 200% text
+   size the nav items are wider than a 1024px window, and a nav that only wraps
+   below 760px would run straight off the page. */
 .site-header__inner {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem 1.5rem;
   padding-block: 1.15rem;
 }
 
@@ -303,8 +309,38 @@ code {
 
 .wordmark span { color: var(--poppy); }
 
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem clamp(1rem, 2.6vw, 2.4rem);
+  font-size: 0.76rem;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.site-nav a {
+  text-decoration: none;
+  padding-block: 0.35rem;
+  border-bottom: 1px solid transparent;
+}
+
+.site-nav a[aria-current="page"] {
+  border-bottom-color: var(--poppy);
+  color: var(--poppy);
+}
+
 @media (max-width: 760px) {
-  .site-header__inner { padding-block: 0.85rem; }
+  .site-header__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.55rem;
+    padding-block: 0.85rem;
+  }
+
+  .site-nav {
+    gap: 0.5rem 1.05rem;
+    font-size: 0.68rem;
+  }
 }
 
 /* --------------------------------------------------------------------- hero */
@@ -1509,6 +1545,7 @@ code {
     border: 1px solid var(--sand-line);
   }
 
+  .site-nav a[aria-current="page"],
   .filter[aria-pressed="true"] {
     outline: 2px solid currentColor;
     outline-offset: 2px;

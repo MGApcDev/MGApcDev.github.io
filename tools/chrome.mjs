@@ -9,16 +9,16 @@
 // The GitHub Pages user site serves at the domain root.
 export const SITE = 'https://mgapcdev.github.io/';
 
-/**
- * There is no nav in the header — it is the wordmark alone. Every page is
- * reached from the footer, from the home page, or from links in the running copy,
- * which makes the footer list below the site's only standing navigation: a page
- * missing from it is a page nobody can find. tools/audit-orphans.mjs enforces
- * that, and it is the check to watch when adding a page.
- *
- * `da.html` sits here because it used to be the header's "Dansk" link and had no
- * other route in.
- */
+export const NAV = [
+  ['index.html', 'Home'],
+  ['works.html', 'Works'],
+  ['exhibitions.html', 'Exhibitions'],
+  ['journal.html', 'Words'],
+  ['about.html', 'About'],
+  ['contact.html', 'Contact'],
+  ['da.html', 'Dansk', 'da'],
+];
+
 const FOOTER_PAGES = [
   ['now.html', 'Now'],
   ['works.html', 'Works'],
@@ -32,7 +32,6 @@ const FOOTER_PAGES = [
   ['kvindecirkel.html', 'Kvindecirkel', 'da'],
   ['about.html', 'About'],
   ['contact.html', 'Contact'],
-  ['da.html', 'Dansk', 'da'],
 ];
 
 const FOOTER_ELSEWHERE = [
@@ -101,7 +100,12 @@ ${jsonLd}</head>
 
 <header class="site-header">
   <div class="shell site-header__inner">
-    <a class="wordmark" href="index.html"${current === 'index.html' ? ' aria-current="page"' : ''}>Zenna <span>Lua</span></a>
+    <a class="wordmark" href="index.html">Zenna <span>Lua</span></a>
+    <nav class="site-nav" aria-label="Main">
+${NAV.map(([href, label, itemLang]) =>
+  `      <a href="${href}"${itemLang ? ` lang="${itemLang}"` : ''}${href === current ? ' aria-current="page"' : ''}>${label}</a>`
+).join('\n')}
+    </nav>
   </div>
 </header>
 
@@ -134,9 +138,6 @@ export function footer({ lightbox = false, script } = {}) {
         <a class="wordmark" href="index.html">Zenna <span>Lua</span></a>
         <p class="quiet site-footer__blurb">Photographic artist and psychotherapist. Copenhagen, Denmark.</p>
       </div>
-      <!-- A nav landmark, not a div: with the header nav gone this is the only
-           standing navigation on the page, and a screen-reader user jumping by
-           landmark would otherwise find no navigation anywhere on the site. -->
       <nav aria-label="Pages">
         <h2>Pages</h2>
         <ul>

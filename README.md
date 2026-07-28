@@ -13,12 +13,6 @@ lives in `tools/content/<name>.mjs`; `tools/build-pages.mjs` writes the HTML. Th
 twelve work pages come from `tools/works-data.mjs` the same way. The generated
 HTML is committed — a deploy is still "copy these files onto a server".
 
-**There is no nav in the header** — it is the wordmark alone. Navigation is the
-footer, the home page, and links in the running copy, which makes `FOOTER_PAGES`
-in `tools/chrome.mjs` the site's only standing navigation: a page missing from it
-is a page nobody can reach. `tools/audit-orphans.mjs` is the check that enforces
-that, and it is the one to watch when adding a page.
-
 ```
 index.html          Home — hero, statement, three series, selected works
 da.html             Dansk — a Danish-language summary of the whole site
@@ -112,9 +106,9 @@ node tools/audit-weight.mjs                 # page-weight budget
 
 Checks links, broken images, console errors, contrast in both colour schemes,
 heading outline, metadata and JSON-LD, Danish language tagging, image dimensions,
-responsive overflow at 320px and 200% text, keyboard and focus behaviour, plus
-the static audits (`audit-html`, `audit-orphans`, `audit-feed`). Exit code 1 on
-any failure. A full sweep takes minutes; `--only` takes seconds.
+responsive overflow at 320px and 200% text, keyboard and focus behaviour, tap
+target sizes at 390px, landmarks, plus the static audits (`audit-html`,
+`audit-orphans`, `audit-feed`). Exit code 1 on any failure. A full sweep takes minutes; `--only` takes seconds.
 
 Both engines are checked: WebKit supports every feature this design leans on —
 `color-mix`, `backdrop-filter`, `svh`, `aspect-ratio`, `text-wrap: balance`,
@@ -126,6 +120,22 @@ engines instead verify the link focuses, reveals and points at `#main`.
 Navigation occasionally stalls in this driver — a different page each time, and
 the page always loads fine alone. The runner retries on a fresh page and reports
 the retry count rather than hiding it.
+
+## Forms
+
+```bash
+node tools/audit-forms.mjs
+```
+
+The contact form is the only way anyone reaches Zenna from this site, and the
+piece most able to break without a trace: a form posting to `mailto:` is dropped
+by Chrome silently, so the message is composed in JavaScript instead. If that
+composition breaks, every page still renders and every other audit still passes.
+This one submits both forms for real and asserts on the visible fallback link —
+the script builds the same URL for it and for the navigation — checking that an
+empty submit composes nothing, that a filled one carries the message, name and
+reply address under a non-empty subject, and that the newsletter form uses its own
+subject and address field.
 
 ## Visual regression
 
@@ -139,7 +149,7 @@ and still move on the page. Twenty-four views are rendered
 with reduced motion (so no reveal is caught half-played) and compared pixel by
 pixel against `tests/baseline/`, with a 0.2% tolerance: fourteen light-desktop
 views covering every distinct layout, five in dark mode where the whole palette
-swaps, and five at 390px where the grids collapse to one column. A failing view
+swaps, and five at 390px where the header stacks and the grids collapse. A failing view
 writes `<label>.actual.png` next to its baseline so the two can be opened side
 by side. Diffing runs on a canvas in the browser, so there is no image library to
 install.
@@ -257,10 +267,11 @@ fetched, so text paints immediately and no webfont shifts the layout.
   visually.
 - **Never colour alone**: exhibition status uses dot fill and border style as
   well as hue, so it survives greyscale (WCAG 1.4.1).
-- **Text zoom**: grid children carry `min-width: 0` and rem widths are clamped
-  with `min(…, 100%)` — 200% text, 200% browser zoom and 320px are all clean.
-  The check appends its override to the stylesheet response rather than injecting
-  an inline style, which the site's own `style-src 'self'` would block.
+- **Text zoom**: the header wraps on content rather than at a viewport
+  breakpoint, grid children carry `min-width: 0`, and rem widths are clamped with
+  `min(…, 100%)` — 200% text, 200% browser zoom and 320px are all clean. The check
+  appends its override to the stylesheet response rather than injecting an inline
+  style, which the site's own `style-src 'self'` would block.
 - **Tap targets**: every control is at least 24×24 at 390px (WCAG 2.5.8). Links
   inside running prose are exempt from that criterion and are skipped; a link in a
   table cell or a breadcrumb is a standalone control and is not. Both were real
