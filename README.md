@@ -166,14 +166,14 @@ opening mail windows on someone's desktop.
 ## Visual regression
 
 ```bash
-node tools/audit-visual.mjs           # diff 27 views against tests/baseline/
+node tools/audit-visual.mjs           # diff 28 views against tests/baseline/
 node tools/audit-visual.mjs --update  # accept the current rendering
 ```
 
 Structural audits cannot see a layout regression: markup can be perfectly valid
-and still move on the page. Twenty-seven views are rendered
+and still move on the page. Twenty-eight views are rendered
 with reduced motion (so no reveal is caught half-played) and compared pixel by
-pixel against `tests/baseline/`, with a 0.2% tolerance: seventeen light-desktop
+pixel against `tests/baseline/`, with a 0.2% tolerance: eighteen light-desktop
 views covering every distinct layout, five in dark mode where the whole palette
 swaps, and five at 390px where the header stacks and the grids collapse. A failing view
 writes `<label>.actual.png` next to its baseline so the two can be opened side
@@ -298,6 +298,11 @@ fetched, so text paints immediately and no webfont shifts the layout.
   `min(…, 100%)` — 200% text, 200% browser zoom and 320px are all clean. The check
   appends its override to the stylesheet response rather than injecting an inline
   style, which the site's own `style-src 'self'` would block.
+- **No empty grid tracks**: `auto-fill` keeps a track that nothing lands in at full
+  width, so four prints in a five-track row ended with a print-sized hole that reads
+  as a missing image; `auto-fit` collapses it. Every grid uses `auto-fit`, and
+  `node tools/audit.mjs --only=grid` measures live tracks against item count on
+  every page — a collapsed track computes to 0px and correctly does not count.
 - **Caption alignment**: a `.sequence` row can mix aspect ratios — a 90×60
   panorama beside two 60×75 portraits — and with each caption sitting directly under
   its own image they landed at different heights, which reads as a mistake rather

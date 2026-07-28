@@ -437,14 +437,29 @@ if (wants('keyboard')) {
 // caption directly under each image they landed at three different heights, which
 // reads as a mistake. Five rows across the series pages were staggered before this
 // was fixed, and no baseline covered any of them.
-if (wants('alignment')) {
+if (wants('alignment') || wants('grid')) {
   const alignPage = await browser.newPage();
   await alignPage.setViewportSize({ width: 1440, height: 950 });
   for (const name of PAGES) {
     await alignPage.goto(`${base}/${name}.html`, { waitUntil: 'domcontentloaded' });
     await alignPage.waitForTimeout(120);
-    const ragged = await alignPage.evaluate(() => {
+    const { ragged, holes } = await alignPage.evaluate(() => {
       const problems = [];
+      // An auto-fill track that nothing lands in keeps its full width, so a row of
+      // four prints in a five-track grid ends with a print-sized hole that reads as
+      // a missing image. auto-fit collapses it instead. Only tracks with real width
+      // count — a collapsed track computes to 0px and is not a hole.
+      const holes = [];
+      document.querySelectorAll('.sequence, .cards, .gallery').forEach((grid) => {
+        const style = getComputedStyle(grid);
+        const widths = style.gridTemplateColumns.split(' ').map(parseFloat).filter((width) => width > 1);
+        const items = grid.children.length;
+        if (widths.length > items) {
+          const gap = parseFloat(style.columnGap) || 0;
+          const wasted = Math.round((widths.length - items) * (widths[0] + gap));
+          holes.push(`${grid.className.split(' ').slice(0, 2).join(' ')}: ${widths.length} tracks for ${items} items, ~${wasted}px empty`);
+        }
+      });
       document.querySelectorAll('.sequence').forEach((grid) => {
         const rows = new Map();
         grid.querySelectorAll('.work').forEach((card) => {
@@ -459,9 +474,10 @@ if (wants('alignment')) {
           if (tops.size > 1) problems.push(`row at y${rowKey}: captions at ${[...tops].join(', ')}`);
         });
       });
-      return problems;
+      return { ragged: problems, holes };
     });
-    ragged.forEach((issue) => fail('alignment', `${name} ${issue}`));
+    if (wants('alignment')) ragged.forEach((issue) => fail('alignment', `${name} ${issue}`));
+    if (wants('grid')) holes.forEach((issue) => fail('grid', `${name} ${issue}`));
   }
   await alignPage.close();
 }

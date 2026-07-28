@@ -44,6 +44,7 @@ const VIEWS = [
   ['contact', 200, 'contact-form'],
   ['journal', 632, 'journal-notes'],
   ['series-like-a-flower', 3018, 'series-works-row'],
+  ['kvindecirkel', 2277, 'kvindecirkel-prints'],
   ['press', 3928, 'press-images'],
   ['da', 0, 'danish-hero'],
   ['work-untitled-poppy-i', 0, 'work-page'],

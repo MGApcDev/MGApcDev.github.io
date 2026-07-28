@@ -20,7 +20,7 @@ export const meta = {
 };
 
 const ON = [
-  ['Just closed', 'series-like-a-flower.html', 'Like a flower you shall bloom', 'Eighteen prints hung in Copenhagen from 23 April to 31 May. The work is still here, and still for sale as <a href="prints.html">prints</a>.'],
+  ['Most recent show', 'series-like-a-flower.html', 'Like a flower you shall bloom', 'Eighteen prints hung in Copenhagen from 23 April to 31 May. The work is still here, and still for sale as <a href="prints.html">prints</a>.'],
   ['Holding', 'i-see-you.html', 'I See You', 'Next evening is filling up. Twenty places, live music, three hours. Write if you want one.'],
   ['Open', 'sessions.html', 'A few session hours', 'Two slots free in the week, one online. A first call costs nothing and commits you to nothing.'],
 ];
@@ -28,7 +28,7 @@ const ON = [
 const FEEDING = [
   ['Rereading letters.', 'Rilke, slowly, a page at a time before sessions.'],
   ['Learning the frame drum properly.', 'Badly, loudly, most mornings.'],
-  ['Swimming at Amager until it gets stupid.', 'Currently eleven degrees, which is not yet stupid.'],
+  ['Swimming at Amager until it gets stupid.', 'It has not got stupid yet. It will.'],
   ['Printing smaller.', 'Testing 30 &times; 40 as the default size rather than the exception.'],
 ];
 
