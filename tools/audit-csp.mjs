@@ -42,7 +42,7 @@ const violations = [];
 page.on('console', (m) => { if (/Content Security Policy|Refused to/.test(m.text())) violations.push(m.text().slice(0, 140)); });
 page.on('pageerror', (e) => violations.push('pageerror: ' + e.message.slice(0, 140)));
 
-for (const name of ['index', 'works', 'search', 'contact', 'work-untitled-poppy-i', 'catalogue']) {
+for (const name of ['index', 'works', 'contact', 'work-untitled-poppy-i', 'catalogue']) {
   await page.goto(`${base}/${name}.html`, { waitUntil: 'domcontentloaded' });
   await page.waitForTimeout(600);
 }
@@ -54,12 +54,8 @@ await page.waitForTimeout(300);
 await page.click('.work:not([hidden])');
 await page.waitForTimeout(500);
 const lightbox = await page.evaluate(() => document.querySelector('[data-lightbox]').classList.contains('is-open'));
-await page.goto(`${base}/search.html?q=poppy`, { waitUntil: 'domcontentloaded' });
-await page.waitForTimeout(900);
-const results = await page.evaluate(() => document.querySelectorAll('.search-result').length);
-
 console.log('policy:', CSP.slice(0, 90) + '…');
-console.log('lightbox under CSP:', lightbox, '| search results:', results);
+console.log('lightbox under CSP:', lightbox);
 if (violations.length) {
   console.log('CSP VIOLATIONS:');
   [...new Set(violations)].forEach((line) => console.log('  ' + line));

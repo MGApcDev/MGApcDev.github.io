@@ -13,13 +13,7 @@ export const body = `
         <h1 class="measure-12">This one isn&rsquo;t here</h1>
         <p class="lede">The page has moved, or never existed. Both happen.</p>
 
-        <form class="search-form space-top-xl" role="search" action="search.html" method="get">
-          <label class="visually-hidden" for="query">Search the site</label>
-          <input id="query" name="q" type="search" placeholder="Try a title, a series, a word&hellip;" autocomplete="off">
-          <button class="button" type="submit">Search</button>
-        </form>
-
-        <h2 class="minor-heading space-top-3xl">Or start somewhere</h2>
+        <h2 class="minor-heading space-top-xl">Start somewhere</h2>
         <ul class="plain-list">
           <li><a href="works.html">All works</a> &mdash; twelve frames, filterable by series</li>
           <li><a href="series.html">The three series</a> &mdash; bloom, shadow, coast</li>

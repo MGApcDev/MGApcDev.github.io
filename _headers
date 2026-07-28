@@ -43,8 +43,5 @@
 /assets/js/*
   Cache-Control: public, max-age=3600, must-revalidate
 
-/assets/search-index.json
-  Cache-Control: public, max-age=3600, must-revalidate
-
 /feed.xml
   Cache-Control: public, max-age=3600

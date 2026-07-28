@@ -1,6 +1,6 @@
 /**
  * The twelve works, in gallery order. Single source for the gallery on
- * works.html, the generated detail pages, and the search index.
+ * works.html, the generated detail pages, and the catalogue.
  *
  * Everything except `image` is placeholder copy.
  */

@@ -6,9 +6,9 @@
  *   node tools/build.mjs --check   # fail if the build changes any tracked file
  *
  * There are six generators and they have to run in the right order: pages before
- * the search index (which reads the rendered HTML), everything before the
- * sitemap. Remembering that by hand is how a content edit ends up committed with
- * a stale index. This is the one command.
+ * the work pages before the feed, everything before the sitemap. Remembering
+ * that by hand is how a content edit ends up committed against stale output.
+ * This is the one command.
  *
  * --check is the guard for that: it builds, then asks git whether anything moved.
  * A dirty tree after a build means the committed output no longer matches its
@@ -27,7 +27,6 @@ const STEPS = [
   ['build-pages.mjs', 'hand-written pages'],
   ['build-work-pages.mjs', 'work pages'],
   ['build-feed.mjs', 'feed'],
-  ['build-search-index.mjs', 'search index'],
   ['build-sitemap.mjs', 'sitemap and robots'],
 ];
 
@@ -60,7 +59,7 @@ if (check) {
   // Only paths the build actually writes count. A new tool or content module in
   // the tree is not stale output, and failing on it would train everyone to
   // ignore this check.
-  const GENERATED = /^(?:[^/]+\.html|feed\.xml|sitemap\.xml|robots\.txt|assets\/search-index\.json|assets\/img\/.+)$/;
+  const GENERATED = /^(?:[^/]+\.html|feed\.xml|sitemap\.xml|robots\.txt|assets\/img\/.+)$/;
   const moved = dirty.split('\n')
     .map((line) => line.trim())
     .filter(Boolean)

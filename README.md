@@ -13,6 +13,12 @@ lives in `tools/content/<name>.mjs`; `tools/build-pages.mjs` writes the HTML. Th
 twelve work pages come from `tools/works-data.mjs` the same way. The generated
 HTML is committed — a deploy is still "copy these files onto a server".
 
+**There is no nav in the header** — it is the wordmark alone. Navigation is the
+footer, the home page, and links in the running copy, which makes `FOOTER_PAGES`
+in `tools/chrome.mjs` the site's only standing navigation: a page missing from it
+is a page nobody can reach. `tools/audit-orphans.mjs` is the check that enforces
+that, and it is the one to watch when adding a page.
+
 ```
 index.html          Home — hero, statement, three series, selected works
 da.html             Dansk — a Danish-language summary of the whole site
@@ -31,9 +37,8 @@ sessions.html       The psychotherapy practice
 press.html          Press & curators — bios, facts, what travels
 about.html          Bio, the two practices, timeline, method
 contact.html        Contact form, direct details, newsletter
-search.html         Client-side search over every page and work
 colophon.html       Palette, type, and the decisions behind the build
-404.html            Not-found page, with search
+404.html            Not-found page, with a way back in
 work-<slug>.html    Twelve generated work pages — one per frame
 ```
 
@@ -44,14 +49,13 @@ node tools/build.mjs           # everything, in dependency order
 node tools/build.mjs --check   # build, then fail if any tracked file moved
 ```
 
-Order matters — pages before the search index, which reads the rendered HTML;
-everything before the sitemap — so it is one command rather than six to remember.
+Order matters — placeholders before pages, pages before the feed, everything
+before the sitemap — so it is one command rather than five to remember.
 `--check` is the guard against committing a content edit without rebuilding: a
 dirty tree after a build means the committed output no longer matches its source.
 
 The individual steps still exist (`build-pages`, `build-work-pages`,
-`build-feed`, `build-search-index`, `build-sitemap`,
-`generate-placeholders`). Social cards are separate because they need a browser
+`build-feed`, `build-sitemap`, `generate-placeholders`). Social cards are separate because they need a browser
 and only change when the artwork does:
 
 ```bash
@@ -135,7 +139,7 @@ and still move on the page. Twenty-four views are rendered
 with reduced motion (so no reveal is caught half-played) and compared pixel by
 pixel against `tests/baseline/`, with a 0.2% tolerance: fourteen light-desktop
 views covering every distinct layout, five in dark mode where the whole palette
-swaps, and five at 390px where the header stacks and the grids collapse. A failing view
+swaps, and five at 390px where the grids collapse to one column. A failing view
 writes `<label>.actual.png` next to its baseline so the two can be opened side
 by side. Diffing runs on a canvas in the browser, so there is no image library to
 install.
@@ -155,7 +159,7 @@ when a change is intended, rather than to silence a red result.
 load, and sums what the browser transferred. It fails the build if a page exceeds
 1.5 MB, a single asset exceeds 400 kB, or a page makes more than 40 requests.
 
-Current: **34 pages, median 76 kB, heaviest 143 kB, 2.7 MB for the whole site.**
+Current: **33 pages, median 79 kB, heaviest 146 kB, 2.8 MB for the whole site.**
 The stylesheet is the largest asset on every page (36 kB raw, 8 kB gzipped,
 7 kB brotli) — worth serving compressed, not worth minifying by hand.
 
@@ -184,7 +188,7 @@ bootstrap script allowed by SHA-256 hash rather than `'unsafe-inline'`.
 
 Both halves of that are easy to break silently, so they are tested:
 `tools/audit-csp.mjs` serves the site with the exact policy from `_headers` and
-drives the lightbox and search under it. **If you change the inline bootstrap
+drives the lightbox and the gallery filters under it. **If you change the inline bootstrap
 script by one character, the hash no longer matches and every page loses its
 JavaScript** — the audit catches that, and it runs as part of `verify`.
 
@@ -253,9 +257,16 @@ fetched, so text paints immediately and no webfont shifts the layout.
   visually.
 - **Never colour alone**: exhibition status uses dot fill and border style as
   well as hue, so it survives greyscale (WCAG 1.4.1).
-- **Text zoom**: the header wraps on content rather than at a viewport
-  breakpoint, grid children carry `min-width: 0`, and rem widths are clamped with
-  `min(…, 100%)` — 200% text, 200% browser zoom and 320px are all clean.
+- **Text zoom**: grid children carry `min-width: 0` and rem widths are clamped
+  with `min(…, 100%)` — 200% text, 200% browser zoom and 320px are all clean.
+  The check appends its override to the stylesheet response rather than injecting
+  an inline style, which the site's own `style-src 'self'` would block.
+- **Tap targets**: every control is at least 24×24 at 390px (WCAG 2.5.8). Links
+  inside running prose are exempt from that criterion and are skipped; a link in a
+  table cell or a breadcrumb is a standalone control and is not. Both were real
+  failures — 20px catalogue rows, 21px breadcrumbs — fixed with padding plus a
+  matching negative margin, so the hit area grows without moving the layout.
+  `node tools/audit.mjs --only=targets`.
 - **Forced colours**: hero copy gets a solid `Canvas` plate because the gradient
   scrim disappears under Windows High Contrast.
 - **Print**: a `@media print` block drops the chrome, caps body imagery at 7cm so
