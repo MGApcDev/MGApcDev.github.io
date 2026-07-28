@@ -101,7 +101,7 @@ ${jsonLd}</head>
 <header class="site-header">
   <div class="shell site-header__inner">
     <a class="wordmark" href="index.html">Zenna <span>Lua</span></a>
-    <nav class="site-nav" aria-label="Main">
+    <nav class="site-nav" aria-label="Main"${lang === 'da' ? ' lang="en"' : ''}>
 ${NAV.map(([href, label, itemLang]) =>
   `      <a href="${href}"${itemLang ? ` lang="${itemLang}"` : ''}${href === current ? ' aria-current="page"' : ''}>${label}</a>`
 ).join('\n')}
@@ -113,7 +113,14 @@ ${NAV.map(([href, label, itemLang]) =>
 `;
 }
 
-export function footer({ lightbox = false, script } = {}) {
+/**
+ * `lang` is the document's language, not the footer's. The chrome is written in
+ * English, so on da.html — which is lang="da" — every word of it is a foreign-
+ * language phrase and a screen reader would give "Home", "Works", "Exhibitions"
+ * Danish phonetics (WCAG 3.1.2). Marking the container is enough: the Danish
+ * entries nested inside, Dansk and Kvindecirkel, carry their own lang and win.
+ */
+export function footer({ lightbox = false, script, lang = 'en' } = {}) {
   const viewer = lightbox ? `
 <div class="lightbox" data-lightbox aria-hidden="true" role="dialog" aria-modal="true" aria-label="Artwork viewer">
   <button class="lightbox__close" type="button" data-lightbox-close aria-label="Close viewer">&times;</button>
@@ -131,7 +138,7 @@ export function footer({ lightbox = false, script } = {}) {
 
   return `</main>
 
-<footer class="site-footer">
+<footer class="site-footer"${lang === 'da' ? ' lang="en"' : ''}>
   <div class="shell">
     <div class="site-footer__grid">
       <div>

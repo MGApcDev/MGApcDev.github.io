@@ -178,6 +178,20 @@ const IN_PAGE = () => {
       jsonLd: Array.from(document.querySelectorAll('script[type="application/ld+json"]')).map((node) => node.textContent),
     },
     untaggedDanish: [...new Set(untagged)],
+    // The chrome is written in English. On a page that is not an English document
+    // it is therefore a run of foreign-language text, and unless it says so a
+    // screen reader applies the document's phonetics to it (WCAG 3.1.2). Marking
+    // the container is enough — nested Danish entries carry their own lang.
+    chromeLang: (() => {
+      const documentLang = document.documentElement.lang || 'en';
+      if (documentLang.startsWith('en')) return null;
+      const marked = (selector) => {
+        const node = document.querySelector(selector);
+        if (!node) return 'missing';
+        return node.closest('[lang="en"]') ? 'en' : (node.getAttribute('lang') || 'unmarked');
+      };
+      return { documentLang, nav: marked('.site-nav'), footer: marked('.site-footer') };
+    })(),
     // Removing the header nav once left the site with no navigation landmark at
     // all — every link list was a plain div, so a screen-reader user jumping by
     // landmark found nothing to jump to. Counted per page rather than assumed.
@@ -213,7 +227,16 @@ await sweep(mainContext, PAGES, async (holder, name) => {
 
   if (wants('contrast')) result.contrast.forEach((issue) => fail('contrast', `${name} ${issue}`));
   if (wants('headings')) result.headings.forEach((issue) => fail('headings', `${name} ${issue}`));
-  if (wants('lang')) result.untaggedDanish.forEach((word) => fail('lang', `${name} "${word}" not marked lang="da"`));
+  if (wants('lang')) {
+    result.untaggedDanish.forEach((word) => fail('lang', `${name} "${word}" not marked lang="da"`));
+    const chrome = result.chromeLang;
+    if (chrome) {
+      ['nav', 'footer'].forEach((part) => {
+        if (chrome[part] === 'missing') return;
+        if (chrome[part] !== 'en') fail('lang', `${name} is lang="${chrome.documentLang}" but the English ${part} is ${chrome[part] === 'unmarked' ? 'not marked lang="en"' : `marked lang="${chrome[part]}"`}`);
+      });
+    }
+  }
   if (wants('landmarks')) {
     if (result.landmarks.main !== 1) fail('landmarks', `${name} has ${result.landmarks.main} main landmarks, expected 1`);
     if (result.landmarks.nav === 0) fail('landmarks', `${name} has no navigation landmark`);

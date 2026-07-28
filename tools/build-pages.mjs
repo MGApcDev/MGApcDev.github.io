@@ -23,7 +23,7 @@ for (const file of files) {
   const name = file.replace(/\.mjs$/, '');
   const target = `${name}.html`;
   const meta = { current: target, ...module.meta };
-  fs.writeFileSync(path.join(root, target), head(meta) + module.body + footer({ lightbox: Boolean(meta.lightbox), script: meta.script }));
+  fs.writeFileSync(path.join(root, target), head(meta) + module.body + footer({ lightbox: Boolean(meta.lightbox), script: meta.script, lang: meta.lang }));
   written++;
 }
 

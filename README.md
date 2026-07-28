@@ -324,6 +324,13 @@ fetched, so text paints immediately and no webfont shifts the layout.
   `min(…, 100%)` — 200% text, 200% browser zoom and 320px are all clean. The check
   appends its override to the stylesheet response rather than injecting an inline
   style, which the site's own `style-src 'self'` would block.
+- **Language of parts**: the chrome is written in English, so on `da.html` — a
+  `lang="da"` document — the whole nav and footer is a run of foreign-language text.
+  Unmarked, a screen reader gives "Home", "Works", "Exhibitions" Danish phonetics
+  (WCAG 3.1.2). The containers carry `lang="en"`; the Danish entries nested inside
+  them, Dansk and Kvindecirkel, keep their own `lang` and still win. Checked on any
+  page whose document language is not English, so a second translated page cannot
+  quietly ship without it.
 - **No empty grid tracks**: `auto-fill` keeps a track that nothing lands in at full
   width, so four prints in a five-track row ended with a print-sized hole that reads
   as a missing image; `auto-fit` collapses it. Every grid uses `auto-fit`, and
