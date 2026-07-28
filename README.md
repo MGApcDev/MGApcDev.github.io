@@ -147,7 +147,16 @@ check.
 
 ## Deploying
 
-`_headers` and `_redirects` are Netlify / Cloudflare Pages rules: security
+The site deploys to **GitHub Pages** at `mgapcdev.github.io` — `main` is served
+as-is, which is why the generated HTML is committed. `.nojekyll` stops Pages from
+running the files through Jekyll.
+
+GitHub Pages cannot send custom headers, so the Content-Security-Policy travels
+as a `<meta http-equiv>` in every document instead. `frame-ancestors` and
+`X-Content-Type-Options` cannot be set that way and are simply absent there.
+
+`_headers` and `_redirects` are Netlify / Cloudflare Pages rules, ignored by
+GitHub Pages, kept for a future move: security
 headers, cache lifetimes (immutable for artwork and social cards, revalidate for
 HTML), and the styled 404. Adapt them if you host elsewhere.
 
@@ -262,9 +271,9 @@ statements are written in her voice but are not her words.
 - Point the two forms at a real endpoint — they currently compose `mailto:`.
 - Set the real email address and any social links.
 - Add real dates and years to the exhibitions.
-- Change `SITE` in `tools/chrome.mjs` from `example.com` to the real domain, then
-  rerun `build-pages`, `build-work-pages`, `build-feed` and `build-sitemap`
-  (Open Graph and JSON-LD want absolute URLs).
+- `SITE` in `tools/chrome.mjs` is `https://mgapcdev.github.io/`. Change it and
+  rebuild if the site moves to a custom domain — Open Graph, JSON-LD, the sitemap
+  and the feed all derive their absolute URLs from it.
 - Optional: a favicon PNG for clients that ignore SVG icons.
 
 ## History

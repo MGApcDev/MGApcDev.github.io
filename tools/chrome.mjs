@@ -6,7 +6,8 @@
  * tools/build-pages.mjs; the generated work pages use the same helpers.
  */
 
-export const SITE = 'https://example.com/';
+// The GitHub Pages user site serves at the domain root.
+export const SITE = 'https://mgapcdev.github.io/';
 
 export const NAV = [
   ['index.html', 'Home'],
@@ -70,6 +71,7 @@ export function head({ title, description, image, current, lang = 'en', graph, t
 <html lang="${lang}">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-/x7W7R75k8Roq0WaVRQX9blP4OufE5xbAdzklGxsgpw='; form-action 'self' mailto:; base-uri 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${title} — Zenna Lua</title>
 <meta name="description" content="${description}">
@@ -77,7 +79,8 @@ ${noindex ? '<meta name="robots" content="noindex">\n' : ''}<meta property="og:t
 <meta property="og:site_name" content="Zenna Lua">
 <meta property="og:title" content="${title} — Zenna Lua">
 <meta property="og:description" content="${description}">
-<meta property="og:image" content="${socialCard(image)}">
+<meta property="og:url" content="${SITE}${current === 'index.html' ? '' : current || ''}">
+<meta property="og:image" content="${SITE}${socialCard(image)}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">

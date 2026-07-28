@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-/x7W7R75k8Roq0WaVRQX9blP4OufE5xbAdzklGxsgpw='; form-action 'self' mailto:; base-uri 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Catalogue — Zenna Lua</title>
 <meta name="description" content="Every work as a list: title, series, year, place, print size and edition. Printable, and easier to scan than the gallery.">
@@ -9,7 +10,8 @@
 <meta property="og:site_name" content="Zenna Lua">
 <meta property="og:title" content="Catalogue — Zenna Lua">
 <meta property="og:description" content="Every work as a list: title, series, year, place, print size and edition. Printable, and easier to scan than the gallery.">
-<meta property="og:image" content="assets/social/work-03-shadow.jpg">
+<meta property="og:url" content="https://mgapcdev.github.io/catalogue.html">
+<meta property="og:image" content="https://mgapcdev.github.io/assets/social/work-03-shadow.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -29,14 +31,14 @@
  "@graph": [
   {
    "@type": "ItemList",
-   "@id": "https://example.com/catalogue.html#works",
+   "@id": "https://mgapcdev.github.io/catalogue.html#works",
    "name": "Catalogue of works",
    "numberOfItems": 12,
    "itemListElement": [
     {
      "@type": "ListItem",
      "position": 1,
-     "url": "https://example.com/work-untitled-poppy-i.html",
+     "url": "https://mgapcdev.github.io/work-untitled-poppy-i.html",
      "item": {
       "@type": "VisualArtwork",
       "name": "Untitled (Poppy I)",
@@ -46,7 +48,7 @@
     {
      "@type": "ListItem",
      "position": 2,
-     "url": "https://example.com/work-untitled-clematis.html",
+     "url": "https://mgapcdev.github.io/work-untitled-clematis.html",
      "item": {
       "@type": "VisualArtwork",
       "name": "Untitled (Clematis)",
@@ -56,7 +58,7 @@
     {
      "@type": "ListItem",
      "position": 3,
-     "url": "https://example.com/work-afternoon-wall.html",
+     "url": "https://mgapcdev.github.io/work-afternoon-wall.html",
      "item": {
       "@type": "VisualArtwork",
       "name": "Afternoon Wall",
@@ -66,7 +68,7 @@
     {
      "@type": "ListItem",
      "position": 4,
-     "url": "https://example.com/work-koge-bugt-2140.html",
+     "url": "https://mgapcdev.github.io/work-koge-bugt-2140.html",
      "item": {
       "@type": "VisualArtwork",
       "name": "Køge Bugt, 21:40",
@@ -76,7 +78,7 @@
     {
      "@type": "ListItem",
      "position": 5,
-     "url": "https://example.com/work-self-facing-up.html",
+     "url": "https://mgapcdev.github.io/work-self-facing-up.html",
      "item": {
       "@type": "VisualArtwork",
       "name": "Self, Facing Up",
@@ -86,7 +88,7 @@
     {
      "@type": "ListItem",
      "position": 6,
-     "url": "https://example.com/work-green-hour.html",
+     "url": "https://mgapcdev.github.io/work-green-hour.html",
      "item": {
       "@type": "VisualArtwork",
       "name": "Green Hour",
@@ -96,7 +98,7 @@
     {
      "@type": "ListItem",
      "position": 7,
-     "url": "https://example.com/work-dusk-crossing.html",
+     "url": "https://mgapcdev.github.io/work-dusk-crossing.html",
      "item": {
       "@type": "VisualArtwork",
       "name": "Dusk Crossing",
@@ -106,7 +108,7 @@
     {
      "@type": "ListItem",
      "position": 8,
-     "url": "https://example.com/work-seed-head-waiting.html",
+     "url": "https://mgapcdev.github.io/work-seed-head-waiting.html",
      "item": {
       "@type": "VisualArtwork",
       "name": "Seed Head, Waiting",
@@ -116,7 +118,7 @@
     {
      "@type": "ListItem",
      "position": 9,
-     "url": "https://example.com/work-gigantically-subtle-no-4.html",
+     "url": "https://mgapcdev.github.io/work-gigantically-subtle-no-4.html",
      "item": {
       "@type": "VisualArtwork",
       "name": "Gigantically Subtle No. 4",
@@ -126,7 +128,7 @@
     {
      "@type": "ListItem",
      "position": 10,
-     "url": "https://example.com/work-greve-strand-facing-south.html",
+     "url": "https://mgapcdev.github.io/work-greve-strand-facing-south.html",
      "item": {
       "@type": "VisualArtwork",
       "name": "Greve Strand, Facing South",
@@ -136,7 +138,7 @@
     {
      "@type": "ListItem",
      "position": 11,
-     "url": "https://example.com/work-second-opening.html",
+     "url": "https://mgapcdev.github.io/work-second-opening.html",
      "item": {
       "@type": "VisualArtwork",
       "name": "Second Opening",
@@ -146,7 +148,7 @@
     {
      "@type": "ListItem",
      "position": 12,
-     "url": "https://example.com/work-i-see-you-study.html",
+     "url": "https://mgapcdev.github.io/work-i-see-you-study.html",
      "item": {
       "@type": "VisualArtwork",
       "name": "I See You (Study)",
@@ -162,19 +164,19 @@
      "@type": "ListItem",
      "position": 1,
      "name": "Home",
-     "item": "https://example.com/"
+     "item": "https://mgapcdev.github.io/"
     },
     {
      "@type": "ListItem",
      "position": 2,
      "name": "Works",
-     "item": "https://example.com/works.html"
+     "item": "https://mgapcdev.github.io/works.html"
     },
     {
      "@type": "ListItem",
      "position": 3,
      "name": "Catalogue",
-     "item": "https://example.com/catalogue.html"
+     "item": "https://mgapcdev.github.io/catalogue.html"
     }
    ]
   }

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-/x7W7R75k8Roq0WaVRQX9blP4OufE5xbAdzklGxsgpw='; form-action 'self' mailto:; base-uri 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Visit — Zenna Lua</title>
 <meta name="description" content="How to see the work in person: exhibition opening hours, getting there, access, and visiting the studio in Copenhagen.">
@@ -9,7 +10,8 @@
 <meta property="og:site_name" content="Zenna Lua">
 <meta property="og:title" content="Visit — Zenna Lua">
 <meta property="og:description" content="How to see the work in person: exhibition opening hours, getting there, access, and visiting the studio in Copenhagen.">
-<meta property="og:image" content="assets/social/exhibition-bloom.jpg">
+<meta property="og:url" content="https://mgapcdev.github.io/visit.html">
+<meta property="og:image" content="https://mgapcdev.github.io/assets/social/exhibition-bloom.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -29,13 +31,13 @@
  "@graph": [
   {
    "@type": "VisualArtsEvent",
-   "@id": "https://example.com/visit.html#exhibition",
+   "@id": "https://mgapcdev.github.io/visit.html#exhibition",
    "name": "Like a flower you shall bloom",
    "description": "A photo exhibition of macro botanicals, free entry.",
-   "image": "https://example.com/assets/img/exhibition-bloom.svg",
-   "url": "https://example.com/visit.html",
+   "image": "https://mgapcdev.github.io/assets/img/exhibition-bloom.svg",
+   "url": "https://mgapcdev.github.io/visit.html",
    "organizer": {
-    "@id": "https://example.com/#zenna"
+    "@id": "https://mgapcdev.github.io/#zenna"
    },
    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
    "isAccessibleForFree": true,
@@ -59,19 +61,19 @@
      "@type": "ListItem",
      "position": 1,
      "name": "Home",
-     "item": "https://example.com/"
+     "item": "https://mgapcdev.github.io/"
     },
     {
      "@type": "ListItem",
      "position": 2,
      "name": "Exhibitions",
-     "item": "https://example.com/exhibitions.html"
+     "item": "https://mgapcdev.github.io/exhibitions.html"
     },
     {
      "@type": "ListItem",
      "position": 3,
      "name": "Visit",
-     "item": "https://example.com/visit.html"
+     "item": "https://mgapcdev.github.io/visit.html"
     }
    ]
   }
