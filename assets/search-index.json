@@ -1,0 +1,810 @@
+{
+ "built": "static",
+ "count": 62,
+ "records": [
+  {
+   "type": "page",
+   "url": "about.html",
+   "title": "About",
+   "summary": "Zenna Lua (Zenna Grundtvig), born 1991 in Greve Strand, based in Copenhagen. Photographic artist, digital creator and psychotherapist.",
+   "headings": [
+    "Zenna Lua",
+    "One way of paying attention",
+    "Photography",
+    "Therapy",
+    "Gatherings",
+    "Selected timeline",
+    "How a series gets made",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "page",
+   "url": "colophon.html",
+   "title": "Colophon",
+   "summary": "How this site is built: the Blomstring palette, the type, the motion rules, and the accessibility decisions behind it.",
+   "headings": [
+    "How the site is put together",
+    "Nine tokens",
+    "Two faces, no downloads",
+    "Iowan Old Style",
+    "Avenir Next",
+    "Uppercase, 0.22em",
+    "Things that were fixed, not assumed",
+    "Photographs",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "page",
+   "url": "contact.html",
+   "title": "Contact",
+   "summary": "Contact Zenna Lua for prints, exhibitions, guided evenings and therapy sessions. Copenhagen, Denmark.",
+   "headings": [
+    "Say hello",
+    "Direct",
+    "Response time",
+    "A slow newsletter",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "page",
+   "url": "da.html",
+   "title": "Zenna Lua — fotografisk kunstner og psykoterapeut i København",
+   "summary": "Zenna Lua er fotografisk kunstner og psykoterapeut i København. Udstillinger, tryk, sessioner og kvindecirkel — kort fortalt på dansk.",
+   "headings": [
+    "Zenna Lua",
+    "To praksisser, samme opmærksomhed",
+    "Fire ting",
+    "Fotografier",
+    "Sessioner",
+    "Kvindecirkel",
+    "Tryk",
+    "Det behøver ikke være formuleret",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "page",
+   "url": "exhibitions.html",
+   "title": "Exhibitions & Gatherings",
+   "summary": "Exhibitions and guided gatherings by Zenna Lua — Like a flower you shall bloom, Gigantically Subtle, I See You, Kvindecirkel.",
+   "headings": [
+    "Where the work meets people",
+    "Like a flower you shall bloom",
+    "Gigantically Subtle",
+    "I See You",
+    "Kvindecirkel",
+    "Previously",
+    "Curating something?",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "page",
+   "url": "i-see-you.html",
+   "title": "I See You",
+   "summary": "I See You — an evening of eye gazing, mirror meditation and live music in Copenhagen, guided by Zenna Grundtvig.",
+   "headings": [
+    "I See You",
+    "Three hours, no performance",
+    "Three movements",
+    "Meeting yourself",
+    "Meeting one other",
+    "Meeting nothing",
+    "Practical",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "work",
+   "url": "i-see-you.html",
+   "title": "From the room",
+   "summary": "From the room — I See You",
+   "headings": [
+    "Mirror"
+   ],
+   "text": "From the room — I See You — Placeholder artwork: a soft figure in violet light, eyes lowered"
+  },
+  {
+   "type": "work",
+   "url": "i-see-you.html",
+   "title": "Held by sound",
+   "summary": "Held by sound — I See You",
+   "headings": [
+    "Rest"
+   ],
+   "text": "Held by sound — I See You — Placeholder artwork: a figure turned toward warm dusk light"
+  },
+  {
+   "type": "work",
+   "url": "i-see-you.html",
+   "title": "Afterwards",
+   "summary": "Afterwards — I See You",
+   "headings": [
+    "Eyes"
+   ],
+   "text": "Afterwards — I See You — Placeholder artwork: violet bloom opening from a lit centre"
+  },
+  {
+   "type": "page",
+   "url": "index.html",
+   "title": "Zenna Lua — Photographic Artist, Copenhagen",
+   "summary": "Zenna Lua (Zenna Grundtvig) — photographic artist and psychotherapist based in Copenhagen. Macro botanicals, light, shadow and the Danish coast.",
+   "headings": [
+    "Like a flower you shall bloom",
+    "Photographs made at the pace of a slow breath.",
+    "Three series",
+    "Like a flower you shall bloom",
+    "Gigantically Subtle",
+    "Greve, at the hour of gold",
+    "I See You",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "page",
+   "url": "journal.html",
+   "title": "Words",
+   "summary": "Short writing by Zenna Lua — notes on blooming, shadow, endings that look like beginnings, and the light on the Danish coast.",
+   "headings": [
+    "Notes beside the pictures",
+    "No flower denies its own blossoming",
+    "Gigantically subtle",
+    "Når død ligner fødsel",
+    "Twenty-one forty",
+    "Holding the room",
+    "There’s only one of you",
+    "Sent a few times a year",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "page",
+   "url": "kvindecirkel.html",
+   "title": "Kvindecirkel",
+   "summary": "Kvindecirkel — a seasonal women's circle in Copenhagen, held on the turning points of the year. Held in Danish.",
+   "headings": [
+    "Kvindecirkel",
+    "Images meant to be held, not hung",
+    "Four turnings",
+    "Forårsjævndøgn",
+    "Sommersolhverv",
+    "Efterårsjævndøgn",
+    "Vintersolhverv",
+    "Questions",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "work",
+   "url": "kvindecirkel.html",
+   "title": "Spring print",
+   "summary": "Spring print — passed around the circle",
+   "headings": [
+    "March"
+   ],
+   "text": "Spring print — passed around the circle — Placeholder artwork: pale bloom on sage ground"
+  },
+  {
+   "type": "work",
+   "url": "kvindecirkel.html",
+   "title": "Midsummer print",
+   "summary": "Midsummer print — passed around the circle",
+   "headings": [
+    "June"
+   ],
+   "text": "Midsummer print — passed around the circle — Placeholder artwork: warm bloom against dusk violet"
+  },
+  {
+   "type": "work",
+   "url": "kvindecirkel.html",
+   "title": "Autumn print",
+   "summary": "Autumn print — passed around the circle",
+   "headings": [
+    "September"
+   ],
+   "text": "Autumn print — passed around the circle — Placeholder artwork: low sun over water in warm ochre"
+  },
+  {
+   "type": "work",
+   "url": "kvindecirkel.html",
+   "title": "Solstice print",
+   "summary": "Solstice print — passed around the circle",
+   "headings": [
+    "December"
+   ],
+   "text": "Solstice print — passed around the circle — Placeholder artwork: violet shadows across a pale wall"
+  },
+  {
+   "type": "page",
+   "url": "now.html",
+   "title": "Now",
+   "summary": "What Zenna Lua is photographing, showing and holding at the moment — updated when something changes.",
+   "headings": [
+    "What I am doing at the moment",
+    "Seed heads, second summer",
+    "Three things",
+    "Like a flower you shall bloom",
+    "I See You",
+    "A few session hours",
+    "Feeding the work",
+    "If any of that is for you",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "page",
+   "url": "press.html",
+   "title": "Press & curators",
+   "summary": "Press material for Zenna Lua: short and long bio, exhibition facts, what travels, technical details and contact for curators and journalists.",
+   "headings": [
+    "Everything you need to write it up",
+    "Three lengths",
+    "At a glance",
+    "What travels",
+    "Press images",
+    "Press contact",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "work",
+   "url": "press.html",
+   "title": "Bloom, key image",
+   "summary": "Like a flower you shall bloom — key image",
+   "headings": [
+    "Series 01"
+   ],
+   "text": "Like a flower you shall bloom — key image — Placeholder artwork: a red bloom fully open across warm ochre light"
+  },
+  {
+   "type": "work",
+   "url": "press.html",
+   "title": "Subtle, key image",
+   "summary": "Gigantically Subtle — key image",
+   "headings": [
+    "Series 02"
+   ],
+   "text": "Gigantically Subtle — key image — Placeholder artwork: leaf shadows drifting across a sunlit plaster wall"
+  },
+  {
+   "type": "work",
+   "url": "press.html",
+   "title": "Coast, key image",
+   "summary": "Greve, at the hour of gold — key image",
+   "headings": [
+    "Series 03"
+   ],
+   "text": "Greve, at the hour of gold — key image — Placeholder artwork: low sun over still water with a long reflection"
+  },
+  {
+   "type": "work",
+   "url": "press.html",
+   "title": "Artist portrait",
+   "summary": "Portrait of the artist",
+   "headings": [
+    "Credit © Zenna Lua"
+   ],
+   "text": "Portrait of the artist — Placeholder artwork: a figure turned toward light among green leaves"
+  },
+  {
+   "type": "page",
+   "url": "prints.html",
+   "title": "Prints",
+   "summary": "Archival pigment prints by Zenna Lua — sizes, editions, framing and how to order.",
+   "headings": [
+    "Made to live on a wall",
+    "Four sizes",
+    "Four steps, no cart",
+    "Write",
+    "Proof",
+    "Print",
+    "Send",
+    "Questions I get",
+    "Ready when you are",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "page",
+   "url": "series-gigantically-subtle.html",
+   "title": "Gigantically Subtle",
+   "summary": "Gigantically Subtle — a sequence of nine photographs of leaf shadows crossing a sunlit wall over one afternoon.",
+   "headings": [
+    "Gigantically Subtle",
+    "The subject is the passing",
+    "14:30 → 17:40",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "work",
+   "url": "series-gigantically-subtle.html",
+   "title": "No. 1",
+   "summary": "No. 1 — 14:30",
+   "headings": [
+    "14:30"
+   ],
+   "text": "No. 1 — 14:30 — Placeholder artwork: faint leaf shadow, high afternoon light"
+  },
+  {
+   "type": "work",
+   "url": "series-gigantically-subtle.html",
+   "title": "No. 2",
+   "summary": "No. 2 — 14:55",
+   "headings": [
+    "14:55"
+   ],
+   "text": "No. 2 — 14:55 — Placeholder artwork: leaf shadow lengthening on a warm wall"
+  },
+  {
+   "type": "work",
+   "url": "series-gigantically-subtle.html",
+   "title": "No. 3",
+   "summary": "No. 3 — 15:20",
+   "headings": [
+    "15:20"
+   ],
+   "text": "No. 3 — 15:20 — Placeholder artwork: green-cast shadow across pale plaster"
+  },
+  {
+   "type": "work",
+   "url": "series-gigantically-subtle.html",
+   "title": "No. 4",
+   "summary": "No. 4 — 15:45",
+   "headings": [
+    "15:45"
+   ],
+   "text": "No. 4 — 15:45 — Placeholder artwork: shadow leaves overlapping mid-afternoon"
+  },
+  {
+   "type": "work",
+   "url": "series-gigantically-subtle.html",
+   "title": "No. 5",
+   "summary": "No. 5 — 16:10",
+   "headings": [
+    "16:10"
+   ],
+   "text": "No. 5 — 16:10 — Placeholder artwork: warm ochre wall, shadow at its sharpest"
+  },
+  {
+   "type": "work",
+   "url": "series-gigantically-subtle.html",
+   "title": "No. 6",
+   "summary": "No. 6 — 16:35",
+   "headings": [
+    "16:35"
+   ],
+   "text": "No. 6 — 16:35 — Placeholder artwork: sage-cast leaf shadow drifting right"
+  },
+  {
+   "type": "work",
+   "url": "series-gigantically-subtle.html",
+   "title": "No. 7",
+   "summary": "No. 7 — 17:00",
+   "headings": [
+    "17:00"
+   ],
+   "text": "No. 7 — 17:00 — Placeholder artwork: shadow softening as the sun drops"
+  },
+  {
+   "type": "work",
+   "url": "series-gigantically-subtle.html",
+   "title": "No. 8",
+   "summary": "No. 8 — 17:20",
+   "headings": [
+    "17:20"
+   ],
+   "text": "No. 8 — 17:20 — Placeholder artwork: cool violet cast entering the wall"
+  },
+  {
+   "type": "work",
+   "url": "series-gigantically-subtle.html",
+   "title": "No. 9",
+   "summary": "No. 9 — 17:40, the last of it",
+   "headings": [
+    "17:40"
+   ],
+   "text": "No. 9 — 17:40, the last of it — Placeholder artwork: the shadow nearly gone, wall in dusk violet"
+  },
+  {
+   "type": "page",
+   "url": "series-hour-of-gold.html",
+   "title": "Greve, at the hour of gold",
+   "summary": "Greve, at the hour of gold — water, horizon and low sun along the Danish east coast, photographed in the last minutes of the day.",
+   "headings": [
+    "Greve, at the hour of gold",
+    "Be standing there",
+    "21:12 → 21:53",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "work",
+   "url": "series-hour-of-gold.html",
+   "title": "Køge Bugt, 21:12",
+   "summary": "Køge Bugt, 21:12 — 90 × 60 cm",
+   "headings": [
+    "June"
+   ],
+   "text": "Køge Bugt, 21:12 — 90 × 60 cm — Placeholder artwork: gold light lying flat on calm water"
+  },
+  {
+   "type": "work",
+   "url": "series-hour-of-gold.html",
+   "title": "The cold coming in",
+   "summary": "The cold coming in — 90 × 60 cm",
+   "headings": [
+    "August"
+   ],
+   "text": "The cold coming in — 90 × 60 cm — Placeholder artwork: violet dusk settling over the bay"
+  },
+  {
+   "type": "work",
+   "url": "series-hour-of-gold.html",
+   "title": "Flat sea, no wind",
+   "summary": "Flat sea, no wind — 90 × 60 cm",
+   "headings": [
+    "July"
+   ],
+   "text": "Flat sea, no wind — 90 × 60 cm — Placeholder artwork: unbroken horizon with a low sun"
+  },
+  {
+   "type": "work",
+   "url": "series-hour-of-gold.html",
+   "title": "Four minutes of it",
+   "summary": "Four minutes of it — 90 × 60 cm",
+   "headings": [
+    "June"
+   ],
+   "text": "Four minutes of it — 90 × 60 cm — Placeholder artwork: burning orange light across the bay"
+  },
+  {
+   "type": "work",
+   "url": "series-hour-of-gold.html",
+   "title": "After the swimmers left",
+   "summary": "After the swimmers left — 90 × 60 cm",
+   "headings": [
+    "September"
+   ],
+   "text": "After the swimmers left — 90 × 60 cm — Placeholder artwork: violet water under a dimming sky"
+  },
+  {
+   "type": "work",
+   "url": "series-hour-of-gold.html",
+   "title": "Last of the light",
+   "summary": "Last of the light — 90 × 60 cm",
+   "headings": [
+    "September"
+   ],
+   "text": "Last of the light — 90 × 60 cm — Placeholder artwork: pale violet horizon, sun almost gone"
+  },
+  {
+   "type": "page",
+   "url": "series-like-a-flower.html",
+   "title": "Like a flower you shall bloom",
+   "summary": "Like a flower you shall bloom — macro botanicals photographed at the moment of full opening, over three summers in Copenhagen.",
+   "headings": [
+    "Like a flower you shall bloom",
+    "Photographed a day too late, on purpose",
+    "Six from eighteen",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "work",
+   "url": "series-like-a-flower.html",
+   "title": "Poppy, second day",
+   "summary": "Poppy, second day — 90 × 120 cm",
+   "headings": [
+    "90 × 120"
+   ],
+   "text": "Poppy, second day — 90 × 120 cm — Placeholder artwork: red poppy petals filling the frame"
+  },
+  {
+   "type": "work",
+   "url": "series-like-a-flower.html",
+   "title": "Clematis, torn edge",
+   "summary": "Clematis, torn edge — 60 × 75 cm",
+   "headings": [
+    "60 × 75"
+   ],
+   "text": "Clematis, torn edge — 60 × 75 cm — Placeholder artwork: violet clematis with a lit centre"
+  },
+  {
+   "type": "work",
+   "url": "series-like-a-flower.html",
+   "title": "After the flower",
+   "summary": "After the flower — 60 × 75 cm",
+   "headings": [
+    "60 × 75"
+   ],
+   "text": "After the flower — 60 × 75 cm — Placeholder artwork: pale seed head on sage ground"
+  },
+  {
+   "type": "work",
+   "url": "series-like-a-flower.html",
+   "title": "Hollyhock at dusk",
+   "summary": "Hollyhock at dusk — 60 × 75 cm",
+   "headings": [
+    "60 × 75"
+   ],
+   "text": "Hollyhock at dusk — 60 × 75 cm — Placeholder artwork: warm pink bloom against dusk violet"
+  },
+  {
+   "type": "work",
+   "url": "series-like-a-flower.html",
+   "title": "Full open, no apology",
+   "summary": "Full open, no apology — 90 × 120 cm",
+   "headings": [
+    "90 × 120"
+   ],
+   "text": "Full open, no apology — 90 × 120 cm — Placeholder artwork: fully open red bloom on ochre"
+  },
+  {
+   "type": "work",
+   "url": "series-like-a-flower.html",
+   "title": "Second opening",
+   "summary": "Second opening — 60 × 75 cm",
+   "headings": [
+    "60 × 75"
+   ],
+   "text": "Second opening — 60 × 75 cm — Placeholder artwork: deep violet petals radiating from a pale centre"
+  },
+  {
+   "type": "page",
+   "url": "series.html",
+   "title": "Series",
+   "summary": "The three photographic series by Zenna Lua: Like a flower you shall bloom, Gigantically Subtle, and Greve, at the hour of gold.",
+   "headings": [
+    "Three bodies of work",
+    "Like a flower you shall bloom",
+    "Gigantically Subtle",
+    "Greve, at the hour of gold",
+    "Mirror work",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "page",
+   "url": "sessions.html",
+   "title": "Sessions",
+   "summary": "Psychotherapeutic sessions with Zenna Grundtvig — individual work in Copenhagen and online, trained at Dansk NLP Center, practising since 2018.",
+   "headings": [
+    "Sessions",
+    "Staying with it long enough that it opens",
+    "Common ground",
+    "Something ended",
+    "Stuck creatively",
+    "Running on effort",
+    "Wanting more contact",
+    "What actually happens",
+    "Before you write",
+    "If you are considering it",
+    "Pages",
+    "Elsewhere"
+   ],
+   "text": ""
+  },
+  {
+   "type": "page",
+   "url": "work-afternoon-wall.html",
+   "title": "Afternoon Wall",
+   "summary": "Afternoon Wall — Gigantically Subtle. Archival pigment print, 50 × 62 cm, edition of 8 sets + 1 AP.",
+   "headings": [
+    "Afternoon Wall",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "page",
+   "url": "work-dusk-crossing.html",
+   "title": "Dusk Crossing",
+   "summary": "Dusk Crossing — Greve, at the hour of gold. Archival pigment print, 60 × 75 cm, edition of 10 + 2 AP.",
+   "headings": [
+    "Dusk Crossing",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "page",
+   "url": "work-gigantically-subtle-no-4.html",
+   "title": "Gigantically Subtle No. 4",
+   "summary": "Gigantically Subtle No. 4 — Gigantically Subtle. Archival pigment print, 90 × 60 cm, edition of 8 sets + 1 AP.",
+   "headings": [
+    "Gigantically Subtle No. 4",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "page",
+   "url": "work-green-hour.html",
+   "title": "Green Hour",
+   "summary": "Green Hour — Gigantically Subtle. Archival pigment print, 50 × 50 cm, edition of 8 sets + 1 AP.",
+   "headings": [
+    "Green Hour",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "page",
+   "url": "work-greve-strand-facing-south.html",
+   "title": "Greve Strand, Facing South",
+   "summary": "Greve Strand, Facing South — Greve, at the hour of gold. Archival pigment print, 60 × 75 cm, edition of 10 + 2 AP.",
+   "headings": [
+    "Greve Strand, Facing South",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "page",
+   "url": "work-i-see-you-study.html",
+   "title": "I See You (Study)",
+   "summary": "I See You (Study) — Mirror work. Archival pigment print, 60 × 75 cm, edition of 10 + 2 AP.",
+   "headings": [
+    "I See You (Study)",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "page",
+   "url": "work-koge-bugt-2140.html",
+   "title": "Køge Bugt, 21:40",
+   "summary": "Køge Bugt, 21:40 — Greve, at the hour of gold. Archival pigment print, 90 × 60 cm, edition of 10 + 2 AP.",
+   "headings": [
+    "Køge Bugt, 21:40",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "page",
+   "url": "work-second-opening.html",
+   "title": "Second Opening",
+   "summary": "Second Opening — Like a flower you shall bloom. Archival pigment print, 50 × 50 cm, edition of 15 + 2 AP.",
+   "headings": [
+    "Second Opening",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "page",
+   "url": "work-seed-head-waiting.html",
+   "title": "Seed Head, Waiting",
+   "summary": "Seed Head, Waiting — Like a flower you shall bloom. Archival pigment print, 50 × 50 cm, edition of 15 + 2 AP.",
+   "headings": [
+    "Seed Head, Waiting",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "page",
+   "url": "work-self-facing-up.html",
+   "title": "Self, Facing Up",
+   "summary": "Self, Facing Up — Mirror work. Archival pigment print, 60 × 75 cm, edition of 10 + 2 AP.",
+   "headings": [
+    "Self, Facing Up",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "page",
+   "url": "work-untitled-clematis.html",
+   "title": "Untitled (Clematis)",
+   "summary": "Untitled (Clematis) — Like a flower you shall bloom. Archival pigment print, 60 × 75 cm, edition of 15 + 2 AP.",
+   "headings": [
+    "Untitled (Clematis)",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "page",
+   "url": "work-untitled-poppy-i.html",
+   "title": "Untitled (Poppy I)",
+   "summary": "Untitled (Poppy I) — Like a flower you shall bloom. Archival pigment print, 60 × 75 cm, edition of 15 + 2 AP.",
+   "headings": [
+    "Untitled (Poppy I)",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  },
+  {
+   "type": "page",
+   "url": "works.html",
+   "title": "Works",
+   "summary": "Photographic works by Zenna Lua: macro botanicals, leaf shadows, Danish coastline and mirror portraits.",
+   "headings": [
+    "Twelve quiet openings",
+    "Every frame is available as a print",
+    "Pages",
+    "Elsewhere",
+    "Studio"
+   ],
+   "text": ""
+  }
+ ]
+}

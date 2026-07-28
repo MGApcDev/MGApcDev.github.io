@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" width="1200" height="1500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Placeholder artwork">
+  <defs>
+    <linearGradient id="wall4" gradientTransform="rotate(26 0.5 0.5)">
+      <stop offset="0%" stop-color="#F8F3ED"/>
+      <stop offset="55%" stop-color="#E7D8C3"/>
+      <stop offset="100%" stop-color="#CDB79B"/>
+    </linearGradient>
+    <filter id="blur4" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="10.2"/>
+    </filter>
+    <filter id="grain4" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="4" result="noise"/>
+      <feColorMatrix type="saturate" values="0" in="noise" result="desaturated"/>
+      <feComponentTransfer in="desaturated">
+        <feFuncA type="linear" slope="0.16"/>
+      </feComponentTransfer>
+    </filter>
+    <radialGradient id="vignette4" cx="50%" cy="45%" r="75%">
+      <stop offset="55%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.28"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="1500" fill="url(#wall4)"/>
+  <g filter="url(#blur4)" fill="#8A7358" fill-opacity="0.30">
+    <path d="M329.4,1602.4 Q917.5,1139.5 1015.3,676.7" stroke="#8A7358" stroke-opacity="0.26" stroke-width="17.3" fill="none"/>
+    <path d="M398,1509.8 Q575.5,1626.5 757.9,1517.6 Q580.4,1400.9 398,1509.8 Z"/>
+    <path d="M448.1,1442.3 Q469.7,1199.6 268,1062.8 Q246.5,1305.5 448.1,1442.3 Z"/>
+    <path d="M498.1,1374.7 Q671.6,1440.6 798.9,1305.6 Q625.4,1239.7 498.1,1374.7 Z"/>
+    <path d="M548.2,1307.2 Q610.3,1126.8 486.4,981.8 Q424.3,1162.1 548.2,1307.2 Z"/>
+    <path d="M598.3,1239.6 Q795.8,1357.3 975.4,1213.6 Q777.8,1095.9 598.3,1239.6 Z"/>
+    <path d="M648.3,1172 Q673.9,1013 541.4,921.2 Q515.8,1080.3 648.3,1172 Z"/>
+    <path d="M698.4,1104.5 Q904.7,1195.1 1096.5,1076.8 Q890.2,986.1 698.4,1104.5 Z"/>
+    <path d="M748.4,1036.9 Q831,832.4 710.6,647.6 Q628,852.1 748.4,1036.9 Z"/>
+    <path d="M798.5,969.4 Q969.3,1049 1138.2,965.3 Q967.3,885.6 798.5,969.4 Z"/>
+    <path d="M848.5,901.8 Q941.1,757.5 832.3,625.1 Q739.6,769.4 848.5,901.8 Z"/>
+    <path d="M898.6,834.2 Q1046.2,931.3 1199.4,843.3 Q1051.8,746.2 898.6,834.2 Z"/>
+  </g>
+  <rect width="1200" height="1500" filter="url(#grain4)" opacity="0.5"/>
+  <rect width="1200" height="1500" fill="url(#vignette4)"/>
+</svg>

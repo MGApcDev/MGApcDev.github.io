@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 1100" width="1100" height="1100" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Placeholder artwork">
+  <defs>
+    <linearGradient id="wall53" gradientTransform="rotate(73 0.5 0.5)">
+      <stop offset="0%" stop-color="#F3EFF7"/>
+      <stop offset="55%" stop-color="#8C6FA8"/>
+      <stop offset="100%" stop-color="#5B3F7A"/>
+    </linearGradient>
+    <filter id="blur53" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="24.2"/>
+    </filter>
+    <filter id="grain53" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="53" result="noise"/>
+      <feColorMatrix type="saturate" values="0" in="noise" result="desaturated"/>
+      <feComponentTransfer in="desaturated">
+        <feFuncA type="linear" slope="0.16"/>
+      </feComponentTransfer>
+    </filter>
+    <radialGradient id="vignette53" cx="50%" cy="45%" r="75%">
+      <stop offset="55%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.28"/>
+    </radialGradient>
+  </defs>
+  <rect width="1100" height="1100" fill="url(#wall53)"/>
+  <g filter="url(#blur53)" fill="#2E2340" fill-opacity="0.30">
+    <path d="M386.3,1083.6 Q500.8,562.2 798.2,40.8" stroke="#2E2340" stroke-opacity="0.23" stroke-width="13.1" fill="none"/>
+    <path d="M427.5,979.3 Q619,996.1 760.1,865.6 Q568.6,848.8 427.5,979.3 Z"/>
+    <path d="M471.8,867 Q529.4,640.9 347.8,494.4 Q290.2,720.5 471.8,867 Z"/>
+    <path d="M516.2,754.8 Q746.1,763.3 860.8,563.9 Q630.9,555.3 516.2,754.8 Z"/>
+    <path d="M560.5,642.5 Q575.5,498.9 467.9,402.7 Q452.9,546.3 560.5,642.5 Z"/>
+    <path d="M604.9,530.2 Q766.3,532.6 829.9,384.2 Q668.4,381.8 604.9,530.2 Z"/>
+    <path d="M649.2,418 Q660.4,238.1 532.8,110.8 Q521.7,290.7 649.2,418 Z"/>
+    <path d="M693.6,305.7 Q923.7,292.1 1020.5,82.9 Q790.3,96.4 693.6,305.7 Z"/>
+    <path d="M737.9,193.4 Q750.1,-13.1 582.6,-134.6 Q570.4,71.9 737.9,193.4 Z"/>
+    <path d="M788,1077.6 Q787.3,522.1 1037.8,-33.5" stroke="#2E2340" stroke-opacity="0.32" stroke-width="6.6" fill="none"/>
+    <path d="M813,966.5 Q1058.1,999.1 1222.5,814.4 Q977.4,781.9 813,966.5 Z"/>
+    <path d="M836.8,860.5 Q797.2,681.8 616.9,650.2 Q656.6,828.9 836.8,860.5 Z"/>
+    <path d="M860.7,754.4 Q1134.4,762.9 1258.7,518.9 Q984.9,510.3 860.7,754.4 Z"/>
+    <path d="M884.5,648.4 Q874.8,458.3 707.6,367.4 Q717.3,557.5 884.5,648.4 Z"/>
+    <path d="M908.3,542.3 Q1072.3,597.9 1190.3,471.2 Q1026.4,415.7 908.3,542.3 Z"/>
+    <path d="M932.2,436.3 Q843.9,201.1 593.3,184 Q681.6,419.1 932.2,436.3 Z"/>
+    <path d="M956,330.2 Q1192.1,370.3 1298.8,156 Q1062.7,115.8 956,330.2 Z"/>
+  </g>
+  <rect width="1100" height="1100" filter="url(#grain53)" opacity="0.5"/>
+  <rect width="1100" height="1100" fill="url(#vignette53)"/>
+</svg>

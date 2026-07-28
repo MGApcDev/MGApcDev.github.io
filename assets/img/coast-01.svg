@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1250 1000" width="1250" height="1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Placeholder artwork">
+  <defs>
+    <linearGradient id="sky36" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3A3550"/>
+      <stop offset="55%" stop-color="#9C7FA0"/>
+      <stop offset="100%" stop-color="#E8B375"/>
+    </linearGradient>
+    <linearGradient id="water36" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#EDC595"/>
+      <stop offset="100%" stop-color="#3A3550"/>
+    </linearGradient>
+    <radialGradient id="sun36" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FCF7EF"/>
+      <stop offset="100%" stop-color="#E8B375" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="grain36" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="36" result="noise"/>
+      <feColorMatrix type="saturate" values="0" in="noise" result="desaturated"/>
+      <feComponentTransfer in="desaturated">
+        <feFuncA type="linear" slope="0.16"/>
+      </feComponentTransfer>
+    </filter>
+    <radialGradient id="vignette36" cx="50%" cy="45%" r="75%">
+      <stop offset="55%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.28"/>
+    </radialGradient>
+  </defs>
+  <rect width="1250" height="1000" fill="url(#sky36)"/>
+  <circle cx="833.2" cy="642.2" r="370.5" fill="url(#sun36)" opacity="0.75"/>
+  <circle cx="833.2" cy="642.2" r="115.8" fill="#FBF3E8" opacity="0.9"/>
+  <rect y="665.4" width="1250" height="334.6" fill="url(#water36)"/>
+  <rect x="-159.8" y="115.8" width="1061.8" height="14" rx="7" fill="#CAB4B9" fill-opacity="0.39"/>
+  <rect x="160.3" y="562.1" width="1003.9" height="44.1" rx="22.1" fill="#D3BFBE" fill-opacity="0.27"/>
+  <rect x="-150.5" y="553.7" width="470.1" height="35.9" rx="17.9" fill="#D4C0BE" fill-opacity="0.20"/>
+  <rect x="678.7" y="170.4" width="743.7" height="22.4" rx="11.2" fill="#C7B1B7" fill-opacity="0.28"/>
+  <rect x="0" y="655.9" width="1250" height="9.5" fill="#2C283C" fill-opacity="0.55"/>
+  <rect x="619.3" y="665.4" width="370.4" height="4" rx="2" fill="#FAF1E3" fill-opacity="0.55"/>
+  <rect x="635.5" y="668.8" width="348.1" height="4.7" rx="2.3" fill="#FAF1E3" fill-opacity="0.53"/>
+  <rect x="679" y="674.2" width="284.5" height="5.3" rx="2.7" fill="#FAF1E3" fill-opacity="0.51"/>
+  <rect x="629.5" y="680.7" width="459.2" height="5.9" rx="3" fill="#FAF1E3" fill-opacity="0.50"/>
+  <rect x="571.1" y="688" width="558.3" height="6.6" rx="3.3" fill="#FAF1E3" fill-opacity="0.48"/>
+  <rect x="528.5" y="696" width="583.7" height="7.2" rx="3.6" fill="#FAF1E3" fill-opacity="0.46"/>
+  <rect x="689.8" y="704.6" width="332.4" height="7.9" rx="3.9" fill="#FAF1E3" fill-opacity="0.44"/>
+  <rect x="547.9" y="713.8" width="537.4" height="8.5" rx="4.3" fill="#FAF1E3" fill-opacity="0.42"/>
+  <rect x="550.6" y="723.4" width="514.3" height="9.2" rx="4.6" fill="#FAF1E3" fill-opacity="0.41"/>
+  <rect x="407.3" y="733.5" width="847.4" height="9.8" rx="4.9" fill="#FAF1E3" fill-opacity="0.39"/>
+  <rect x="628" y="744" width="385.2" height="10.4" rx="5.2" fill="#FAF1E3" fill-opacity="0.37"/>
+  <rect x="425.4" y="754.9" width="779.5" height="11.1" rx="5.5" fill="#FAF1E3" fill-opacity="0.35"/>
+  <rect x="494.2" y="766.2" width="660.2" height="11.7" rx="5.9" fill="#FAF1E3" fill-opacity="0.33"/>
+  <rect x="596.7" y="777.8" width="426.3" height="12.4" rx="6.2" fill="#FAF1E3" fill-opacity="0.32"/>
+  <rect x="303" y="789.7" width="1025.8" height="13" rx="6.5" fill="#FAF1E3" fill-opacity="0.30"/>
+  <rect x="374.1" y="801.9" width="909.6" height="13.7" rx="6.8" fill="#FAF1E3" fill-opacity="0.28"/>
+  <rect x="493" y="814.4" width="716.1" height="14.3" rx="7.1" fill="#FAF1E3" fill-opacity="0.26"/>
+  <rect x="201" y="827.2" width="1281.3" height="14.9" rx="7.5" fill="#FAF1E3" fill-opacity="0.24"/>
+  <rect x="360.9" y="840.3" width="895" height="15.6" rx="7.8" fill="#FAF1E3" fill-opacity="0.23"/>
+  <rect x="448.6" y="853.7" width="739" height="16.2" rx="8.1" fill="#FAF1E3" fill-opacity="0.21"/>
+  <rect x="279.8" y="867.3" width="1113.2" height="16.9" rx="8.4" fill="#FAF1E3" fill-opacity="0.19"/>
+  <rect x="377.3" y="881.1" width="899.7" height="17.5" rx="8.8" fill="#FAF1E3" fill-opacity="0.17"/>
+  <rect x="111.6" y="895.2" width="1472.3" height="18.1" rx="9.1" fill="#FAF1E3" fill-opacity="0.15"/>
+  <rect x="366" y="909.5" width="982.9" height="18.8" rx="9.4" fill="#FAF1E3" fill-opacity="0.14"/>
+  <rect x="473.5" y="924.1" width="755.1" height="19.4" rx="9.7" fill="#FAF1E3" fill-opacity="0.12"/>
+  <rect x="367" y="938.8" width="934.9" height="20.1" rx="10" fill="#FAF1E3" fill-opacity="0.10"/>
+  <rect x="321.7" y="953.8" width="1015" height="20.7" rx="10.4" fill="#FAF1E3" fill-opacity="0.08"/>
+  <rect x="214" y="969" width="1213.6" height="21.4" rx="10.7" fill="#FAF1E3" fill-opacity="0.06"/>
+  <rect x="12.6" y="984.4" width="1601.3" height="22" rx="11" fill="#FAF1E3" fill-opacity="0.05"/>
+  <rect width="1250" height="1000" filter="url(#grain36)" opacity="0.5"/>
+  <rect width="1250" height="1000" fill="url(#vignette36)"/>
+</svg>

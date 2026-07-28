@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Search — Zenna Lua</title>
+<meta name="description" content="Search the whole site: works, series, exhibitions, gatherings, writing and practical information.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Zenna Lua">
+<meta property="og:title" content="Search — Zenna Lua">
+<meta property="og:description" content="Find any work, series, evening or note.">
+<meta property="og:image" content="assets/img/work-06-sage.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F6EFE4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17141A" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="assets/img/work-01-poppy.svg" type="image/svg+xml">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="alternate" hreflang="da" href="da.html">
+<link rel="alternate" type="application/rss+xml" title="Zenna Lua — Words" href="feed.xml">
+<link rel="stylesheet" href="assets/css/style.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebSite",
+   "@id": "https://example.com/#site",
+   "url": "https://example.com/",
+   "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+     "@type": "EntryPoint",
+     "urlTemplate": "https://example.com/search.html?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://example.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Search",
+     "item": "https://example.com/search.html"
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="shell site-header__inner">
+    <a class="wordmark" href="index.html">Zenna <span>Lua</span></a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="works.html">Works</a>
+      <a href="exhibitions.html">Exhibitions</a>
+      <a href="journal.html">Words</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="search.html" aria-current="page">Search</a>
+      <a href="da.html" lang="da">Dansk</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="section--tight section shell">
+    <div>
+      <p class="eyebrow">Search</p>
+      <h1 style="max-width:12ch;">Find it</h1>
+
+      <form class="search-form" role="search" action="search.html" method="get">
+        <label class="visually-hidden" for="query">Search the site</label>
+        <input id="query" name="q" type="search" placeholder="poppy, shadow, prints, sessions…" autocomplete="off" autofocus>
+        <button class="button" type="submit">Search</button>
+      </form>
+
+      <p class="search-status" data-search-status role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="shell">
+      <h2 class="visually-hidden">Results</h2>
+      <ol class="search-results" data-search-results></ol>
+
+      <div class="search-fallback" data-search-fallback>
+        <p class="eyebrow">Everything on the site</p>
+        <div class="cards">
+          <article class="card">
+            <h2 class="minor-heading">The work</h2>
+            <ul class="plain-list">
+              <li><a href="works.html">All works</a></li>
+              <li><a href="series.html">Series</a></li>
+              <li><a href="series-like-a-flower.html">Like a flower you shall bloom</a></li>
+              <li><a href="series-gigantically-subtle.html">Gigantically Subtle</a></li>
+              <li><a href="series-hour-of-gold.html">Greve, at the hour of gold</a></li>
+            </ul>
+          </article>
+          <article class="card">
+            <h2 class="minor-heading">In person</h2>
+            <ul class="plain-list">
+              <li><a href="exhibitions.html">Exhibitions &amp; gatherings</a></li>
+              <li><a href="i-see-you.html">I See You</a></li>
+              <li><a href="kvindecirkel.html" lang="da">Kvindecirkel</a></li>
+              <li><a href="sessions.html">Sessions</a></li>
+            </ul>
+          </article>
+          <article class="card">
+            <h2 class="minor-heading">Practical</h2>
+            <ul class="plain-list">
+              <li><a href="prints.html">Prints</a></li>
+              <li><a href="press.html">Press &amp; curators</a></li>
+              <li><a href="colophon.html">Colophon</a></li>
+              <li><a href="journal.html">Words</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="shell">
+    <div class="site-footer__grid">
+      <div>
+        <a class="wordmark" href="index.html">Zenna <span>Lua</span></a>
+        <p class="quiet" style="margin-top:1rem; max-width:26ch;">Photographic artist and psychotherapist. Copenhagen, Denmark.</p>
+      </div>
+      <div>
+        <h2>Pages</h2>
+        <ul>
+          <li><a href="now.html">Now</a></li>
+          <li><a href="works.html">Works</a></li>
+          <li><a href="series.html">Series</a></li>
+          <li><a href="exhibitions.html">Exhibitions</a></li>
+          <li><a href="journal.html">Words</a></li>
+          <li><a href="prints.html">Prints</a></li>
+          <li><a href="sessions.html">Sessions</a></li>
+          <li><a href="kvindecirkel.html" lang="da">Kvindecirkel</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Elsewhere</h2>
+        <ul>
+          <li><a href="https://www.facebook.com/ZennaGrundtvig">Facebook</a></li>
+          <li><a href="contact.html">Newsletter</a></li>
+          <li><a href="prints.html">Print enquiries</a></li>
+          <li><a href="press.html">Press &amp; curators</a></li>
+          <li><a href="colophon.html">Colophon</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Studio</h2>
+        <ul>
+          <li>Copenhagen, DK</li>
+          <li><a href="mailto:hello@zennalua.dk">hello@zennalua.dk</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-footer__base">
+      <span>&copy; Zenna Lua</span>
+      <span>Images shown are placeholders</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+<script src="assets/js/search.js"></script>
+</body>
+</html>

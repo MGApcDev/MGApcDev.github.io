@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1000" width="1800" height="1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Placeholder artwork">
+  <defs>
+    <linearGradient id="air43" x1="10%" y1="0%" x2="90%" y2="100%">
+      <stop offset="0%" stop-color="#E6B49E"/>
+      <stop offset="50%" stop-color="#7C5A7A"/>
+      <stop offset="100%" stop-color="#2C2740"/>
+    </linearGradient>
+    <linearGradient id="figure43" x1="12%" y1="8%" x2="82%" y2="92%">
+      <stop offset="0%" stop-color="#E4AE97"/>
+      <stop offset="38%" stop-color="#A07784"/>
+      <stop offset="100%" stop-color="#272230"/>
+    </linearGradient>
+    <radialGradient id="sunspot43" cx="22%" cy="12%" r="62%">
+      <stop offset="0%" stop-color="#FBF6F0" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#D98B6A" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soften43" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="25.2"/>
+    </filter>
+    <filter id="farblur43" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="46.8"/>
+    </filter>
+    <filter id="nearblur43" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="10.8"/>
+    </filter>
+    <filter id="grain43" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="43" result="noise"/>
+      <feColorMatrix type="saturate" values="0" in="noise" result="desaturated"/>
+      <feComponentTransfer in="desaturated">
+        <feFuncA type="linear" slope="0.16"/>
+      </feComponentTransfer>
+    </filter>
+    <radialGradient id="vignette43" cx="50%" cy="45%" r="75%">
+      <stop offset="55%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.28"/>
+    </radialGradient>
+  </defs>
+  <rect width="1800" height="1000" fill="url(#air43)"/>
+  <g filter="url(#farblur43)" fill="#40492F" fill-opacity="0.26">
+    <path d="M-134,294.3 Q171.9,511.3 507.4,343.5 Q201.5,126.5 -134,294.3 Z"/>
+    <path d="M1738.4,198.3 Q1709.4,-147.8 1390.5,-285.1 Q1419.4,60.9 1738.4,198.3 Z"/>
+    <path d="M-4.8,180.9 Q114.8,450.6 409.1,472 Q289.5,202.3 -4.8,180.9 Z"/>
+    <path d="M1825.4,131.5 Q2137.5,206.4 2350.4,-33.7 Q2038.3,-108.6 1825.4,131.5 Z"/>
+    <path d="M1391.2,490 Q1321.4,725.7 1496.6,898.3 Q1566.4,662.5 1391.2,490 Z"/>
+    <path d="M157.4,158 Q510.6,273.7 778.8,16.5 Q425.7,-99.2 157.4,158 Z"/>
+  </g>
+  <g filter="url(#soften43)" transform="rotate(-13.5 861.3 659)">
+    <path d="M240.3,1000 C289.9,898.2 596.8,778.6 755.5,644 C746.3,539.4 626.7,524.5 631.3,360 C631.3,75.9 1091.3,75.9 1091.3,360 C1095.9,524.5 976.3,539.4 967.1,644 C1125.8,778.6 1432.6,898.2 1482.3,1000 Z" fill="url(#figure43)" fill-opacity="0.95"/>
+    <ellipse cx="783.1" cy="294.2" rx="115" ry="131.6" fill="#F9F0E7" fill-opacity="0.30"/>
+    <path d="M987.8,180.6 C1125.8,330.1 1091.3,569.3 976.3,808.5" stroke="#FBF4ED" stroke-opacity="0.35" stroke-width="20.7" fill="none" stroke-linecap="round"/>
+  </g>
+  <rect width="1800" height="1000" fill="url(#sunspot43)"/>
+  <g filter="url(#nearblur43)">
+    <path d="M38.1,382.4 Q353.3,519.7 676.2,401.7 Q361,264.4 38.1,382.4 Z" fill="#40492F" fill-opacity="0.70"/>
+    <path d="M1939.6,542.1 Q1587.3,502.4 1304.9,716.5 Q1657.1,756.2 1939.6,542.1 Z" fill="#40492F" fill-opacity="0.71"/>
+    <path d="M-124.5,137.5 Q119.9,356.3 447.7,346.2 Q203.3,127.5 -124.5,137.5 Z" fill="#40492F" fill-opacity="0.54"/>
+    <path d="M1895.2,167.1 Q1588.4,37.6 1276.9,155.4 Q1583.7,284.9 1895.2,167.1 Z" fill="#40492F" fill-opacity="0.59"/>
+    <path d="M-129.9,303.2 Q215.4,578.5 655.4,539.6 Q310,264.3 -129.9,303.2 Z" fill="#40492F" fill-opacity="0.74"/>
+  </g>
+  <rect width="1800" height="1000" filter="url(#grain43)" opacity="0.5"/>
+  <rect width="1800" height="1000" fill="url(#vignette43)"/>
+</svg>

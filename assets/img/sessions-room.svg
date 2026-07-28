@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 950" width="1300" height="950" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Placeholder artwork">
+  <defs>
+    <linearGradient id="wall48" gradientTransform="rotate(121 0.5 0.5)">
+      <stop offset="0%" stop-color="#F8F3ED"/>
+      <stop offset="55%" stop-color="#E7D8C3"/>
+      <stop offset="100%" stop-color="#CDB79B"/>
+    </linearGradient>
+    <filter id="blur48" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="13.7"/>
+    </filter>
+    <filter id="grain48" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="48" result="noise"/>
+      <feColorMatrix type="saturate" values="0" in="noise" result="desaturated"/>
+      <feComponentTransfer in="desaturated">
+        <feFuncA type="linear" slope="0.16"/>
+      </feComponentTransfer>
+    </filter>
+    <radialGradient id="vignette48" cx="50%" cy="45%" r="75%">
+      <stop offset="55%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.28"/>
+    </radialGradient>
+  </defs>
+  <rect width="1300" height="950" fill="url(#wall48)"/>
+  <g filter="url(#blur48)" fill="#8A7358" fill-opacity="0.30">
+    <path d="M489,1052.7 Q669.2,729.5 1324.5,406.4" stroke="#8A7358" stroke-opacity="0.31" stroke-width="15.6" fill="none"/>
+    <path d="M572.5,988.1 Q669.4,1076.5 783.2,1011.4 Q686.4,922.9 572.5,988.1 Z"/>
+    <path d="M676.8,907.4 Q749.9,750 647.2,610 Q574,767.5 676.8,907.4 Z"/>
+    <path d="M781,826.8 Q888.1,995.7 1086.7,972.1 Q979.5,803.3 781,826.8 Z"/>
+    <path d="M885.2,746.2 Q962.4,638.5 889.4,527.9 Q812.1,635.6 885.2,746.2 Z"/>
+    <path d="M989.4,665.6 Q1081.4,753.5 1203.6,718.1 Q1111.6,630.2 989.4,665.6 Z"/>
+    <path d="M1093.7,585 Q1137.2,462 1044.2,370.5 Q1000.7,493.5 1093.7,585 Z"/>
+  </g>
+  <rect width="1300" height="950" filter="url(#grain48)" opacity="0.5"/>
+  <rect width="1300" height="950" fill="url(#vignette48)"/>
+</svg>
