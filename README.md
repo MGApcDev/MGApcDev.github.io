@@ -62,6 +62,24 @@ One wrinkle worth knowing: sitemap `lastmod` comes from git, so a page generated
 before its source is committed ships without a date. Rerun the build after
 committing — `--check` catches it.
 
+## Checking what is deployed
+
+```bash
+node tools/audit-live.mjs                    # against mgapcdev.github.io
+node tools/audit.mjs https://mgapcdev.github.io --only=contrast,meta
+```
+
+Local checks cannot see deploy-specific breakage. GitHub Pages is case-sensitive
+where macOS is not, so a link to `Works.html` passes locally and 404s in
+production; and the host, not the repo, decides status codes, content types and
+compression. `audit-live.mjs` walks every internal reference on the real host,
+confirms a missing page returns a styled 404 rather than 200, that text arrives
+compressed, that `og:image` is absolute and resolves, and that the CSP is present
+in the document.
+
+Current: 93 references resolve, 404 works, text is gzipped, og:image resolves,
+CSP present.
+
 ## Verifying
 
 ```bash
