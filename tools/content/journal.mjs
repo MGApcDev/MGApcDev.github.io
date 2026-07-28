@@ -92,15 +92,18 @@ export const body = `
 ${notes}
 
       </div>
-    </div>
-  </section>
 
-  <section class="section shell">
-    <div class="centred-measure measure-52" data-reveal>
-      <p class="quiet">These sit beside the pictures rather than explaining them. The work itself is
-      in <a href="series-like-a-flower.html">Like a flower you shall bloom</a>,
-      <a href="series-gigantically-subtle.html">Gigantically Subtle</a> and
-      <a href="series-hour-of-gold.html">Greve, at the hour of gold</a>.</p>
+      <!-- Inside the notes section, not a section of its own: as two adjacent
+           sections these stacked a full bottom padding on a full top padding, and
+           left roughly 320px of empty page between the last note and this line.
+           Left-aligned to the grid above it too — it was centre-measured, which on
+           an otherwise left-aligned page read as a stray paragraph. -->
+      <div class="measure-52 space-top-3xl" data-reveal>
+        <p class="quiet flush">These sit beside the pictures rather than explaining them. The work itself is
+        in <a href="series-like-a-flower.html">Like a flower you shall bloom</a>,
+        <a href="series-gigantically-subtle.html">Gigantically Subtle</a> and
+        <a href="series-hour-of-gold.html">Greve, at the hour of gold</a>.</p>
+      </div>
     </div>
   </section>
 

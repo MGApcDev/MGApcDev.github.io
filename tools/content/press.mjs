@@ -28,6 +28,11 @@ const TRAVELS = [
   ['series-hour-of-gold', '6, ongoing', '90 &times; 60 cm', 'Framed or mounted', 'From 7 running metres'],
 ];
 
+/**
+ * The three landscape key images sit in one row; the portrait is 4:5 and gets its
+ * own block. In a single grid row the portrait was more than twice the height of
+ * the landscapes, so it set the row height and left a void under the other three.
+ */
 const IMAGES = [
   ['bloom-hero', 1800, 1000, 'Bloom, key image', 'Series 01', 'a red bloom fully open across warm ochre light'],
   ['subtle-hero', 1800, 1000, 'Subtle, key image', 'Series 02', 'leaf shadows drifting across a sunlit plaster wall'],
@@ -123,7 +128,14 @@ ${TRAVELS.map(([slug, frames, size, hanging, wall]) => {
         <p class="quiet">Free to reproduce in connection with coverage of the work. Credit: <strong>&copy; Zenna Lua</strong>. Please do not crop or apply filters.</p>
       </div>
       <div class="sequence sequence--wide">
-${IMAGES.map(([slug, width, height, title, meta, alt]) => `        <a class="work" href="assets/img/${slug}.svg" data-lightbox-open="assets/img/${slug}.svg" data-caption="${title.replace(/&copy; /, '')} — press image" data-reveal>
+${IMAGES.filter(([, , height]) => height < 1200).map(([slug, width, height, title, meta, alt]) => `        <a class="work" href="assets/img/${slug}.svg" data-lightbox-open="assets/img/${slug}.svg" data-caption="${title.replace(/&copy; /, '')} — press image" data-reveal>
+          <span class="work__media"><img src="assets/img/${slug}.svg" alt="Placeholder artwork: ${alt}" width="${width}" height="${height}" loading="lazy" decoding="async"></span>
+          <span class="work__caption"><span class="work__title">${title}</span><span class="work__meta">${meta}</span></span>
+        </a>`).join('\n')}
+      </div>
+
+      <div class="press-portrait space-top-3xl">
+${IMAGES.filter(([, , height]) => height >= 1200).map(([slug, width, height, title, meta, alt]) => `        <a class="work" href="assets/img/${slug}.svg" data-lightbox-open="assets/img/${slug}.svg" data-caption="${title.replace(/&copy; /, '')} — press image" data-reveal>
           <span class="work__media"><img src="assets/img/${slug}.svg" alt="Placeholder artwork: ${alt}" width="${width}" height="${height}" loading="lazy" decoding="async"></span>
           <span class="work__caption"><span class="work__title">${title}</span><span class="work__meta">${meta}</span></span>
         </a>`).join('\n')}

@@ -530,7 +530,12 @@ code {
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr));
 }
 
-.sequence--wide { grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr)); }
+/* auto-fit, not auto-fill: with three items in a four-track container auto-fill
+   leaves an empty track and the row reads as a missing image. */
+.sequence--wide { grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); }
+
+/* The portrait is 4:5 and belongs at reading width, not stretched across the row. */
+.press-portrait { max-width: min(290px, 100%); }
 .sequence .work { margin-bottom: 0; }
 
 .series-nav {

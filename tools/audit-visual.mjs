@@ -42,6 +42,8 @@ const VIEWS = [
   ['prints', 1000, 'prints-table'],
   ['colophon', 620, 'colophon-swatches'],
   ['contact', 200, 'contact-form'],
+  ['journal', 632, 'journal-notes'],
+  ['press', 3928, 'press-images'],
   ['da', 0, 'danish-hero'],
   ['work-untitled-poppy-i', 0, 'work-page'],
   ['404', 0, 'not-found'],
