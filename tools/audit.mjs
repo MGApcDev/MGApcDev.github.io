@@ -274,19 +274,29 @@ if (wants('responsive') || wants('targets')) {
 
   // 200% text. This used to inject `html { font-size: 32px }` with addStyleTag,
   // which the site's own CSP now blocks — style-src is 'self' with no
-  // unsafe-inline, so the check was throwing rather than measuring. Chrome's
-  // font-size preference is set over CDP instead, which needs no inline style and
-  // is closer to what a large-text user actually changes. Chromium only.
-  if (wants('responsive') && engine === 'chromium') await sweep(mainContext, SAMPLE, async (holder, name) => {
-    const session = await mainContext.newCDPSession(holder.page);
-    await session.send('Page.setFontSizes', { fontSizes: { standard: 32, fixed: 26 } });
-    const page = await visit(holder, `${base}/${name}.html`);
-    await page.waitForTimeout(250);
-    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
-    if (overflow > 0) fail('responsive', `${name} overflows ${overflow}px at 200% text`);
-    await session.detach();
-  }, { viewport: { width: 1024, height: 800 } });
-  else if (wants('responsive')) console.log('  (200% text: chromium only — skipped)');
+  // unsafe-inline — so the check was throwing rather than measuring. The override
+  // is appended to the real stylesheet response instead: same-origin CSS, which
+  // CSP allows, so the page under test keeps its own policy and both engines run
+  // the check.
+  if (wants('responsive')) {
+    await mainContext.route('**/style.css', async (route) => {
+      const response = await route.fetch();
+      route.fulfill({ response, body: await response.text() + '\nhtml { font-size: 32px !important; }' });
+    });
+    await sweep(mainContext, SAMPLE, async (holder, name) => {
+      const page = await visit(holder, `${base}/${name}.html`);
+      await page.waitForTimeout(250);
+      const zoomed = await page.evaluate(() => ({
+        root: parseFloat(getComputedStyle(document.documentElement).fontSize),
+        overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      }));
+      // Prove the override landed. A silently-unapplied stylesheet would make this
+      // check pass on every page while measuring nothing.
+      if (zoomed.root < 31) fail('responsive', `${name} 200% text override did not apply (root ${zoomed.root}px)`);
+      else if (zoomed.overflow > 0) fail('responsive', `${name} overflows ${zoomed.overflow}px at 200% text`);
+    }, { viewport: { width: 1024, height: 800 } });
+    await mainContext.unroute('**/style.css');
+  }
 }
 await mainContext.close();
 
