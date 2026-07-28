@@ -24,6 +24,7 @@ const STAGES = [
   ['feed', ['audit-feed.mjs']],
   ['link text', ['audit-links-text.mjs']],
   ['content security policy', ['audit-csp.mjs']],
+  ['forms', ['audit-forms.mjs', `--engine=${engine}`]],
   quick ? null : ['pages, contrast, keyboard, modes', ['audit.mjs', `--engine=${engine}`]],
   quick ? null : ['page weight', ['audit-weight.mjs']],
   quick ? null : ['visual regression', ['audit-visual.mjs']],
