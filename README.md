@@ -135,6 +135,32 @@ re-hardcoding it fails the build. Same wrinkle as sitemap `lastmod`: the commit
 that edits the source is the one that moves the date, so `now.html` is rebuilt on
 the following build — `--check` catches it.
 
+## Dates and tense
+
+```bash
+node tools/audit-dates.mjs
+```
+
+The mistake that kept coming back. Three times, copy written while a show was up was
+left in the present tense after it closed: an exhibition listed as current, a Now page
+quoting a sea temperature from another season, and a Visit page offering this week's
+opening hours for a room that had been empty since May. That last one could have sent
+somebody across a city to a locked door.
+
+It is neither a layout nor a markup fault, so nothing else here can see it. What it
+is, precisely, is a claim about the present that stops being true on a known date —
+checkable, provided the date is somewhere a program can read. The prose gives dates
+without a year on purpose ("23 April – 31 May" reads better and does not rot), so the
+year lives in `tools/shows-data.mjs`, which only audits read; the build does not
+depend on it and stays reproducible.
+
+The phrase list is short and literal — "what is on", "artist present", "open today"
+and a few more. It is not trying to parse English, only to catch the stock phrases
+that promise an open door, and only while the show they refer to is over. Open a new
+show, update `end`, and they are allowed again, which is the right moment to be
+reminded they are claims. Phrases that merely *link* to the Now page are exempt,
+because sending the reader to the page that answers the question is honest.
+
 ## Forms
 
 ```bash

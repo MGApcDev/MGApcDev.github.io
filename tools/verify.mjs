@@ -23,6 +23,7 @@ const STAGES = [
   ['html, orphans, freshness', ['audit.mjs', '--only=static,freshness', `--engine=${engine}`]],
   ['feed', ['audit-feed.mjs']],
   ['link text', ['audit-links-text.mjs']],
+  ['dates and tense', ['audit-dates.mjs']],
   ['content security policy', ['audit-csp.mjs']],
   ['forms', ['audit-forms.mjs', `--engine=${engine}`]],
   quick ? null : ['pages, contrast, keyboard, modes', ['audit.mjs', `--engine=${engine}`]],
