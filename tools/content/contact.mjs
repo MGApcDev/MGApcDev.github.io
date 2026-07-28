@@ -48,7 +48,11 @@ export const body = `
               <button class="button" type="submit">Send message</button>
             </div>
             <p class="form__status" data-form-status role="status" aria-live="polite"></p>
-            <p class="form__note">This form opens your own mail app with the message ready to send &mdash; nothing is stored on this site. Replace it with a form endpoint when the site goes live.</p>
+            <!-- TODO(zenna): swap the mailto composition for a real form endpoint.
+                 The note below is for the visitor and explains what pressing Send
+                 does; the instruction to replace this was in it by mistake and was
+                 being read by anyone on the contact page. -->
+            <p class="form__note">Sending opens your own mail app with the message ready to go &mdash; nothing is stored on this site.</p>
           </form>
         </div>
 
