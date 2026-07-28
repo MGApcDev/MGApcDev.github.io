@@ -1,8 +1,8 @@
 # Zenna Lua — portfolio site
 
 Static portfolio site for **Zenna Lua / Zenna Grundtvig** — photographic artist,
-digital creator and psychotherapist, Copenhagen. Plain HTML, one stylesheet, two
-small JS files. No framework, no dependencies, no network calls, nothing to
+digital creator and psychotherapist, Copenhagen. Plain HTML, one stylesheet, one
+small JS file. No framework, no dependencies, no network calls, nothing to
 deploy but the files.
 
 ## Shape of it

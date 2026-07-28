@@ -55,7 +55,7 @@ export const SERIES_PAGES = [
     heading: 'The subject is the passing',
     paragraphs: [
       'There is a plastered wall on the south side of the building where I live. From about half two until the sun drops behind the roof opposite, the fig in the pot below throws its shadow onto it. This happens every clear day and almost nobody in the building has noticed.',
-      'I photographed it at roughly twenty-minute intervals across one afternoon in August, always from the same spot, always at the same focal length. Nine frames survived. Nothing was moved, added or waited for beyond the light itself.',
+      'I photographed it at roughly twenty-five-minute intervals across one afternoon in August, always from the same spot, always at the same focal length. Nine frames survived. Nothing was moved, added or waited for beyond the light itself.',
       'Hung as a line at eye height, the sequence reads the way the afternoon read: slow, then suddenly over.',
     ],
     spec: [

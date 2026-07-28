@@ -68,6 +68,23 @@ for (const name of PAGES) {
   const text = body.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
 
   if (!closed) continue;
+
+  // A label immediately before the closed show's title. "Now" on its own is far too
+  // common a word for the phrase list — it is a page, a footer link and a heading —
+  // but "Now" used as the label introducing this particular show is exactly the
+  // about-page timeline entry that said a show closed in May was the current one.
+  const titlePlain = CURRENT_SHOW.title.replace(/&[a-z]+;/g, ' ');
+  let from = 0;
+  for (;;) {
+    const at = text.indexOf(titlePlain, from);
+    if (at === -1) break;
+    from = at + titlePlain.length;
+    const before = text.slice(Math.max(0, at - 60), at);
+    if (/\b(now|currently|on until|running)\b\s*$/i.test(before.trim() + ' ')) {
+      findings.push(`${name}: "${CURRENT_SHOW.title}" is introduced by "${before.trim().split(/\s+/).pop()}" — it closed ${CURRENT_SHOW.end}`);
+    }
+  }
+
   for (const phrase of PRESENT_TENSE) {
     const at = text.toLowerCase().indexOf(phrase.toLowerCase());
     if (at === -1) continue;

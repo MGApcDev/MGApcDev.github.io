@@ -1,4 +1,27 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { SITE, crumbs } from '../chrome.mjs';
+
+/**
+ * A page describing the build should not be able to describe it wrongly. This said
+ * "two small files" until search was removed and there was one — counted, not typed,
+ * so deleting or adding a script updates the sentence.
+ */
+const COUNT_WORDS = ['no', 'one', 'two', 'three', 'four', 'five'];
+const scriptCount = (() => {
+  const directory = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', '..', 'assets', 'js');
+  const files = fs.readdirSync(directory).filter((name) => name.endsWith('.js'));
+  const word = COUNT_WORDS[files.length] || String(files.length);
+  return `${word} small file${files.length === 1 ? '' : 's'}`;
+})();
+
+const styleCount = (() => {
+  const directory = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', '..', 'assets', 'css');
+  const files = fs.readdirSync(directory).filter((name) => name.endsWith('.css'));
+  const word = COUNT_WORDS[files.length] || String(files.length);
+  return `${word} stylesheet${files.length === 1 ? '' : 's'}`;
+})();
 
 export const meta = {
   title: 'Colophon',
@@ -96,8 +119,8 @@ ${DECISIONS.map(([lead, rest]) => `          <li><strong>${lead}</strong> ${rest
       </div>
       <dl class="spec" data-reveal>
         <div><dt>Pages</dt><dd>Static HTML, assembled from shared chrome</dd></div>
-        <div><dt>CSS</dt><dd>One stylesheet, no framework</dd></div>
-        <div><dt>JavaScript</dt><dd>Two small files, no dependencies</dd></div>
+        <div><dt>CSS</dt><dd>${styleCount.charAt(0).toUpperCase() + styleCount.slice(1)}, no framework</dd></div>
+        <div><dt>JavaScript</dt><dd>${scriptCount.charAt(0).toUpperCase() + scriptCount.slice(1)}, no dependencies</dd></div>
         <div><dt>Build</dt><dd>Node scripts, output committed</dd></div>
         <div><dt>Requests</dt><dd>No third-party, no fonts, no trackers</dd></div>
         <div><dt>Images</dt><dd>Generated SVG placeholders</dd></div>

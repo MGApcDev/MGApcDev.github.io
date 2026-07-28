@@ -10,7 +10,7 @@ export const meta = {
 
 const SUMMARY = {
   'series-like-a-flower': ['Macro botanicals photographed a day past their best hour &mdash; poppy, clematis, hollyhock, and the seed heads that come after. Eighteen frames, shown 23 April &ndash; 31 May.', '18 frames &middot; Exhibition &middot; 60 &times; 75 and 90 &times; 120 cm'],
-  'series-gigantically-subtle': ['One plastered wall, one fig in a pot, one August afternoon, photographed at twenty-minute intervals until the sun dropped behind the roof opposite. Hung as a single line, 14:30 to 17:40.', '9 frames &middot; Ongoing &middot; 50 &times; 62 cm each'],
+  'series-gigantically-subtle': ['One plastered wall, one fig in a pot, one August afternoon, photographed at twenty-five-minute intervals until the sun dropped behind the roof opposite. Hung as a single line, 14:30 to 17:40.', '9 frames &middot; Ongoing &middot; 50 &times; 62 cm each'],
   'series-hour-of-gold': ['The last light over K&oslash;ge Bugt, shot from the beach I grew up on. Most evenings the sea is grey and I go home; roughly one in six gives something.', '6 shown &middot; Ongoing &middot; 90 &times; 60 cm'],
 };
 

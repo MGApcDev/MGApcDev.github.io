@@ -32,9 +32,12 @@ const MOVEMENTS = [
 ];
 
 const FRAMES = [
+  // Tagged with the movement each frame belongs to, in the order the movements run
+  // above. It read Mirror, Rest, Eyes before, and "Afterwards" was tagged Eyes —
+  // the paired eye-gazing movement, which is the one thing afterwards cannot be.
   ['iseeyou-01', 'From the room', 'Mirror', 'a soft figure in violet light, eyes lowered'],
-  ['iseeyou-02', 'Held by sound', 'Rest', 'a figure turned toward warm dusk light'],
-  ['iseeyou-03', 'Afterwards', 'Eyes', 'violet bloom opening from a lit centre'],
+  ['iseeyou-02', 'Facing one other', 'Eyes', 'a figure turned toward warm dusk light'],
+  ['iseeyou-03', 'Held by sound', 'Rest', 'violet bloom opening from a lit centre'],
 ];
 
 const FAQ = [

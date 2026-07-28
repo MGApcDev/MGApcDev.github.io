@@ -87,7 +87,10 @@ export const body = `
             <span class="timeline__what"><strong>Independent practice</strong><span>Psychotherapy and photographic work, self-employed, Copenhagen.</span></span>
           </li>
           <li>
-            <span class="timeline__when">Now</span>
+            <!-- Was labelled "Now" for a show that closed on 31 May. A timeline
+                 entry is dated by definition, so it gets the year rather than a
+                 word that goes out of date on a known day. -->
+            <span class="timeline__when">2026</span>
             <span class="timeline__what"><strong>Like a flower you shall bloom</strong><span>Photo exhibition, 23 April &ndash; 31 May.</span></span>
           </li>
         </ul>
