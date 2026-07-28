@@ -239,21 +239,54 @@ await sweep(mainContext, PAGES, async (holder, name) => {
   }
 }, { wire: wireConsole });
 
-if (wants('responsive')) {
-  await sweep(mainContext, PAGES, async (holder, name) => {
+if (wants('responsive') || wants('targets')) {
+  if (wants('responsive')) await sweep(mainContext, PAGES, async (holder, name) => {
     const page = await visit(holder, `${base}/${name}.html`);
     await page.waitForTimeout(100);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     if (overflow > 0) fail('responsive', `${name} overflows ${overflow}px at 320px`);
   }, { viewport: { width: 320, height: 720 } });
 
-  await sweep(mainContext, SAMPLE, async (holder, name) => {
+  if (wants('targets')) await (async () => {
+  // WCAG 2.5.8: a control needs a 24x24 target. Links flowing inside prose are
+  // exempt (the success criterion says so), but a link in a table cell, a
+  // breadcrumb, or a nav is a standalone control and is not. Both of those were
+  // real failures here — 20px catalogue rows and 21px crumbs — and neither is
+  // visible in a screenshot, so it is measured on every page.
+  await sweep(mainContext, PAGES, async (holder, name) => {
     const page = await visit(holder, `${base}/${name}.html`);
-    await page.addStyleTag({ content: 'html { font-size: 32px !important; }' });
+    await page.waitForTimeout(150);
+    const small = await page.evaluate(() => {
+      const found = [];
+      document.querySelectorAll('a, button, input, select, summary, [tabindex="0"]').forEach((control) => {
+        const box = control.getBoundingClientRect();
+        if (!box.width || !box.height) return; // hidden, or a filtered-out card
+        if (control.tagName === 'A' && control.closest('p, li, dd, figcaption, .lede, blockquote')) return;
+        if (box.height < 24 || box.width < 24) {
+          found.push(`${control.tagName.toLowerCase()}${control.className ? '.' + String(control.className).split(' ')[0] : ''} "${control.textContent.trim().slice(0, 20)}" ${Math.round(box.width)}x${Math.round(box.height)}`);
+        }
+      });
+      return [...new Set(found)];
+    });
+    small.forEach((issue) => fail('targets', `${name} ${issue} — under 24x24`));
+  }, { viewport: { width: 390, height: 844 } });
+  })();
+
+  // 200% text. This used to inject `html { font-size: 32px }` with addStyleTag,
+  // which the site's own CSP now blocks — style-src is 'self' with no
+  // unsafe-inline, so the check was throwing rather than measuring. Chrome's
+  // font-size preference is set over CDP instead, which needs no inline style and
+  // is closer to what a large-text user actually changes. Chromium only.
+  if (wants('responsive') && engine === 'chromium') await sweep(mainContext, SAMPLE, async (holder, name) => {
+    const session = await mainContext.newCDPSession(holder.page);
+    await session.send('Page.setFontSizes', { fontSizes: { standard: 32, fixed: 26 } });
+    const page = await visit(holder, `${base}/${name}.html`);
     await page.waitForTimeout(250);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     if (overflow > 0) fail('responsive', `${name} overflows ${overflow}px at 200% text`);
+    await session.detach();
   }, { viewport: { width: 1024, height: 800 } });
+  else if (wants('responsive')) console.log('  (200% text: chromium only — skipped)');
 }
 await mainContext.close();
 

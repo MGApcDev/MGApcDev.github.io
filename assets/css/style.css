@@ -466,7 +466,13 @@ code {
   gap: 0.6rem;
 }
 
+/* Small caps at 0.7rem give a 21px-tall link — under the 24px minimum for a
+   standalone control (WCAG 2.5.8). Padding buys the height, negative margin
+   gives back the layout space, so the hero copy does not move. */
 .crumbs a {
+  display: inline-block;
+  padding-block: 0.15rem;
+  margin-block: -0.15rem;
   text-decoration: none;
   border-bottom: 1px solid color-mix(in srgb, #f7ede1 35%, transparent);
 }
@@ -1088,6 +1094,17 @@ code {
 
 .price-table tbody tr:hover { background: color-mix(in srgb, var(--poppy) 6%, transparent); }
 
+/* Links in a table cell are discrete controls in a dense grid, not inline prose,
+   so WCAG 2.5.8 applies: at phone width these were 20px tall. Padding grows the
+   hit area past 24px; the matching negative margin gives back the space it took,
+   so rows keep their height and the title stays on the row's baseline. The target
+   is the border box, which the margin does not shrink. */
+.price-table a {
+  display: inline-block;
+  padding-block: 0.35rem;
+  margin-block: -0.35rem;
+}
+
 /* The catalogue is a reading table: a quiet index column, and titles that stay
    the widest thing in the row. */
 .catalogue__number {
@@ -1102,12 +1119,14 @@ code {
   min-width: 14ch;
 }
 
+/* The rule under a title has to be the text underline, not a border: these links
+   are inline-block for their tap target, and a border would draw across the full
+   box — leaving a long line under a two-word wrap like "Untitled (Poppy / I)".
+   The underline follows each line of text instead. */
 .catalogue tbody th a {
-  text-decoration: none;
-  border-bottom: 1px solid var(--sand-line);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
 }
-
-.catalogue tbody th a:hover { border-bottom-color: var(--poppy); }
 
 /* ----------------------------------------------------------------------- faq */
 

@@ -1,2 +1,6 @@
 .DS_Store
 node_modules/
+
+# Failure artefacts from tools/audit-visual.mjs — the baseline is committed,
+# the "what it looks like now" shot is not.
+tests/baseline/*.actual.png
